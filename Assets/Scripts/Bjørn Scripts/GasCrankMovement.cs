@@ -5,51 +5,57 @@ public class GasCrankMovement : MonoBehaviour
     public float rotateSpd = 1f;
     public float minAngle = -18f;
     public float maxAngle = 45f;
-    public float boostMaxAngle = 60f;
-    public float deadzoneAngle = 5f;
+    public float boostMaxAngle = 60f; //Max angle when boosting
+    public float deadzoneAngle = 5f; //How big the zRot must be before the crank rotates
     
-    [HideInInspector] public float power;
+    [HideInInspector] public float power; //Used to change the z rotation into a float used to multiply with movement speed of lawnmower
 
+    private float zRot; //Targeted z rotation, but actual rotation can be overwritten based on the deadzone
+    
     private Input _Input;
     
-    // Start is called before the first frame update
     void Start()
     {
         _Input = GetComponent<Input>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         //TODO: Make compatible with VR input 
         //Changes crank rotation based on scroll wheel input 
         var rot = transform.rotation.eulerAngles;
+        var add = rotateSpd * Time.deltaTime;
         if (_Input.crankAxis > 0f)
         {
-            if (rot.z + (rotateSpd * Time.deltaTime) <= maxAngle || 
-                rot.z + (rotateSpd * Time.deltaTime) >= 360 + minAngle)
+            if (zRot + add <= maxAngle || 
+                zRot + add >= 360 + minAngle)
             {
-                transform.rotation = Quaternion.Euler(rot.x, rot.y, rot.z + (rotateSpd * Time.deltaTime));
+                zRot += add;
             }
-            else transform.rotation = Quaternion.Euler(rot.x, rot.y, maxAngle);
+            else zRot = maxAngle;
             print("Forward");
         }
 
         if (_Input.crankAxis < 0f)
         {
-            if (rot.z - (rotateSpd * Time.deltaTime) >= 360 + minAngle || 
-                rot.z - (rotateSpd * Time.deltaTime) <= maxAngle)
+            if (rot.z - add >= 360 + minAngle || 
+                rot.z - add <= maxAngle)
             {
-                transform.rotation = Quaternion.Euler(rot.x, rot.y, rot.z - (rotateSpd * Time.deltaTime));
+                zRot -= add;
             }
-            else transform.rotation = Quaternion.Euler(rot.x, rot.y, 360 + minAngle);
+            else zRot = minAngle;
             print("Reverse");
         }
-        print(transform.rotation.eulerAngles.z);
-
-        if (transform.rotation.eulerAngles.z <= 180) power = transform.rotation.eulerAngles.z / maxAngle;
-        else power = (360 - transform.rotation.eulerAngles.z) / -maxAngle;
         
-        print(power);
+        //Implementation of the deadzone
+        if (Mathf.Abs(zRot) >= deadzoneAngle) transform.rotation = Quaternion.Euler(rot.x, rot.y, zRot);
+        else transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+        
+        //Sets power based on rotation
+        rot = transform.rotation.eulerAngles;
+        
+        if (rot.z == 0) power = 0;
+        else if (rot.z  <= 180) power = (rot.z) / maxAngle;
+        else power = (360 - rot.z) / - (maxAngle);
     }
 }
