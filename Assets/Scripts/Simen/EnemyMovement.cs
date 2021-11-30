@@ -7,7 +7,6 @@ public class EnemyMovement : MonoBehaviour
 {
     // Movement towards player
     public float speed;
-
     public transformVariable target;
     public float range = 10f;
 
@@ -25,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
             print("Where are you player?");
         }
     }
-
+    
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
