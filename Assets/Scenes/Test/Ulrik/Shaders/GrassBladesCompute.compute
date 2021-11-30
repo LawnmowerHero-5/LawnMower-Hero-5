@@ -1,0 +1,39 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+//Include helper functions
+#include "NMGGrassBladeComputeHelpers.hlsl"
+
+//This describes a vertex on the source mesh
+struct SourceVertex{
+    float3 positionOS; // Position in object spaces
+};
+// Source buffers, arranged as a vertex buffer and index buffer
+StructuredBuffer<SourceVertex> _SourceVertices;
+StructuredBuffer<int> _SourceTriangles;
+
+//This describes a vertex on the generated mesh
+struct DrawVertex
+{
+    float3 positionWS; // The position in the world space
+    float height; //The height of this vertex on the grass blade
+};
+// A triangle on the generated mesh
+struct DrawTriangle
+{
+    float3 lightingNormalWS; // A normal , in world space, to use in the lighting algorithm
+    DrawVertex vertices[3]; // The three points on the triangle
+};
+// A buffer containing the generated mesh
+AppendStructuredBuffer<DrawTriangle> _DrawTriangles;
+
+// The indirect draw call args, as described in the renderer script
+struct IndirectArgs
+{
+    uint numVerticesPerInstance;
+    uint numInstances;
+    uint startVertexIndex;
+    uint startInstanceIndex;
+};
+//The kernel will count the number of vertices, so this must be RW enabled
+RWStructuredBuffer<IndirectArgs> _IndirectArgsBuffer;
