@@ -1,4 +1,4 @@
-Shader "Geometry/GrassGeometryShaderUnlit"
+Shader "Geometry/Grass_shader_lit_test2"
 {
     Properties
     {
