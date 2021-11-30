@@ -6,7 +6,7 @@ Shader "Geometry/Grass_shader_lit_test2"
         _Color("Color", Color) = (1,1,1,1)
         _GradientMap("Gradient map", 2D) = "white" {}
         //trail cut
-        _Trail("TrailMap", 2D) = "white" {}
+        //_Trail("TrailMap", 2D) = "white" {}
         
         //Noise and wind
         _NoiseTexture("Noise texture", 2D) = "white" {} 
