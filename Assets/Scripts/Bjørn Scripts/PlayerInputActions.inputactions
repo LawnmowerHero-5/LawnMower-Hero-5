@@ -1,0 +1,34 @@
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "PlayerTest",
+            "id": "1017d912-3de3-4bc9-a46c-2c467eeb16d4",
+            "actions": [
+                {
+                    "name": "Gascrank",
+                    "type": "PassThrough",
+                    "id": "7573519a-06c1-401d-b99d-8c34ba8e43aa",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3db1d5c4-dcf1-44af-96ff-8ce68503601b",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gascrank",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
