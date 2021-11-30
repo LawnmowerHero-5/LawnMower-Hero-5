@@ -5,7 +5,9 @@ Shader "Geometry/GrassGeometryShaderUnlit"
         //Color stuff
         _Color("Color", Color) = (1,1,1,1)
         _GradientMap("Gradient map", 2D) = "white" {}
-         
+        //trail cut
+        _Trail("TrailMap", 2D) = "white" {}
+        
         //Noise and wind
         _NoiseTexture("Noise texture", 2D) = "white" {} 
         _WindTexture("Wind texture", 2D) = "white" {}
@@ -22,6 +24,8 @@ Shader "Geometry/GrassGeometryShaderUnlit"
         _GrassBlades("Grass blades per triangle", Range(0, 15)) = 1
         _MinimunGrassBlades("Minimum grass blades per triangle", Range(0, 15)) = 1
         _MaxCameraDistance("Max camera distance", float) = 10
+        
+
     }
     SubShader
     {
@@ -49,7 +53,8 @@ Shader "Geometry/GrassGeometryShaderUnlit"
  
             fixed4 _Color;
             sampler2D _GradientMap;
- 
+            float _Trail;
+        
             sampler2D _NoiseTexture;
             float4 _NoiseTexture_ST;
             sampler2D _WindTexture;
@@ -115,7 +120,8 @@ Shader "Geometry/GrassGeometryShaderUnlit"
  
                     float noise = tex2Dlod(_NoiseTexture, float4(worldPos.xz * _NoiseTexture_ST.xy, 0.0, 0.0)).x;
                     float heightFactor = noise * _GrassHeight;                        
- 
+                    //float heightFactor = _Trail * _GrassHeight;
+                    
                     triStream.Append(GetVertex(pointA, float2(0,0), fixed4(0,0,0,1)));
  
                     float4 newVertexPoint = midpoint + float4(normal, 0.0) * heightFactor + float4(r1, 0.0, r2, 0.0) * _PositionRandomness + float4(wind.x, 0.0, wind.y, 0.0);

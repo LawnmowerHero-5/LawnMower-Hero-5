@@ -20,28 +20,36 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _GradientMap:
-        m_Texture: {fileID: 2800000, guid: fef5c3f13cb756b469a75529970e6a00, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4ba45b3dba314a342ab38a868c51b8df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GrassHeight:
+        m_Texture: {fileID: 2800000, guid: 7b476ae3ae6b08c439c81b6560c1579f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: 7b476ae3ae6b08c439c81b6560c1579f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Trail:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _WindTexture:
-        m_Texture: {fileID: 2800000, guid: 7b476ae3ae6b08c439c81b6560c1579f, type: 3}
+        m_Texture: {fileID: 2800000, guid: ce242fb8ae5d77e4c881d6807368cc5f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _GrassBlades: 15
-    - _GrassHeight: 1.54
-    - _GrassWidth: 0.252
-    - _MaxCameraDistance: 15
+    - _GrassHeight: 1.03
+    - _GrassWidth: 0.3
+    - _MaxCameraDistance: 257.69
     - _MinimunGrassBlades: 15
     - _PositionRandomness: 0.21
-    - _WindSpeed: 0.01
-    - _WindStrength: 0.21
+    - _WindSpeed: 0.18
+    - _WindStrength: 0.19
     m_Colors:
-    - _Color: {r: 0.2731399, g: 0.6226415, b: 0.4449999, a: 1}
+    - _Color: {r: 0.003632903, g: 1, b: 0, a: 1}
     - _WindColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
