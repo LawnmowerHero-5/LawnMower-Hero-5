@@ -8,10 +8,12 @@ public class BatBehaviour : MonoBehaviour
 {
     public Rigidbody rb;
     public float batDamage =  3f;
+    public EnemyHealth EnemyHealth;
     
     
     void Start()
     {
+        EnemyHealth = GetComponent<EnemyHealth>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -25,23 +27,41 @@ public class BatBehaviour : MonoBehaviour
     void Update()
     {
         
-        if (rb.velocity.sqrMagnitude is >= 10 and <= 14)
+       /* if (gameObject.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 10 and <= 14)
         {
-            
+            EnemyHealth.health --;
+            print("Im going Fast");
         }
-        else if (rb.velocity.sqrMagnitude is >= 15 and <= 20)
+        else if (gameObject.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 15 and <= 20)
         {
-            gameObject.CompareTag("FastBat");
+            EnemyHealth.health --;
             print("Do you have anny idea how fast im going");
         }
-        else if (rb.velocity.sqrMagnitude >= 21)
+        else if (gameObject.CompareTag("Enemy") && rb.velocity.sqrMagnitude >= 21)
         {
-            gameObject.CompareTag("FastestBat");
+            EnemyHealth.health --;
+            print("Fast AF boyyy");
+        }*/
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 10 and <= 14)
+        {
+           EnemyHealth.health -= batDamage;
+            print("Im going Fast");
+        }
+        else if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 15 and <= 20)
+        {
+            EnemyHealth.health -= batDamage*2;
+            print("Do you have anny idea how fast im going");
+        }
+        else if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude >= 21)
+        {
+            EnemyHealth.health -= batDamage*3;
             print("Fast AF boyyy");
         }
     }
-
-   
 }
 
     

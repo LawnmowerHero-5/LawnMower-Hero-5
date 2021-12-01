@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class EnemyHealth : MonoBehaviour
         _rigibody = GetComponent<Rigidbody>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void Update()
     {
-        
+        if (health is 0 or < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
