@@ -18,7 +18,8 @@ Shader "Geometry/GrassGeometryShaderUnlit"
         _WindColor("Wind color", Color) = (1,1,1,1)
  
         //Position and dimensions
-        _GrassHeight("Grass height", float) = 0
+        //_GrassHeight("Grass height", float) = 0
+        _GrassHeight("Grass Height", 2D) = "white" {}
         _GrassWidth("Grass width", Range(0.0, 1.0)) = 1.0
         _PositionRandomness("Position randomness", float) = 0
  
@@ -151,9 +152,6 @@ Shader "Geometry/GrassGeometryShaderUnlit"
                 fixed4 col = (gradientMapCol + _WindColor * i.col.g) * _Color;
                 return col;
             }
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassRenderers.hlsl"
-            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/VertMesh.hlsl"
- 
         ENDCG
  
         Pass
