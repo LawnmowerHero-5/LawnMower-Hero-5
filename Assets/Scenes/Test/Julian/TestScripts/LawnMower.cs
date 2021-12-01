@@ -8,7 +8,7 @@ public class LawnMower : MonoBehaviour
     public WheelCollider[] wheels;
     [Header("Speed")]
     [SerializeField] private float motorPower = 40f;
-    private float _SpeedMultiplier = 0.1f; // range between -1 & 1, negative values will make the car go backwards.
+    private float _SpeedMultiplier = 0f; // range between -1 & 1, negative values will make the car go backwards.
     
     [Header("Steering")]
     [SerializeField] private float steeringPower = 10f;
