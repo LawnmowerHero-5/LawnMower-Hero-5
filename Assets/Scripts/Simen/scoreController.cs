@@ -12,9 +12,11 @@ public class scoreController : MonoBehaviour
     public float score;
     [Header("Points")]
     [Space(5)]
-    [Range(0, 1000)] public float killPointsWasp;
-    [Range(0, 1000)] public float killPointsGnome;
-    [Range(0, 1000)] public float loosePointsBee;
+    [Range(0, 1000)] public int killPointsWasp;
+    [Range(0, 1000)] public int killPointsGnome;
+    [Range(0, 1000)] public int loosePointsBee;
+    [Range(0, 1000)] public int loosePointsGoodGnome;
+    
 
     private void Start()
     {
@@ -31,7 +33,7 @@ public class scoreController : MonoBehaviour
             Destroy(other.gameObject);
         }
         
-        if (other.gameObject.CompareTag("Gnome"))
+        if (other.gameObject.CompareTag("EvilGnome"))
         {
             score += killPointsGnome;
             SetCountText();
@@ -41,6 +43,13 @@ public class scoreController : MonoBehaviour
         if (other.gameObject.CompareTag("Bee"))
         {
             score -= loosePointsBee;
+            SetCountText();
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("GoodGnome"))
+        {
+            score -= loosePointsGoodGnome;
             SetCountText();
             Destroy(other.gameObject);
         }
