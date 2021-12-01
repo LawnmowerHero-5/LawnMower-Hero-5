@@ -24,8 +24,7 @@ public class Music : MonoBehaviour
   
     //Keeps track of how long a channel has played for
     [SerializeField] private float[] channelCurrentTime;
-    
-    
+
     //Which event is played by the musicInstance
     [SerializeField] [EventRef] private string music;
 
@@ -89,6 +88,8 @@ public class Music : MonoBehaviour
 
     private void Update()
     {
+        //Makes the music instance follow the object
+        musicInstance.set3DAttributes(gameObject.transform.To3DAttributes());
 
         #region - ChannelLogic -
         
@@ -119,26 +120,36 @@ public class Music : MonoBehaviour
         if (timelineInfo.previousBeat != timelineInfo.currentBeat)
         {
             timelineInfo.previousBeat = timelineInfo.currentBeat;
-            if (timelineInfo.BPM > 30f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
+            RuntimeManager.StudioSystem.getParameterByName("AudioOn", out var val);
+            if ((int) val == 1)
+            {
+                if (timelineInfo.BPM > 30f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
 
-            //Radio animation
-            if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-            {
-                _RadioAnimation.SpeakerJumpLeft();
-            }
-            else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpLeftShort"))
-            {
-                _RadioAnimation.SpeakerJumpFarRight();
-            }
-            else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpFarLeft"))
-            {
-                _RadioAnimation.SpeakerJumpFarRight();
-            }
-            else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpFarRight"))
-            {
-                _RadioAnimation.SpeakerJumpFarLeft();
+                //Radio animation
+                if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    _RadioAnimation.SpeakerJumpLeft();
+                }
+                else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpLeftShort"))
+                {
+                    _RadioAnimation.SpeakerJumpFarRight();
+                }
+                else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpFarLeft"))
+                {
+                    _RadioAnimation.SpeakerJumpFarRight();
+                }
+                else if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("JumpFarRight"))
+                {
+                    _RadioAnimation.SpeakerJumpFarLeft();
+                }
             }
         }
+        
+        //Play PS Notes
+        if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
+        else _SpeakerAnimation.StopPSNotes();
+        
+        RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
 
         #endregion
 
