@@ -35,8 +35,11 @@ public class Music : MonoBehaviour
     private EVENT_CALLBACK beatCallback;
     private EventInstance musicInstance;
 
+    //Scripts
     [SerializeField] private SpeakerAnimation _SpeakerAnimation;
     [SerializeField] private RadioAnimation _RadioAnimation;
+    
+    private PlayerInput _Input;
 
     //Class used to store information about the timeline
     [StructLayout(LayoutKind.Sequential)]
@@ -72,6 +75,8 @@ public class Music : MonoBehaviour
                 EVENT_CALLBACK_TYPE.TIMELINE_BEAT | 
                           EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
         }
+
+        _Input = GetComponent<PlayerInput>();
     }
 
     private void OnDestroy()
@@ -136,9 +141,12 @@ public class Music : MonoBehaviour
         }
 
         #endregion
+
+        RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
         
         //TODO: Remove whitenoise test input
         //TODO: Add whitenoise when between channels
+        //TODO: Add channel dial logic
         if (Keyboard.current.digit1Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 0f);
         if (Keyboard.current.digit2Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 0.5f);
         if (Keyboard.current.digit3Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 1f);

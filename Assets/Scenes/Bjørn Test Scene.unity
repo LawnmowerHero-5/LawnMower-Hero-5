@@ -607,6 +607,7 @@ GameObject:
   - component: {fileID: 1176925679}
   - component: {fileID: 1176925680}
   - component: {fileID: 1176925681}
+  - component: {fileID: 1176925682}
   m_Layer: 0
   m_Name: RadioLogic
   m_TagString: Untagged
@@ -709,6 +710,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radio: {fileID: 0}
+--- !u!114 &1176925682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176925676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ef1f869bd434f45a1b87c98ba8dac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radioOn: 1
 --- !u!1 &1260533204
 GameObject:
   m_ObjectHideFlags: 0
