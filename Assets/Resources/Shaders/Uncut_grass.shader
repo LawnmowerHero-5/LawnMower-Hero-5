@@ -1,12 +1,14 @@
-Shader "Geometry/Grass_shader_lit_test2"
+Shader "Geometry/GrassGeometryShaderUnlit"
 {
     Properties
     {
+        
+        
         //Color stuff
         _Color("Color", Color) = (1,1,1,1)
         _GradientMap("Gradient map", 2D) = "white" {}
         //trail cut
-        //_Trail("TrailMap", 2D) = "white" {}
+        _Trail("TrailMap", 2D) = "white" {}
         
         //Noise and wind
         _NoiseTexture("Noise texture", 2D) = "white" {} 
@@ -27,11 +29,13 @@ Shader "Geometry/Grass_shader_lit_test2"
         
 
     }
+    
     SubShader
     {
+        
  
         CGINCLUDE
-            
+         
             #include "UnityCG.cginc"
  
             struct appdata
@@ -147,7 +151,8 @@ Shader "Geometry/Grass_shader_lit_test2"
                 fixed4 col = (gradientMapCol + _WindColor * i.col.g) * _Color;
                 return col;
             }
-             
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/RenderPass/CustomPass/CustomPassRenderers.hlsl"
+            #include "Packages/com.unity.render-pipelines.high-definition/Runtime/RenderPipeline/ShaderPass/VertMesh.hlsl"
  
         ENDCG
  
