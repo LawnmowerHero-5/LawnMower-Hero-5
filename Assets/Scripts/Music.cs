@@ -116,6 +116,8 @@ public class Music : MonoBehaviour
 
         #region - Animation -
         
+        //TODO: After VR Input is implemented, stop jumping animation if player tries to interact with the radio (except if holding something else) 
+
         //Play speaker bounce animation on each beat
         if (timelineInfo.previousBeat != timelineInfo.currentBeat)
         {
@@ -146,6 +148,8 @@ public class Music : MonoBehaviour
         }
         
         //Play PS Notes
+        //TODO: Stop PS from playing when no song is playing
+        if (timelineInfo.BPM < 30f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
         if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
         else _SpeakerAnimation.StopPSNotes();
         

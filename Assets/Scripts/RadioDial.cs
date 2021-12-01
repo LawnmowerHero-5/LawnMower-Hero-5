@@ -2,26 +2,40 @@ using UnityEngine;
 
 public class RadioDial : MonoBehaviour
 {
-    private float minHertz = 88;
-    private float maxHertz = 108;
-    private float dialMaxRotation = 120;
-    private float dialMinRotation = -120;
+    public float rotateSpd = 120f;
+
+    [HideInInspector] public float hertz = 88f;
     
+    private float minHertz = 88f;
+    private float maxHertz = 108f;
+    private float dialMinAngle = -120f;
+    private float dialMaxAngle = 120f;
+
+    private float yRot;
+
     [SerializeField] private PlayerInput _Input;
     
     // Update is called once per frame
     void Update()
     {
-        var rot = transform.localRotation.eulerAngles;
-        //Rotate channel dial
-        if (_Input.rotateDir != 0)
-        {
-            //transform.rotation = Quaternion.Euler();
-            transform.localRotation = Quaternion.Euler(rot.x, rot.y + (_Input.rotateDir * Time.deltaTime * 120), rot.z);
-        }
-        
-        print(transform.localRotation.y);
+        var rot = transform.localEulerAngles;
+        var add = rotateSpd * Time.deltaTime;
 
-        //Set value of channel & white noise based on hertz
+        if (_Input.rotateDir > 0f)
+        {
+            if (yRot + add <= dialMaxAngle) yRot += add;
+            else yRot = dialMaxAngle;
+        }
+        if (_Input.rotateDir < 0f)
+        {
+            if (yRot - add >= dialMinAngle) yRot -= add;
+            else yRot = dialMinAngle;
+        }
+
+        print(rot.y);
+        transform.localRotation = Quaternion.Euler(rot.x, yRot, rot.z);
+
+        var angle = yRot - dialMinAngle;
+        //TODO: CONTINUE FROM HERE BJØRN WITH CHANGING ANGLE TO HERTZ VALUE
     }
 }

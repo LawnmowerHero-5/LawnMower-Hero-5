@@ -23,7 +23,7 @@ public class GasCrankMovement : MonoBehaviour
     {
         //TODO: Make compatible with VR input 
         //Changes crank rotation based on scroll wheel input 
-        var rot = transform.rotation.eulerAngles;
+        var rot = transform.localRotation.eulerAngles;
         var add = rotateSpd * Time.deltaTime;
         if (_Input.crankAxis > 0f)
         {
@@ -48,11 +48,11 @@ public class GasCrankMovement : MonoBehaviour
         }
         
         //Implementation of the deadzone
-        if (Mathf.Abs(zRot) >= deadzoneAngle) transform.rotation = Quaternion.Euler(rot.x, rot.y, zRot);
-        else transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+        if (Mathf.Abs(zRot) >= deadzoneAngle) transform.localRotation = Quaternion.Euler(rot.x, rot.y, zRot);
+        else transform.localRotation = Quaternion.Euler(rot.x, rot.y, 0);
         
         //Sets power based on rotation
-        rot = transform.rotation.eulerAngles;
+        rot = transform.localRotation.eulerAngles;
         
         if (rot.z == 0) power = 0;
         else if (rot.z  <= 180) power = (rot.z) / maxAngle;

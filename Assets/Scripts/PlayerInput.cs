@@ -14,8 +14,8 @@ public class PlayerInput : MonoBehaviour
             else radioOn = 1;
         }
         
-        if (Keyboard.current.qKey.isPressed) rotateDir = -1;
-        if (Keyboard.current.eKey.isPressed) rotateDir = 1;
+        if (Keyboard.current.qKey.isPressed) rotateDir = 1;
+        if (Keyboard.current.eKey.isPressed) rotateDir = -1;
         if (!Keyboard.current.eKey.isPressed && !Keyboard.current.qKey.isPressed) rotateDir = 0;
     }
 }
