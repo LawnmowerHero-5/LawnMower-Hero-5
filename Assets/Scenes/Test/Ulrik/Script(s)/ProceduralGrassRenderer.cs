@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Windows;
+using UnityEngine.VFX;
 
 public class ProceduralGrassRenderer : MonoBehaviour
 {
@@ -142,7 +144,7 @@ public class ProceduralGrassRenderer : MonoBehaviour
         argsBuffer.SetData(argsBufferReset);
         
         // Transform the bounds to world space
-        Bounds bounds = TransformBounds(localBounds);
+        Bounds bounds = UnityEditorInternal.InternalEditorUtility.TransformBounds(localBounds, new RectTransform());
         
         // Update the shader with frame specific data
         grassComputeShader.Dispatch(idGrassKernel, dispatchSize, 1, 1);
