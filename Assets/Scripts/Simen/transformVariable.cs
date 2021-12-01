@@ -6,4 +6,5 @@ using UnityEngine;
 public class transformVariable : ScriptableObject
 {
     public Transform targetTransform;
+   
 }
