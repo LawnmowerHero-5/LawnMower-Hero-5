@@ -1,10 +1,10 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SteeringTest : MonoBehaviour
+public class SteeringTestLocalSpace : MonoBehaviour
 {
-   
-   //Todo Clean up all of this code
+    //Todo Clean up all of this code
    #region Variables
    
    [Header("Hands")]
@@ -79,14 +79,14 @@ public class SteeringTest : MonoBehaviour
       if (_rightHandOnWheel) // &&input to hold the wheel TODO
       {
          rightHand.transform.parent = _rightHandOriginalParent;
-         rightHand.transform.position = _rightHandOriginalParent.position;
+         rightHand.transform.localPosition = _rightHandOriginalParent.localPosition;
          rightHand.transform.rotation = _rightHandOriginalParent.rotation;
          _rightHandOnWheel = false;
       }
       if (_leftHandOnWheel) // &&input to hold the wheel TODO
       {
          leftHand.transform.parent = _leftHandOriginalParent;
-         leftHand.transform.position = _leftHandOriginalParent.position;
+         leftHand.transform.localPosition = _leftHandOriginalParent.localPosition;
          leftHand.transform.rotation = _leftHandOriginalParent.rotation;
          _leftHandOnWheel = false;
       }
@@ -99,14 +99,14 @@ public class SteeringTest : MonoBehaviour
 
    private void PlaceHandOnWheel(ref GameObject hand, ref Transform originalParent, ref bool handsOnWheel)
    {
-      var shortestDistance = Vector3.Distance(grabbablePositions[0].position, hand.transform.position);
+      var shortestDistance = Vector3.Distance(grabbablePositions[0].localPosition, hand.transform.localPosition);
       var bestGrab = grabbablePositions[0];
 
       foreach (var grabbablePosition in grabbablePositions)
       {
          if (grabbablePosition.childCount == 0)
          {
-            var distance = Vector3.Distance(grabbablePosition.position, hand.transform.position);
+            var distance = Vector3.Distance(grabbablePosition.localPosition, hand.transform.localPosition);
             if (distance < shortestDistance)
             {
                shortestDistance = distance;

@@ -7,8 +7,8 @@ public class LawnMower : MonoBehaviour
     [Tooltip("The first two in the array, correspond to the steering wheels")]
     public WheelCollider[] wheels;
     [Header("Speed")]
-    [SerializeField] private float motorPower = 400f;
-    private float _SpeedMultiplier = 0f; // range between -1 & 1, negative values will make the car go backwards.
+    [SerializeField] private float motorPower = 40f;
+    private float _SpeedMultiplier = 0.1f; // range between -1 & 1, negative values will make the car go backwards.
     
     [Header("Steering")]
     [SerializeField] private float steeringPower = 10f;
@@ -18,6 +18,8 @@ public class LawnMower : MonoBehaviour
     public GameObject centerOfMass;
     
     private Rigidbody _rigidbody;
+
+    private NewSteeringWheelTest _steering;
 
 
 
@@ -29,16 +31,18 @@ public class LawnMower : MonoBehaviour
     {
         _rigidbody.centerOfMass = centerOfMass.transform.localPosition;
     }
-    // !! Mathf.Clamp is TEMPORARY and should be removed when integrating !!
     private void Update()
     {
-        // Useless if it gets the multiplier from other script !! WILL LIMIT MAX SPEED !!
+        // Useless if it gets the multiplier from other script !! WILL LIMIT MAX Multiplier !!
         Mathf.Clamp(_SpeedMultiplier, -1, 1);
         Mathf.Clamp(_SteeringMultiplier, -1, 1);
 
+
+        _SteeringMultiplier = _steering.outputAngle / 360;
     }
     
     // This takes Controller input, for testing on pc !! Not for VR version!!
+    // Todo: Remove before finalBuild
     void OnMove(InputValue inputValue)
     {
         _SteeringMultiplier = inputValue.Get<Vector2>().x;
@@ -56,7 +60,6 @@ public class LawnMower : MonoBehaviour
         {
             if (i < 2)
             {
-                // TODO: Change over to steering value from SteeringWheel
                 wheels[i].steerAngle = steeringPower * _SteeringMultiplier;
             }
         }
