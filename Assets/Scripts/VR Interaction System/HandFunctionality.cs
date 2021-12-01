@@ -12,6 +12,11 @@ public class HandFunctionality : MonoBehaviour
     Makes the controller be able to read input from HandController script, and supports following features:
     * Pick up objects with the pickUpAble script (and they will break off if you try to move them through walls)
     */
+    
+    [Header("Hand Options")] 
+    [Tooltip("Radius of the sphere detecting pickupAbles (GrabRangeAmount)")] 
+    [SerializeField] private float _grabRadius = 0.1f;
+    
     public PickupAble CurrentlyHeldPickupAble { private get; set; }
     private List<PickupAble> _pickupAblesInTriggerRadius = new List<PickupAble>();
 
@@ -60,10 +65,13 @@ public class HandFunctionality : MonoBehaviour
     {
         //Create new fixedjoint if the last one breaks
         FixedJoint = gameObject.AddComponent<FixedJoint>();
+        DetachPickupAbleFromController(CurrentlyHeldPickupAble);
     }
 
     private void OnValidate()
     {
+        //Set sphere collider trigger radus to specified value in this script
+        GetComponent<SphereCollider>().radius = _grabRadius;
         //The spherecollider must be a trigger to prevent actual collisions
         SphereCollider sc = GetComponent<SphereCollider>();
         if (!sc.isTrigger)
@@ -119,10 +127,12 @@ public class HandFunctionality : MonoBehaviour
             DetachPickupAbleFromController(pickupAble);
         }
         
-        //Attach PickupAble to controller fixed joint
-        pickupAble.transform.position = transform.position;
+        //Attach PickupAble to controller fixed joint, and disable velocity to avoid the fixed joint breaking
+        transform.SetPositionAndRotation(transform.position + pickupAble.HoldPointRelPos, transform.rotation * pickupAble.HoldPointRelRot);
+        pickupAble.RigidBody.velocity = Vector3.zero;
+        pickupAble.RigidBody.angularVelocity = Vector3.zero;
         FixedJoint.connectedBody = pickupAble.RigidBody;
-        FixedJoint.breakTorque = pickupAble.BreakForceToDetach;
+        FixedJoint.breakForce = pickupAble.BreakForceToDetach;
 
         //Set held values
         CurrentlyHeldPickupAble = pickupAble;
@@ -136,6 +146,11 @@ public class HandFunctionality : MonoBehaviour
         
         //Detach from controller fixed joint
         pickupAble.currentHeldByHand.FixedJoint.connectedBody = null;
+        
+        //Set pickupAble held since respawn to true
+        pickupAble.heldSinceRespawn = true;
+        //reset pickupAble seconds since last held
+        pickupAble.lastHeldFixedTime = Time.fixedTime;
         
         //Apply velocity of controllers
         pickupAble.RigidBody.velocity = _handController.BehaviourPose.GetVelocity();    //add check for when velocity does not need to be calculated
