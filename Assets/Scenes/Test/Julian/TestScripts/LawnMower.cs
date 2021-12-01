@@ -11,18 +11,18 @@ public class LawnMower : MonoBehaviour
     private float _SpeedMultiplier = 0f; // range between -1 & 1, negative values will make the car go backwards.
     
     [Header("Steering")]
+    public NewSteeringWheelTest steering; //_steering.outputAngle goes from -360 - 360
     [SerializeField] private float steeringPower = 10f;
     private float _SteeringMultiplier = 0;
+    
+    [Tooltip("Change outputDivider to make the Steering reach steeringMultiplier with less turning")]
+    [SerializeField] private float outputDivider = 360;
 
     [Header("Mass")]
     public GameObject centerOfMass;
     
     private Rigidbody _rigidbody;
-
-    private NewSteeringWheelTest _steering;
-
-
-
+    
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -36,11 +36,13 @@ public class LawnMower : MonoBehaviour
         // Useless if it gets the multiplier from other script !! WILL LIMIT MAX Multiplier !!
         Mathf.Clamp(_SpeedMultiplier, -1, 1);
         Mathf.Clamp(_SteeringMultiplier, -1, 1);
-
-
-        _SteeringMultiplier = _steering.outputAngle / 360;
     }
-    
+    private void TranslateInput()
+    {
+        //Since theres a clamp, it wont go above 1 or below -1
+        // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
+        _SteeringMultiplier = steering.outputAngle / outputDivider;
+    }
     // This takes Controller input, for testing on pc !! Not for VR version!!
     // Todo: Remove before finalBuild
     void OnMove(InputValue inputValue)
@@ -55,7 +57,6 @@ public class LawnMower : MonoBehaviour
             // TODO: Change over to power from TorqueHandle 
             wheel.motorTorque = (motorPower / 4) * _SpeedMultiplier;
         }
-
         for (int i = 0; i < wheels.Length; i++)
         {
             if (i < 2)

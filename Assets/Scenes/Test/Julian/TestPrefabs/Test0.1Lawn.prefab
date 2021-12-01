@@ -1350,7 +1350,9 @@ MonoBehaviour:
   - {fileID: 4930565387083770787}
   - {fileID: 4930565388243276922}
   motorPower: 40
+  steering: {fileID: 4930565386655194647}
   steeringPower: 10
+  outputDivider: 360
   centerOfMass: {fileID: 4930565388054600402}
 --- !u!114 &4930565387615802554
 MonoBehaviour:
@@ -1798,7 +1800,7 @@ GameObject:
   - component: {fileID: 4930565387949923066}
   - component: {fileID: 4930565387949923061}
   m_Layer: 0
-  m_Name: Test0
+  m_Name: Test0.1Lawn
   m_TagString: LawnMower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2640,6 +2642,19 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4930565388162511473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930565388162391260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17c465c01e70494eb9c8c68fe8de7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grabRadius: 0.1
 --- !u!114 &4930565388162511478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,18 +2670,6 @@ MonoBehaviour:
   _triggerDownAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
---- !u!114 &4930565388162511473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4930565388162391260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f17c465c01e70494eb9c8c68fe8de7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4930565388162417608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 192944, guid: 4d293c8e162f3874b982baadd71153d2,
@@ -2723,6 +2726,19 @@ FixedJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &4930565387197503049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930565388162488058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f17c465c01e70494eb9c8c68fe8de7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grabRadius: 0.1
 --- !u!114 &4930565387197503054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2738,18 +2754,6 @@ MonoBehaviour:
   _triggerDownAction:
     actionPath: /actions/default/in/GrabPinch
     needsReinit: 0
---- !u!114 &4930565387197503049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4930565388162488058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f17c465c01e70494eb9c8c68fe8de7d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &4930565388162653780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2,
