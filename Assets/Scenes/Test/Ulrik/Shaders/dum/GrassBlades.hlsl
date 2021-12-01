@@ -50,7 +50,8 @@ VertexOutput Vertex(uint vertexID: SV_VertexID)
     output.positionWS = input.positionWS;
     output.normalWS = tri.lightingNormalWS;
     output.uv = input.height;
-    output.positionCS = TransformWorldToHClip(input.positionWS);
+    
+    output.postionCS = TransformWorldTo HClip(input.positionWS);
 
     return output;
 }
@@ -59,6 +60,7 @@ VertexOutput Vertex(uint vertexID: SV_VertexID)
 
 half4 Fragment(VertexOutput input) : SV_Target{
     // Gather some data for the lighting algorithm
+    
     InputData lightingInput = (InputData)0;
     lightingInput.positionWS = input.positionWS;
     lightingInput.normalWS = input.normalWS; // No need to normalize, triangles share a normal
@@ -73,4 +75,3 @@ half4 Fragment(VertexOutput input) : SV_Target{
     // The arguments are lighting input data, albedo color, specular color, smoothness, emission color, and alpha
     return UniversalFragmentBlinnPhong(lightingInput, albedo, 1, 0, 0, 1);
 }
-#endif

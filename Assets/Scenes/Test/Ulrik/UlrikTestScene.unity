@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 6190626662473904145}
   - component: {fileID: 8218349619189466331}
   - component: {fileID: 8218349619189466332}
+  - component: {fileID: 8218349619189466333}
   m_Layer: 0
   m_Name: GrassGrower
   m_TagString: Untagged
@@ -762,3 +763,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: 76dd4c7683c06e9488272f5f9d9f85ea, type: 3}
+--- !u!114 &8218349619189466333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7569861715872900366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064b237c8427c164db05d5f8714859c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceMesh: {fileID: -462981019419857548, guid: 76dd4c7683c06e9488272f5f9d9f85ea,
+    type: 3}
+  grassComputeShader: {fileID: 7200000, guid: 639d708da4067434a9e4337bd97b79c3, type: 3}
+  material: {fileID: 2100000, guid: 28c4ba1d040ed6f42917c711c3059fb4, type: 2}
