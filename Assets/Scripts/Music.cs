@@ -33,11 +33,11 @@ public class Music : MonoBehaviour
 
     private EVENT_CALLBACK beatCallback;
     private EventInstance musicInstance;
-
+    
     //Scripts
     [SerializeField] private SpeakerAnimation _SpeakerAnimation;
     [SerializeField] private RadioAnimation _RadioAnimation;
-    
+
     private PlayerInput _Input;
 
     //Class used to store information about the timeline
