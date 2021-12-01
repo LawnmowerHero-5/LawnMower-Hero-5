@@ -22,6 +22,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-8903457291589783005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AudioOn
+  m_EditorClassIdentifier: 
+  Name: AudioOn
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-8160627907650312515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +302,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-4495384932828837092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/Whitenoise
+  m_EditorClassIdentifier: 
+  Name: Whitenoise
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-4423597969278615812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +405,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Lawnmower Hero 5 Vr/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637739647855483514
+  lastModified: 637739659282721230
   FileSizes:
   - Name: 
     Value: 852
@@ -694,7 +738,7 @@ MonoBehaviour:
   - {fileID: 5925245351447604766}
   StringsBanks:
   - {fileID: -3779402536841141117}
-  stringsBankWriteTime: 637739647855483514
+  stringsBankWriteTime: 637739659282721230
   cacheVersion: 8
 --- !u!114 &43621271847505655
 MonoBehaviour:
@@ -782,8 +826,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 2375202982419184647}
-  - {fileID: 1658263279522525767}
+  - {fileID: -4495384932828837092}
+  - {fileID: -8903457291589783005}
   MinDistance: 1
   MaxDistance: 20
   Length: 90000
@@ -874,7 +918,7 @@ MonoBehaviour:
     data2: 0
   Type: 1
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &1770119939957152790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +1028,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &2380889134351409728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1174,7 +1218,7 @@ MonoBehaviour:
   Path: ../../FMOD Studio/Lawnmower Hero 5 Vr/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637739647855473539
+  lastModified: 637739659282701283
   FileSizes: []
   Exists: 1
 --- !u!114 &6188669427103298227
