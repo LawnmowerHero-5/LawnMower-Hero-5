@@ -15,13 +15,19 @@ public class SprayBoxBehaviour : MonoBehaviour
     // Update is called once per frame
    
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Wasp"))
         {
- //           WaitForSeconds(3);
-            
+            //EnemyHealth.health -= SprayDamage;
+            if (other.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+            {
+                enemyHealth.health -= SprayDamage;
+            }
             print("NOT THE BEES");
         }
+         
+
+        
     }
 }

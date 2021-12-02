@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using Valve.VR;
 
@@ -9,7 +10,8 @@ public class BatBehaviour : MonoBehaviour
     public Rigidbody rb;
     public float batDamage =  3f;
     public EnemyHealth EnemyHealth;
-    
+
+    private Transform trns;
     
     void Start()
     {
@@ -46,20 +48,35 @@ public class BatBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 10 and <= 14)
+        if (other.collider.CompareTag("Gnome") && rb.velocity.sqrMagnitude is >= 10 and <= 14)
         {
-           EnemyHealth.health -= batDamage;
+           /* if (other.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyHealth))
+            {
+                EnemyHealth.health -= batDamage;
+            }
+            */ 
+           
+           GetEnemyDoDamage(other, 1f);
             print("Im going Fast");
         }
-        else if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude is >= 15 and <= 20)
+        else if (other.collider.CompareTag("Gnome") && rb.velocity.sqrMagnitude is >= 15 and <= 20)
         {
-            EnemyHealth.health -= batDamage*2;
+            GetEnemyDoDamage(other, 2f);
+
             print("Do you have anny idea how fast im going");
         }
-        else if (other.collider.CompareTag("Enemy") && rb.velocity.sqrMagnitude >= 21)
+        else if (other.collider.CompareTag("Gnome") && rb.velocity.sqrMagnitude >= 21)
         {
-            EnemyHealth.health -= batDamage*3;
+            GetEnemyDoDamage(other,  3f);
             print("Fast AF boyyy");
+        }
+    }
+
+    private void GetEnemyDoDamage(Collision gnome, float damage)
+    {
+        if (gnome.collider.GetComponent<EnemyHealth>() != null)
+        {
+            gnome.collider.GetComponent<EnemyHealth>().health -= batDamage * damage;
         }
     }
 }
