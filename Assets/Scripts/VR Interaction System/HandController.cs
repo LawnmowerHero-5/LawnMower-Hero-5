@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using Valve.VR;
+using Object = System.Object;
 
 [RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 public class HandController : MonoBehaviour
@@ -14,32 +16,55 @@ public class HandController : MonoBehaviour
 
     public SteamVR_Behaviour_Pose BehaviourPose { get; private set; }
 
-    public bool IsTriggerDown   //Is trigger of this controller currently held down or not
+    //Might be deleted since it is probably better to only be able to get when a value is changed, on not just its current state
+    /*public bool IsTriggerDown   //Is trigger of this controller currently held down or not
     {
         get
         {
             return _triggerDownAction.GetState(BehaviourPose.inputSource);
         }
-    }
+    }*/
 
-    public bool IsTriggerStateUp    //Has the trigger changed from down to up this frame
+    //Not used since the sendmessage system is now used
+    /*public bool IsTriggerStateUp    //Has the trigger changed from down to up this frame
     {
         get
         {
             return _triggerDownAction.GetStateUp(BehaviourPose.inputSource);
         }
     }
-
+    
     public bool IsTriggerStateDown  //Has the trigger changed from up to down this frame
     {
         get
         {
             return _triggerDownAction.GetStateDown(BehaviourPose.inputSource);
         }
-    }
+    }*/
 
     private void Awake()
     {
         BehaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
+    }
+
+    private void OnEnable()
+    {
+        if (_triggerDownAction != null)
+        {
+            _triggerDownAction.AddOnChangeListener(SendTriggerStateChangedMessage, BehaviourPose.inputSource);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (_triggerDownAction != null)
+        {
+            _triggerDownAction.RemoveAllListeners(BehaviourPose.inputSource);
+        }
+    }
+
+    private void SendTriggerStateChangedMessage(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    {
+        gameObject.SendMessage("OnTriggerButtonChanged", state);
     }
 }
