@@ -201,14 +201,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  channelCount: 2
+  channelCount: 3
   channelStart:
   - 0
   - 60
+  - 95
   channelLength:
   - 56
   - 30
+  - 43
   channelCurrentTime:
+  - 0
   - 0
   - 0
   music: event:/VR/Controller
@@ -732,7 +735,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957eafd8694bc1e40873d57a3fe31abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpd: 75
+  channelWidth: 0.8
+  whiteNoiseFadeWidth: 1
+  channelHertzValues:
+  - 91
+  - 98
+  - 105
+  hertz: 88
   _Input: {fileID: 6544586213548160912}
+  _Music: {fileID: 6544586213548160909}
 --- !u!1001 &6544586215063676867
 PrefabInstance:
   m_ObjectHideFlags: 0

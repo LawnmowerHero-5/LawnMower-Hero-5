@@ -218,12 +218,30 @@ public class Music : MonoBehaviour
 
         return RESULT.OK;
     }
-    
-/*
-    private void OnGUI()
+
+    public void SetParameter(string name, float value)
     {
-        GUILayout.Box($"Current Beat = {timelineInfo.currentBeat}, Current Bar = {timelineInfo.currentBar}, Last Marker = {(string)timelineInfo.lastMarker}");
-        GUILayout.Box($"Channel {currentChannel} = {channelCurrentTime[currentChannel]}");
+        RuntimeManager.StudioSystem.setParameterByName(name, value);
     }
-*/
+    
+    public float GetParameter(string name)
+    {
+        RuntimeManager.StudioSystem.getParameterByName(name, out var value);
+
+        return value;
+    }
+
+    public void SetChannel(int channel)
+    {
+        if (currentChannel != channel && channel < channelCount && channel >= 0)
+        {
+            currentChannel = channel;
+            if (currentChannel >= channelCount || currentChannel < 0) currentChannel = 0;
+
+            var timePos =
+                (int) ((channelStart[currentChannel] + channelCurrentTime[currentChannel]) *
+                       1000); //Multiply by 1000 to change seconds into milliseconds
+            musicInstance.setTimelinePosition(timePos);
+        }
+    }
 }
