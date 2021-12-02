@@ -123,7 +123,8 @@ public class Music : MonoBehaviour
         {
             timelineInfo.previousBeat = timelineInfo.currentBeat;
             RuntimeManager.StudioSystem.getParameterByName("AudioOn", out var val);
-            if ((int) val == 1)
+            RuntimeManager.StudioSystem.getParameterByName("Whitenoise", out var noise);
+            if ((int) val == 1 && noise < 0.75) //Only runs animations if radio is turned on and the white noise is not too strong
             {
                 if (timelineInfo.BPM > 30f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
 
@@ -158,13 +159,6 @@ public class Music : MonoBehaviour
         #endregion
 
         RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
-        
-        //TODO: Remove whitenoise test input
-        //TODO: Add whitenoise when between channels
-        //TODO: Add channel dial logic
-        if (Keyboard.current.digit1Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 0f);
-        if (Keyboard.current.digit2Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 0.5f);
-        if (Keyboard.current.digit3Key.wasPressedThisFrame) RuntimeManager.StudioSystem.setParameterByName("Whitenoise", 1f);
     }
     
     //Returns information from the current GCHandle
