@@ -26,21 +26,29 @@ public class playFabManager : MonoBehaviour
     [Header("Leaderboard")]
     public GameObject rowPreFab;
     public Transform rowParent;
+    [Space(5)] 
+    public GameObject rowPreFabHighScore;
+    public Transform firstPlace;
 
     private string _loggedInPlayFabId;
     
     #endregion
     private void Start()
     {
-        nameInput.text = "Enter your name";
         Login();
+        StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(GetLeaderboardOnStart());
     }
 
     void Login()
     {
         var request = new LoginWithCustomIDRequest()
         {
-            CustomId = "Tutorial",
+            CustomId = "Test",
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
             {
@@ -127,6 +135,37 @@ public class playFabManager : MonoBehaviour
             Debug.Log(string.Format("Place: {0} | ID: {1} | VALUE: {2}", item.Position, item.PlayFabId, item.StatValue));
         }
     }
+    
+    public void GetFirstPlace()
+    {
+        var request = new GetLeaderboardRequest()
+        {
+            StatisticName = "Easy",
+            StartPosition = 0,
+            MaxResultsCount = 1
+        };
+        PlayFabClientAPI.GetLeaderboard(request, OnFirstPlaceGet, OnError);
+    }
+    
+    void OnFirstPlaceGet(GetLeaderboardResult result)
+    {
+        foreach (Transform item in firstPlace)
+        {
+            Destroy(item.gameObject);
+        }
+        
+        foreach (var item in result.Leaderboard)
+        {
+            GameObject newGo = Instantiate(rowPreFabHighScore, firstPlace);
+            TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
+            
+            texts[0].text = (item.Position + 1).ToString();
+            texts[1].text = item.DisplayName;
+            texts[2].text = item.StatValue.ToString();
+
+            Debug.Log(string.Format("Place: {0} | ID: {1} | VALUE: {2}", item.Position, item.PlayFabId, item.StatValue));
+        }
+    }
 
     public void GetLeaderboardAroundPlayer()
     {
@@ -178,5 +217,18 @@ public class playFabManager : MonoBehaviour
     {
         Debug.Log("Updated display name!");
         leaderboardWindow.SetActive(true);
+    }
+    
+    private IEnumerator GetLeaderboardOnStart()
+    {
+        yield return new WaitForSeconds(1);
+        GetLeaderboard();
+        GetFirstPlace();
+        while (true)
+        {
+            yield return new WaitForSeconds(60);
+            GetLeaderboard();
+            GetFirstPlace();
+        }
     }
 }
