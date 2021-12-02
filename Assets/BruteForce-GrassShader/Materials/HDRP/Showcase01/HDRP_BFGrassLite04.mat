@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: HDRP_BFGrassLite04
   m_Shader: {fileID: 4800000, guid: 26cee2a83feb2624c898843862b23f88, type: 3}
-  m_ShaderKeywords: USE_CS USE_RT USE_S USE_SC
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,6 +75,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
@@ -165,3 +166,4 @@ Material:
     - _ProjectedShadowColor: {r: 0.7647059, g: 0.6418, b: 0.4392157, a: 1}
     - _RimColor: {r: 0.08001604, g: 0.099, b: 0.056133, a: 1}
     - _SelfShadowColor: {r: 0.19705263, g: 0.312, b: 0.26273683, a: 1}
+  m_BuildTextureStacks: []
