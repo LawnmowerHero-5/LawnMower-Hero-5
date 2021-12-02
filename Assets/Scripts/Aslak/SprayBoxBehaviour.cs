@@ -19,7 +19,7 @@ public class SprayBoxBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            WaitForSeconds(3);
+ //           WaitForSeconds(3);
             
             print("NOT THE BEES");
         }
