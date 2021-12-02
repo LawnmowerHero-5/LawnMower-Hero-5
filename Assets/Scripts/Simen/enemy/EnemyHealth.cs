@@ -21,4 +21,12 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (gameObject.CompareTag("Pellet"))
+        {
+            print("I Should Be Dead Right Now");
+        }
+    }
 }
