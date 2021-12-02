@@ -99,7 +99,20 @@ public class NewSteeringWheelTest : MonoBehaviour
         float rawAngle = CalculateRawAngle();
         angleStickyOffset = outputAngle - rawAngle;
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("LeftHand"))
+        {
+            handLeftSticked = false;
+        }
+        if (other.CompareTag("RightHand"))
+        {
+            handRightSticked = false;
+        }
+        OnUnStick();
+    }
+
     public void OnUnStick()
     {
         if (leftController.IsTriggerDown && rightController.IsTriggerDown) return;
@@ -219,7 +232,7 @@ public class NewSteeringWheelTest : MonoBehaviour
 
             } Todo Haptics?#1#
         }
-        print(lastValues[4]); // Returns a value between -360 and 360
+        //print(lastValues[4]); // Returns a value between -360 and 360
         return lastValues[4]; // CALIBRATE TO ZERO WHEN STILL AND RETURN CALCULATED VALUE
     }*/
 }

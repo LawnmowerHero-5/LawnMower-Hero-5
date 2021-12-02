@@ -33,11 +33,11 @@ public class Music : MonoBehaviour
 
     private EVENT_CALLBACK beatCallback;
     private EventInstance musicInstance;
-
+    
     //Scripts
     [SerializeField] private SpeakerAnimation _SpeakerAnimation;
     [SerializeField] private RadioAnimation _RadioAnimation;
-    
+
     private PlayerInput _Input;
 
     //Class used to store information about the timeline
@@ -116,6 +116,8 @@ public class Music : MonoBehaviour
 
         #region - Animation -
         
+        //TODO: After VR Input is implemented, stop jumping animation if player tries to interact with the radio (except if holding something else) 
+
         //Play speaker bounce animation on each beat
         if (timelineInfo.previousBeat != timelineInfo.currentBeat)
         {
@@ -146,6 +148,8 @@ public class Music : MonoBehaviour
         }
         
         //Play PS Notes
+        //TODO: Stop PS from playing when no song is playing
+        if (timelineInfo.BPM < 30f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
         if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
         else _SpeakerAnimation.StopPSNotes();
         
@@ -214,12 +218,30 @@ public class Music : MonoBehaviour
 
         return RESULT.OK;
     }
-    
-/*
-    private void OnGUI()
+
+    public void SetParameter(string name, float value)
     {
-        GUILayout.Box($"Current Beat = {timelineInfo.currentBeat}, Current Bar = {timelineInfo.currentBar}, Last Marker = {(string)timelineInfo.lastMarker}");
-        GUILayout.Box($"Channel {currentChannel} = {channelCurrentTime[currentChannel]}");
+        RuntimeManager.StudioSystem.setParameterByName(name, value);
     }
-*/
+    
+    public float GetParameter(string name)
+    {
+        RuntimeManager.StudioSystem.getParameterByName(name, out var value);
+
+        return value;
+    }
+
+    public void SetChannel(int channel)
+    {
+        if (currentChannel != channel && channel < channelCount && channel >= 0)
+        {
+            currentChannel = channel;
+            if (currentChannel >= channelCount || currentChannel < 0) currentChannel = 0;
+
+            var timePos =
+                (int) ((channelStart[currentChannel] + channelCurrentTime[currentChannel]) *
+                       1000); //Multiply by 1000 to change seconds into milliseconds
+            musicInstance.setTimelinePosition(timePos);
+        }
+    }
 }
