@@ -28,8 +28,8 @@ public class SteeringTest : MonoBehaviour
 
    public float turnDampening = 250; // the higher it is, the slower the object turns to target rotation
    // will change this 
-
-   //public GameObject vehicle;
+   public float turnMultiplier = 0;
+   public GameObject vehicle;
 
    public enum WhichHands
    {
@@ -51,6 +51,8 @@ public class SteeringTest : MonoBehaviour
       HandStates();
 
       wheelRotation = -transform.rotation.eulerAngles.z;
+      
+      TurnVehicle();
    }
 
 
@@ -123,23 +125,18 @@ public class SteeringTest : MonoBehaviour
    
    private void HandStates()
    {
-      // Todo: switch sending signals until after StateSwitch, to avoid weirdness
       switch (_handStates)
       {
          case WhichHands.NoHands:
             StateSwitch("NoHands");
             break;
          case WhichHands.BothHands:
-            Rotation("BothHands");
             StateSwitch("BothHands");
             break;
          case WhichHands.LeftHandOnly:
-            // Null Reference Exception Todo!
-            Rotation("LeftHandOnly");
             StateSwitch("LeftHandOnly");
             break;
          case WhichHands.RightHandOnly:
-            Rotation("RightHandOnly");
             StateSwitch("RightHandOnly");
             break;
       }
@@ -147,66 +144,72 @@ public class SteeringTest : MonoBehaviour
 
    private void StateSwitch(string stateName)
    {
-      if (stateName == "NoHands")
+      switch (stateName)
       {
-         if (_rightHandOnWheel && !_leftHandOnWheel)
-         {
+         case "NoHands" when _rightHandOnWheel && !_leftHandOnWheel:
             _handStates = WhichHands.RightHandOnly;
-         }
-         else if (_leftHandOnWheel && !_rightHandOnWheel)
-         {
+            break;
+         case "NoHands" when _leftHandOnWheel && !_rightHandOnWheel:
             _handStates = WhichHands.LeftHandOnly;
-         }
-         else if (_leftHandOnWheel && _rightHandOnWheel)
+            break;
+         case "NoHands":
          {
+            if (_leftHandOnWheel && _rightHandOnWheel)
+            {
+               _handStates = WhichHands.BothHands;
+            }
+
+            break;
+         }
+         case "RightHandOnly" when _leftHandOnWheel && _rightHandOnWheel:
             _handStates = WhichHands.BothHands;
-         }
-      }
-      else if (stateName == "RightHandOnly")
-      {
-          if (_leftHandOnWheel && _rightHandOnWheel)
-          {
-             _handStates = WhichHands.BothHands;
-          }
-          else if (_leftHandOnWheel && !_rightHandOnWheel)
-          {
-             _handStates = WhichHands.LeftHandOnly;
-          }
-          else if (!_leftHandOnWheel && !_rightHandOnWheel)
-          {
-             _handStates = WhichHands.NoHands;
-          }
-      }
-      else if (stateName == "LeftHandOnly")
-      {
-         if (_leftHandOnWheel && _rightHandOnWheel)
-         {
-            _handStates = WhichHands.BothHands;
-         }
-         else if (!_leftHandOnWheel && _rightHandOnWheel)
-         {
-            _handStates = WhichHands.RightHandOnly;
-         }
-         else if (!_leftHandOnWheel && !_rightHandOnWheel)
-         {
-            _handStates = WhichHands.NoHands;
-         }
-      }
-      else if(stateName == "BothHands")
-      {
-         if (_leftHandOnWheel && !_rightHandOnWheel)
-         {
+            break;
+         case "RightHandOnly" when _leftHandOnWheel && !_rightHandOnWheel:
             _handStates = WhichHands.LeftHandOnly;
-         }
-         else if (!_leftHandOnWheel && _rightHandOnWheel)
+            break;
+         case "RightHandOnly":
          {
+            if (!_leftHandOnWheel && !_rightHandOnWheel)
+            {
+               _handStates = WhichHands.NoHands;
+            }
+
+            break;
+         }
+         case "LeftHandOnly" when _leftHandOnWheel && _rightHandOnWheel:
+            _handStates = WhichHands.BothHands;
+            break;
+         case "LeftHandOnly" when !_leftHandOnWheel && _rightHandOnWheel:
             _handStates = WhichHands.RightHandOnly;
-         }
-         else if (!_leftHandOnWheel && !_rightHandOnWheel)
+            break;
+         case "LeftHandOnly":
          {
-            _handStates = WhichHands.NoHands;
+            if (!_leftHandOnWheel && !_rightHandOnWheel)
+            {
+               _handStates = WhichHands.NoHands;
+            }
+
+            break;
+         }
+         case "BothHands" when _leftHandOnWheel && !_rightHandOnWheel:
+            _handStates = WhichHands.LeftHandOnly;
+            break;
+         case "BothHands" when !_leftHandOnWheel && _rightHandOnWheel:
+            _handStates = WhichHands.RightHandOnly;
+            break;
+         case "BothHands":
+         {
+            if (!_leftHandOnWheel && !_rightHandOnWheel)
+            {
+               _handStates = WhichHands.NoHands;
+            }
+
+            break;
          }
       }
+
+      if (stateName == "NoHands") return;
+      Rotation(stateName);
    }
    #endregion
 
@@ -217,7 +220,7 @@ public class SteeringTest : MonoBehaviour
    {
       if (stateName == "BothHands")
       {
-         Quaternion newRotLeft = Quaternion.Euler(0, 0, _leftHandOriginalParent.transform.rotation.eulerAngles.z);
+         Quaternion newRotLeft = Quaternion.Euler(0, vehicle.transform.rotation.y, _leftHandOriginalParent.transform.rotation.eulerAngles.z);
          Quaternion newRotRight = Quaternion.Euler(0, 0, _rightHandOriginalParent.transform.rotation.eulerAngles.z);
          Quaternion finalRot = Quaternion.Slerp(newRotLeft, newRotRight, 1f / 2f);
          directionalObject.rotation = finalRot;
@@ -227,8 +230,7 @@ public class SteeringTest : MonoBehaviour
       }
       else if (stateName == "LeftHandOnly")
       {
-         // Null Reference Exception Todo
-         Quaternion newRot = Quaternion.Euler(0, 0, _leftHandOriginalParent.transform.rotation.eulerAngles.z);
+         Quaternion newRot = Quaternion.Euler(0, vehicle.transform.rotation.y, _leftHandOriginalParent.transform.rotation.eulerAngles.z);
          directionalObject.rotation = newRot;
          
          // might be changing the wrong thing.
@@ -236,15 +238,14 @@ public class SteeringTest : MonoBehaviour
       }
       else if(stateName == "RightHandOnly")
       {
-         Quaternion newRot = Quaternion.Euler(0, 0, _rightHandOriginalParent.transform.rotation.eulerAngles.z);
+         Quaternion newRot = Quaternion.Euler(0, vehicle.transform.rotation.y, _rightHandOriginalParent.transform.rotation.eulerAngles.z);
          directionalObject.rotation = newRot;
          
          // might be changing the wrong thing.
          transform.parent = directionalObject;
       }
-      
    }
-
+    
    private void TurnVehicle()
    {
       var turn = -transform.rotation.eulerAngles.x;
@@ -252,7 +253,11 @@ public class SteeringTest : MonoBehaviour
       {
          turn = turn + 360;
       }
-      // Todo: Output field of the rotation
+      // Todo: Output field of the rotation (Done ???)
+      turnMultiplier = turn / 360;
+
+      print(turnMultiplier);
+
    }
    #endregion
    
