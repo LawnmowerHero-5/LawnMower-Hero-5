@@ -7,7 +7,7 @@ using Valve.VR.InteractionSystem;
 
 public class NewSteeringWheelTest : MonoBehaviour
 {
-    [Header("Hand to track")] 
+    /*[Header("Hand to track")] 
     public HandController leftController;
     public HandController rightController;
     
@@ -92,7 +92,7 @@ public class NewSteeringWheelTest : MonoBehaviour
         this.TrackedController = SteamVR_Controller.Input(checked((int)TrackedController.controllerIndex));
         
 
-    }*/
+    }#1#
     
     void CalculateOffset()
     {
@@ -170,7 +170,7 @@ public class NewSteeringWheelTest : MonoBehaviour
             /*if (TrackedController != null)
             {
                 TrackedController.TriggerHapticPulse(1000);
-            }Todo Haptics?*/
+            }Todo Haptics?#1#
         }
         
     }
@@ -230,9 +230,9 @@ public class NewSteeringWheelTest : MonoBehaviour
             {
                 TrackedController.TriggerHapticPulse(500);
 
-            } Todo Haptics?*/
+            } Todo Haptics?#1#
         }
         //print(lastValues[4]); // Returns a value between -360 and 360
         return lastValues[4]; // CALIBRATE TO ZERO WHEN STILL AND RETURN CALCULATED VALUE
-    }
+    }*/
 }
