@@ -397,10 +397,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
-  HasPlatforms: 1
-  sourceProjectPath: 
-  sourceBankPath: 
+  HasSourceProject: 0
+  HasPlatforms: 0
+  sourceProjectPath: Assets/FMOD Assets/Masterbuild/Masterbuild.fspro
+  sourceBankPath: Assets/FMOD Banks/Desktop
   SourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -410,7 +410,7 @@ MonoBehaviour:
   EncryptionKey: 
   ImportType: 0
   TargetAssetPath: FMODBanks
-  TargetBankFolder: 
+  TargetBankFolder: Assets\FMOD Assets\Verified Path\Build\Desktop
   LoggingLevel: 2
   SpeakerModeSettings: []
   SampleRateSettings: []
@@ -421,7 +421,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
