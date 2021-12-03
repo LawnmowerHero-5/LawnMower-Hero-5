@@ -33,11 +33,10 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is out,your score is: ");
+                Debug.Log("Time is out,your score is: " + _scoreController.score);
                 timeRemaining = 0;
                 timerIsRunning = false;
                 _playFabManager.SendLeaderboard(_scoreController.score.score);
-                print("hello my freindi have come to talk with you again (helooo)");
             }
         }
     }

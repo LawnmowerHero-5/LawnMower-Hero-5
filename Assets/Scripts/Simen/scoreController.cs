@@ -21,6 +21,6 @@ public class scoreController : MonoBehaviour
 
     void SetCountText()
     {
-        countText.text = "Score: " + score.score.ToString();
+      //  countText.text = "Score: " + score.score.ToString();
     }
 }
