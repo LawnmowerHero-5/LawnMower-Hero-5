@@ -5,6 +5,7 @@ public class SteeringTest : MonoBehaviour
 {
    
    //Todo Clean up all of this code
+   
    #region Variables
    
    [Header("Hands")]
@@ -50,8 +51,6 @@ public class SteeringTest : MonoBehaviour
       
       HandStates();
 
-      wheelRotation = -transform.rotation.eulerAngles.z;
-      
       TurnVehicle();
    }
 

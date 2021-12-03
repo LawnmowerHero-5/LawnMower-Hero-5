@@ -45,7 +45,7 @@ public class LawnMower : MonoBehaviour
     {
         //Since theres a clamp, it wont go above 1 or below -1
         // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
-        _SteeringMultiplier = -(steering.outputAngle / outputDivider);
+        _SteeringMultiplier = -(steering.outputAngle / outputDivider); // OverWrites steeringWheelMultiplier from OnMove
         print("From TranslateInput steering = " + _SteeringMultiplier);
         _SteeringMultiplier = gasCrank.power;
     }
