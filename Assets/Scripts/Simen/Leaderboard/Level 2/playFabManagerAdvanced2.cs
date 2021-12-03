@@ -47,7 +47,7 @@ public class playFabManagerAdvanced2 : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest()
         {
-            CustomId = "Test",
+            CustomId = SystemInfo.deviceUniqueIdentifier,
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
             {

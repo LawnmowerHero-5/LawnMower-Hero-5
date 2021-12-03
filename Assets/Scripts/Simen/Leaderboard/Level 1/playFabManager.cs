@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using TMPro;
 using Valve.VR;
+using Random = Unity.Mathematics.Random;
 
 public class playFabManager : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest()
         {
-            CustomId = "Test",
+            CustomId = SystemInfo.deviceUniqueIdentifier,
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
             {
@@ -75,6 +76,7 @@ public class playFabManager : MonoBehaviour
         {
             leaderboardWindow.SetActive(true);
         }
+        print(_loggedInPlayFabId);
     }
 
     void OnError(PlayFabError error)
