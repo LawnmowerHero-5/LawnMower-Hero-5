@@ -7,9 +7,7 @@ using UnityEngine.InputSystem;
 public class playerPosition : MonoBehaviour
 {
     public transformVariable trans;
-    
-    [SerializeField] private int _frameInterval = 100;
-
+    public Rigidbody rb;
     private playFabManager _playFabManager;
     private scoreController _scoreController;
 
@@ -21,15 +19,8 @@ public class playerPosition : MonoBehaviour
 
     private void Update()
     {
-        if (Time.frameCount % _frameInterval == 0)
-        {
-            Position();
-        }
+        trans.playerTransform = transform;
     }
 
-    private void Position()
-    {
-        trans.targetTransform = transform;
-        _frameInterval = 100;
-    }
+    
 }
