@@ -11,7 +11,7 @@ using Debug = UnityEngine.Debug;
 using TMPro;
 using Valve.VR;
 
-public class playFabManager : MonoBehaviour
+public class playFabManager2 : MonoBehaviour
 {
     #region Components
 
@@ -20,7 +20,6 @@ public class playFabManager : MonoBehaviour
     public GameObject leaderboardWindow;
 
     [Header("Display name window")] 
-    public GameObject nameError;
     public TMP_InputField nameInput;
     
     [Header("Leaderboard")]
@@ -92,7 +91,7 @@ public class playFabManager : MonoBehaviour
             {
                 new StatisticUpdate()
                 {
-                    StatisticName = "Easy",
+                    StatisticName = "Easy2",
                     Value = score
                 }
             }
@@ -109,7 +108,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new GetLeaderboardRequest()
         {
-            StatisticName = "Easy",
+            StatisticName = "Easy2",
             StartPosition = 0,
             MaxResultsCount = 10
         };
@@ -140,7 +139,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new GetLeaderboardRequest()
         {
-            StatisticName = "Easy",
+            StatisticName = "Easy2",
             StartPosition = 0,
             MaxResultsCount = 1
         };
@@ -159,7 +158,7 @@ public class playFabManager : MonoBehaviour
             GameObject newGo = Instantiate(rowPreFabHighScore, firstPlace);
             TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
             
-            texts[0].text = (item.Position + 1).ToString();
+  //          texts[0].text = (item.Position + 1).ToString();
             texts[1].text = item.DisplayName;
             texts[2].text = item.StatValue.ToString();
 
@@ -171,7 +170,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new GetLeaderboardAroundPlayerRequest()
         {
-            StatisticName = "Easy",
+            StatisticName = "Easy2",
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnLeaderboardAroundPlayer, OnError);
