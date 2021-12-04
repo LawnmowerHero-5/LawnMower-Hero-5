@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Pointer : MonoBehaviour
 {
     [SerializeField] private float defaultLength = 5.0f;
+    public GameObject dot;
 
     public Camera Camera { get; private set; } = null;
 
@@ -46,6 +47,13 @@ public class Pointer : MonoBehaviour
 
         // Default
         Vector3 endPosition = transform.position + (transform.forward * targetLength);
+        
+        // Set position of the dot
+        dot.transform.position = endPosition;
+
+        // Set linerenderer
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, endPosition);
     }
 
     private RaycastHit CreateRaycast()
