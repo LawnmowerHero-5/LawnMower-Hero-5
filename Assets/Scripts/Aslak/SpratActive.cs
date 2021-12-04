@@ -19,6 +19,7 @@ public class SpratActive : MonoBehaviour
         {
             _obj.SetActive(false);
         }
+        
     }
 
     private IEnumerator SprayDelay()
