@@ -31,10 +31,14 @@ public class playFabManager : MonoBehaviour
     public Transform firstPlace;
 
     private string _loggedInPlayFabId;
+    private Timer _timer;
+    private scoreController _scoreController;
     
     #endregion
     private void Start()
     {
+        _timer = GetComponent<Timer>();
+        _scoreController = GetComponent<scoreController>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -42,6 +46,14 @@ public class playFabManager : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Update()
+    {
+        if (_timer.timerIsRunning == false)
+        {
+            SendLeaderboard(_scoreController.score.score);
+        }
     }
 
     void Login()

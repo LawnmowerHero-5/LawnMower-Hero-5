@@ -13,7 +13,7 @@ using Valve.VR;
 
 public class playFabManagerAdvanced2 : MonoBehaviour
 {
-    #region Components
+   #region Components
 
     [Header("Windows")] 
     public GameObject nameWindow;
@@ -30,10 +30,14 @@ public class playFabManagerAdvanced2 : MonoBehaviour
     public Transform firstPlace;
 
     private string _loggedInPlayFabId;
+    private Timer _timer;
+    private scoreController _scoreController;
     
     #endregion
     private void Start()
     {
+        _timer = GetComponent<Timer>();
+        _scoreController = GetComponent<scoreController>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -41,6 +45,14 @@ public class playFabManagerAdvanced2 : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Update()
+    {
+        if (_timer.timerIsRunning == false)
+        {
+            SendLeaderboard(_scoreController.score.score);
+        }
     }
 
     void Login()
@@ -75,6 +87,7 @@ public class playFabManagerAdvanced2 : MonoBehaviour
         {
             leaderboardWindow.SetActive(true);
         }
+        print(_loggedInPlayFabId);
     }
 
     void OnError(PlayFabError error)
@@ -212,7 +225,7 @@ public class playFabManagerAdvanced2 : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
     }
 
-    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Updated display name!");
         leaderboardWindow.SetActive(true);

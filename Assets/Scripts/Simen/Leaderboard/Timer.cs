@@ -11,13 +11,11 @@ public class Timer : MonoBehaviour
     public float timeRemaining = 10;
     public bool timerIsRunning = false;
     public TMP_Text timer;
-
-    private playFabManager _playFabManager;
+    
     private scoreController _scoreController;
 
     private void Start()
     {
-        _playFabManager = GetComponent<playFabManager>();
         _scoreController = GetComponent<scoreController>();
         timerIsRunning = true;
     }
@@ -36,7 +34,6 @@ public class Timer : MonoBehaviour
                 Debug.Log("Time is out,your score is: " + _scoreController.score);
                 timeRemaining = 0;
                 timerIsRunning = false;
-                _playFabManager.SendLeaderboard(_scoreController.score.score);
             }
         }
     }

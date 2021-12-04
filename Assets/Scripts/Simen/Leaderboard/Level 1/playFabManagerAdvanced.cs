@@ -13,7 +13,7 @@ using Valve.VR;
 
 public class playFabManagerAdvanced : MonoBehaviour
 {
-    #region Components
+   #region Components
 
     [Header("Windows")] 
     public GameObject nameWindow;
@@ -30,17 +30,31 @@ public class playFabManagerAdvanced : MonoBehaviour
     public Transform firstPlace;
 
     private string _loggedInPlayFabId;
-    
+    private Timer _timer;
+    private scoreController _scoreController;
+    private bool _canSubmitScore = true;
+
     #endregion
     private void Start()
     {
+        _timer = GetComponent<Timer>();
+        _scoreController = GetComponent<scoreController>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
 
     private void Awake()
     {
-        StartCoroutine(GetLeaderboardOnStart());
+        _canSubmitScore = true;
+    }
+
+    private void Update()
+    {
+        if (_timer.timerIsRunning == false && _canSubmitScore)
+        {
+            SendLeaderboard(_scoreController.score.score);
+            _canSubmitScore = false;
+        }
     }
 
     void Login()
@@ -75,6 +89,7 @@ public class playFabManagerAdvanced : MonoBehaviour
         {
             leaderboardWindow.SetActive(true);
         }
+        print(_loggedInPlayFabId);
     }
 
     void OnError(PlayFabError error)

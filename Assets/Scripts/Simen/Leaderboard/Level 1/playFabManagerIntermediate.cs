@@ -30,10 +30,14 @@ public class playFabManagerIntermediate : MonoBehaviour
     public Transform firstPlace;
 
     private string _loggedInPlayFabId;
+    private Timer _timer;
+    private scoreController _scoreController;
     
     #endregion
     private void Start()
     {
+        _timer = GetComponent<Timer>();
+        _scoreController = GetComponent<scoreController>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -41,6 +45,14 @@ public class playFabManagerIntermediate : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Update()
+    {
+        if (_timer.timerIsRunning == false)
+        {
+            SendLeaderboard(_scoreController.score.score);
+        }
     }
 
     void Login()
@@ -75,6 +87,7 @@ public class playFabManagerIntermediate : MonoBehaviour
         {
             leaderboardWindow.SetActive(true);
         }
+        print(_loggedInPlayFabId);
     }
 
     void OnError(PlayFabError error)
@@ -114,7 +127,6 @@ public class playFabManagerIntermediate : MonoBehaviour
         };
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderoardGet, OnError);
     }
-
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
         foreach (Transform item in rowParent)
