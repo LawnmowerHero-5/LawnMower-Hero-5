@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class transformVariable : ScriptableObject
 {
-    public Transform targetTransform;
+    public Transform playerTransform;
     public int score;
 }

@@ -11,29 +11,48 @@ using Debug = UnityEngine.Debug;
 using TMPro;
 using Valve.VR;
 
-public class playFabManager : MonoBehaviour
+public class playFabManagerAdvanced2 : MonoBehaviour
 {
-    #region Components
+   #region Components
 
     [Header("Windows")] 
     public GameObject nameWindow;
     public GameObject leaderboardWindow;
 
     [Header("Display name window")] 
-    public GameObject nameError;
     public TMP_InputField nameInput;
     
     [Header("Leaderboard")]
     public GameObject rowPreFab;
     public Transform rowParent;
+    [Space(5)] 
+    public GameObject rowPreFabHighScore;
+    public Transform firstPlace;
 
     private string _loggedInPlayFabId;
+    private Timer _timer;
+    private scoreController _scoreController;
     
     #endregion
     private void Start()
     {
+        _timer = GetComponent<Timer>();
+        _scoreController = GetComponent<scoreController>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(GetLeaderboardOnStart());
+    }
+
+    private void Update()
+    {
+        if (_timer.timerIsRunning == false)
+        {
+            SendLeaderboard(_scoreController.score.score);
+        }
     }
 
     void Login()
@@ -68,6 +87,7 @@ public class playFabManager : MonoBehaviour
         {
             leaderboardWindow.SetActive(true);
         }
+        print(_loggedInPlayFabId);
     }
 
     void OnError(PlayFabError error)
@@ -84,7 +104,7 @@ public class playFabManager : MonoBehaviour
             {
                 new StatisticUpdate()
                 {
-                    StatisticName = "Easy",
+                    StatisticName = "Advanced2",
                     Value = score
                 }
             }
@@ -101,7 +121,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new GetLeaderboardRequest()
         {
-            StatisticName = "Easy",
+            StatisticName = "Advanced2",
             StartPosition = 0,
             MaxResultsCount = 10
         };
@@ -127,12 +147,43 @@ public class playFabManager : MonoBehaviour
             Debug.Log(string.Format("Place: {0} | ID: {1} | VALUE: {2}", item.Position, item.PlayFabId, item.StatValue));
         }
     }
+    
+    public void GetFirstPlace()
+    {
+        var request = new GetLeaderboardRequest()
+        {
+            StatisticName = "Advanced2",
+            StartPosition = 0,
+            MaxResultsCount = 1
+        };
+        PlayFabClientAPI.GetLeaderboard(request, OnFirstPlaceGet, OnError);
+    }
+    
+    void OnFirstPlaceGet(GetLeaderboardResult result)
+    {
+        foreach (Transform item in firstPlace)
+        {
+            Destroy(item.gameObject);
+        }
+        
+        foreach (var item in result.Leaderboard)
+        {
+            GameObject newGo = Instantiate(rowPreFabHighScore, firstPlace);
+            TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
+            
+  //          texts[0].text = (item.Position + 1).ToString();
+            texts[1].text = item.DisplayName;
+            texts[2].text = item.StatValue.ToString();
+
+            Debug.Log(string.Format("Place: {0} | ID: {1} | VALUE: {2}", item.Position, item.PlayFabId, item.StatValue));
+        }
+    }
 
     public void GetLeaderboardAroundPlayer()
     {
         var request = new GetLeaderboardAroundPlayerRequest()
         {
-            StatisticName = "Easy",
+            StatisticName = "Advanced2",
             MaxResultsCount = 10
         };
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnLeaderboardAroundPlayer, OnError);
@@ -174,7 +225,7 @@ public class playFabManager : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
     }
 
-    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Updated display name!");
         leaderboardWindow.SetActive(true);
@@ -184,10 +235,12 @@ public class playFabManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         GetLeaderboard();
+        GetFirstPlace();
         while (true)
         {
             yield return new WaitForSeconds(60);
             GetLeaderboard();
+            GetFirstPlace();
         }
     }
 }
