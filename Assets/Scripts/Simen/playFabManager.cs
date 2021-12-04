@@ -40,7 +40,7 @@ public class playFabManager : MonoBehaviour
     {
         var request = new LoginWithCustomIDRequest()
         {
-            CustomId = "Peanut",
+            CustomId = SystemInfo.deviceUniqueIdentifier,
             CreateAccount = true,
             InfoRequestParameters = new GetPlayerCombinedInfoRequestParams()
             {
