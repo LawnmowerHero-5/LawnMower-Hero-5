@@ -11,6 +11,9 @@ public class FollowLawnmowerBody : MonoBehaviour
     
     private Vector3 velocity = Vector3.zero;
 
+    private Transform rotation;
+    private float rotZ;
+
     [SerializeField] private float smoothTime = 0.1f;
     // Start is called before the first frame update
     private void Start()
@@ -24,5 +27,7 @@ public class FollowLawnmowerBody : MonoBehaviour
         target = lawnMowerBody.transform.position + offset;
 
         transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
+        
+        transform.rotation = lawnMowerBody.transform.rotation;
     }
 }
