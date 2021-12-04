@@ -10,6 +10,7 @@ public class FollowLawnmowerBody : MonoBehaviour
     public Vector3 offset;
     
     private Vector3 velocity = Vector3.zero;
+    public bool isSmoothed;
 
     [SerializeField] private float smoothTime = 0.1f;
     // Start is called before the first frame update
@@ -22,7 +23,13 @@ public class FollowLawnmowerBody : MonoBehaviour
     private void Update()
     {
         target = lawnMowerBody.transform.position + offset;
-
-        transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
+        if (isSmoothed)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
+        }
+        else
+        {
+            transform.position = new Vector3(target.x, transform.position.y, target.z);
+        }
     }
 }
