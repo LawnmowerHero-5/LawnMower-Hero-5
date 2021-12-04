@@ -29,15 +29,15 @@ public class HandFunctionality : MonoBehaviour
         _handController = GetComponent<HandController>();
     }
 
-    private void OnTriggerButtonChanged(bool isTriggerDown)
+    private void Update()
     {
         //Pick up pickupAble if not null
-        if (isTriggerDown)
+        if (_handController.IsTriggerStateDown)
         {
             AttachPickupAbleToController(CheckGetClosestPickupAble());
         }
         //Drop held pickupAble if not null
-        else
+        else if (_handController.IsTriggerStateUp)
         {
             DetachPickupAbleFromController(CurrentlyHeldPickupAble);
         }
@@ -128,7 +128,9 @@ public class HandFunctionality : MonoBehaviour
         }
         
         //Attach PickupAble to controller fixed joint, and disable velocity to avoid the fixed joint breaking
-        pickupAble.SetHoldPointToTransform(transform);
+        transform.SetPositionAndRotation(transform.position + pickupAble.HoldPointRelPos, transform.rotation * pickupAble.HoldPointRelRot);
+        pickupAble.RigidBody.velocity = Vector3.zero;
+        pickupAble.RigidBody.angularVelocity = Vector3.zero;
         FixedJoint.connectedBody = pickupAble.RigidBody;
         FixedJoint.breakForce = pickupAble.BreakForceToDetach;
 

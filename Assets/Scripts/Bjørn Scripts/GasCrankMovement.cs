@@ -13,8 +13,6 @@ public class GasCrankMovement : MonoBehaviour
     private float zRot; //Targeted z rotation, but actual rotation can be overwritten based on the deadzone
     
     private Input _Input;
-
-    public Transform grabbablePos;
     
     void Start()
     {

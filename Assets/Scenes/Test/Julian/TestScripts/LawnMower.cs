@@ -41,7 +41,7 @@ public class LawnMower : MonoBehaviour
     {
         //Since theres a clamp, it wont go above 1 or below -1
         // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
-        //_SteeringMultiplier = steering.outputAngle / outputDivider;_______________________________________________________________________________________________
+        _SteeringMultiplier = steering.outputAngle / outputDivider;
     }
     // This takes Controller input, for testing on pc !! Not for VR version!!
     // Todo: Remove before finalBuild
