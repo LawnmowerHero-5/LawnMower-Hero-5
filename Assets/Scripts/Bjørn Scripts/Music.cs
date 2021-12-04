@@ -118,6 +118,9 @@ public class Music : MonoBehaviour
         
         //TODO: After VR Input is implemented, stop jumping animation if player tries to interact with the radio (except if holding something else) 
 
+        // GET VALUE FROM FMOD - RuntimeManager.StudioSystem.getParameterByName("AudioOn", out var audio);
+        // SET VALUE IN FMOD - RuntimeManager.StudioSystem.setParameterByName("AudioOn", 1f);
+
         //Play speaker bounce animation on each beat
         if (timelineInfo.previousBeat != timelineInfo.currentBeat)
         {
