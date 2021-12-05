@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,7 +17,9 @@ public class MenuManager : MonoBehaviour
     public Button nextButton;
     public Button previousButton;
 
-    //Used to determine selected difficulty
+    //Used to determine selected difficulty and level
+    private int difficultyIndex = 0;
+
     private int levelIndex = 0;
 
     //Difficulty UI text
@@ -29,18 +32,27 @@ public class MenuManager : MonoBehaviour
     //The different menus
     public GameObject[] gamemodes;
     public GameObject[] leaderboardlevels;
+    public GameObject[] leaderboardDifficulty;
     public GameObject[] otherOptionsMenu;
+    
+    //Slider and volume management. THIS CAN BE MOVED SOMEWHERE ELSE IF NEEDED
+
+    public static float MasterVolume = 1;
+    public static float SFXVolume = 1;
+    public static float AmbienceVolume = 1;
+    public static float MusicVolume = 1;
+    public Slider[] sliders;
 
     void Update()
     {
         //Sets the easy/intermediate/hard text in the difficulty select UI
-        levelTMPText.text = levelText[levelIndex];
+        levelTMPText.text = levelText[difficultyIndex];
 
         SelectedLevel();
 
         SelectedScoreboard();
         
-        print(levelIndex);
+        print(difficultyIndex);
         
     }
 
@@ -53,46 +65,55 @@ public class MenuManager : MonoBehaviour
         SteamVR_Events.System(EVREventType.VREvent_KeyboardClosed).Listen(OnKeyboardClosed);
     }
 
+    private void Start()
+    {
+        SelectedLevel();
+        for (int i = 0; i < sliders.Length; i++)
+        {
+            sliders[i].value = 1;
+        }
+    }
+
     public void NextLevel()
     {
-        if (levelIndex < 2)
+        if (difficultyIndex < 2)
         {
-            levelIndex++;
+            difficultyIndex++;
         }
         else
         {
-            levelIndex = 0;
+            difficultyIndex = 0;
         }
     }
 
     public void PreviousLevel()
     {
-        if (levelIndex > 0)
+        if (difficultyIndex > 0)
         {
-            levelIndex--;
+            difficultyIndex--;
         }
         else
         {
-            levelIndex = 2;
+            difficultyIndex = 2;
         }
     }
 
     private void SelectedLevel()
     {
-        if (levelIndex == 0)
+        if (difficultyIndex == 0)
         {
             leaderboardlevels[0].SetActive(true);
             leaderboardlevels[1].SetActive(false);
             leaderboardlevels[2].SetActive(false);
         }
-        else if (levelIndex == 1)
+        else if (difficultyIndex == 1)
         {
             leaderboardlevels[0].SetActive(false);
             leaderboardlevels[1].SetActive(true);
             leaderboardlevels[2].SetActive(false);
         }
 
-        if (levelIndex == 2)
+        if (difficultyIndex == 2)
         {
             leaderboardlevels[0].SetActive(false);
             leaderboardlevels[1].SetActive(false);
@@ -102,20 +123,20 @@ public class MenuManager : MonoBehaviour
 
     private void SelectedScoreboard()
     {
-        if (levelIndex == 0)
+        if (difficultyIndex == 0)
         {
             gamemodes[0].SetActive(true);
             gamemodes[1].SetActive(false);
             gamemodes[2].SetActive(false);
         }
-        else if (levelIndex == 1)
+        else if (difficultyIndex == 1)
         {
             gamemodes[0].SetActive(false);
             gamemodes[1].SetActive(true);
             gamemodes[2].SetActive(false);
         }
 
-        if (levelIndex == 2)
+        if (difficultyIndex == 2)
         {
             gamemodes[0].SetActive(false);
             gamemodes[1].SetActive(false);
@@ -152,13 +173,28 @@ public class MenuManager : MonoBehaviour
         gamemodes[4].SetActive(false);
     }
 
-    public void SelectLevel(int selectedlevel)
+    // Has player selected level 1 or 2 on the respective difficulty
+    public void SelectedLevel(int levelselected)
     {
-        gamemodes[0].SetActive(false);
-        gamemodes[1].SetActive(false);
-        gamemodes[2].SetActive(false);
-        gamemodes[3].SetActive(false);
-        gamemodes[4].SetActive(true);
+        levelIndex = levelselected;
+        if (levelIndex == 0)
+        {
+            leaderboardDifficulty[0].SetActive(true);
+            leaderboardDifficulty[1].SetActive(false);
+            leaderboardDifficulty[2].SetActive(true);
+            leaderboardDifficulty[3].SetActive(false);
+            leaderboardDifficulty[4].SetActive(true);
+            leaderboardDifficulty[5].SetActive(false);
+        }
+        else
+        {
+            leaderboardDifficulty[0].SetActive(false);
+            leaderboardDifficulty[1].SetActive(true);
+            leaderboardDifficulty[2].SetActive(false);
+            leaderboardDifficulty[3].SetActive(true);
+            leaderboardDifficulty[4].SetActive(false);
+            leaderboardDifficulty[5].SetActive(true);
+        }
     }
 
     // This code is being called from a UnityEvent (button/text field select)
@@ -190,5 +226,15 @@ public class MenuManager : MonoBehaviour
     {
         // Might use this to unselect input field. Not sure yet
         //EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void VolumeSliderChange()
+    {
+        MasterVolume = sliders[0].value;
+        SFXVolume = sliders[1].value;
+        AmbienceVolume = sliders[2].value;
+        MusicVolume = sliders[3].value;
+        
+        print("Master: " + MasterVolume + "| SFX: " + SFXVolume + "| Ambience: " + AmbienceVolume + "| Music: " + MusicVolume);
     }
 }
