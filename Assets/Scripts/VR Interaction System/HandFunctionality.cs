@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
+[RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(FixedJoint))]
@@ -14,50 +16,66 @@ public class HandFunctionality : MonoBehaviour
     */
     
     [Header("Hand Options")] 
-    [Tooltip("Radius of the sphere detecting pickupAbles (GrabRangeAmount)")] 
+    [Tooltip("Radius of the sphere detecting pickupAbles (GrabRangeAmount)")]
     [SerializeField] private float _grabRadius = 0.1f;
-    
+
+    [Header("Object References")] 
+    [Tooltip("The visual hand of this controller (must be a child of this GameObject, and have a HandVisual component")]
+    [SerializeField] private HandVisual _handVisual;
+
     public PickupAble CurrentlyHeldPickupAble { private get; set; }
-    private List<PickupAble> _pickupAblesInTriggerRadius = new List<PickupAble>();
+    public HandStickAble CurrentlyAttachedToHandStickAble { private get; set; }
 
     public FixedJoint FixedJoint { get; private set; }
+    public SteamVR_Behaviour_Pose BehaviourPose { get; private set; }
     private HandController _handController;
 
     private void Awake()
     {
         FixedJoint = GetComponent<FixedJoint>();
         _handController = GetComponent<HandController>();
+        BehaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
     }
 
-    private void OnTriggerButtonChanged(bool isTriggerDown)
+    private void OnTriggerButtonChanged(bool isTriggerDown) //Message from HandController
     {
-        //Pick up pickupAble if not null
         if (isTriggerDown)
         {
-            AttachPickupAbleToController(CheckGetClosestPickupAble());
+            //Pick up pickupAble if not null
+            PickupAble closestPickupAble = _handController.ClosestPickupAble;
+            if (closestPickupAble != null)
+            {
+                closestPickupAble.AttachPickupAbleToController(this);
+                _handVisual.SetClosedHandMesh(closestPickupAble.CustomClosedHandMesh);  //set grab mesh to custom
+                return;
+            }
+
+            //Stick to Hand StickAble if not null, and if not already other controller sticked
+            HandStickAble closestHandStickAble = _handController.ClosestHandStickAble;
+            if (closestHandStickAble != null && closestHandStickAble.AttachedFromHandFunctionality == null)
+            {
+                closestHandStickAble.AttachControllerToHandStickAble(this, _handVisual);
+                _handVisual.SetClosedHandMesh(closestHandStickAble.CustomClosedHandMesh);   //set grab mesh to custom
+                return;
+            }
+
+            _handVisual.SetClosedHandMesh(null);    //set grab mesh to default
         }
-        //Drop held pickupAble if not null
         else
         {
-            DetachPickupAbleFromController(CurrentlyHeldPickupAble);
-        }
-    }
+            //Drop held pickupAble if not null
+            if (CurrentlyHeldPickupAble != null)// && CurrentlyAttachedToHandStickAble == null)
+            {
+                CurrentlyHeldPickupAble.DetachPickupAbleFromController();
+            }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //PickupAble check add to list
-        if (other.TryGetComponent(typeof(PickupAble), out Component component))
-        {
-            _pickupAblesInTriggerRadius.Add((PickupAble) component);
-        }
-    }
+            //Detach from Hand StickAble if not null
+            if (CurrentlyAttachedToHandStickAble != null)
+            {
+                CurrentlyAttachedToHandStickAble.DetachControllerFromHandStickAble();
+            }
 
-    private void OnTriggerExit(Collider other)
-    {
-        //PickupAble check remove from list
-        if (other.TryGetComponent(typeof(PickupAble), out Component component))
-        {
-            _pickupAblesInTriggerRadius.Remove((PickupAble) component);
+            _handVisual.SetOpenHandMesh(null);  //set open hand mesh to default
         }
     }
 
@@ -65,20 +83,15 @@ public class HandFunctionality : MonoBehaviour
     {
         //Create new fixedjoint if the last one breaks
         FixedJoint = gameObject.AddComponent<FixedJoint>();
-        DetachPickupAbleFromController(CurrentlyHeldPickupAble);
+        if (CurrentlyHeldPickupAble == null)
+            return;
+        CurrentlyHeldPickupAble.DetachPickupAbleFromController();
     }
 
     private void OnValidate()
     {
         //Set sphere collider trigger radus to specified value in this script
         GetComponent<SphereCollider>().radius = _grabRadius;
-        //The spherecollider must be a trigger to prevent actual collisions
-        SphereCollider sc = GetComponent<SphereCollider>();
-        if (!sc.isTrigger)
-        {
-            sc.isTrigger = true;
-            Debug.Log($"SphereCollider in {gameObject.name} must be a trigger. Automatically set to true by script");
-        }
         //The Rigidbody on the controllers must be kinematic to prevent whacky physics when objects are picked up
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb.isKinematic == false)
@@ -86,76 +99,10 @@ public class HandFunctionality : MonoBehaviour
             rb.isKinematic = true;
             Debug.Log($"Rigidbody in {gameObject.name} must be kinematic to prevent whacky physics. Automatically set to true in script");
         }
-    }
-
-    private PickupAble CheckGetClosestPickupAble()  //Will return the closest PickupAble object or null if there is none in the collider
-    {
-        if (_pickupAblesInTriggerRadius.Count == 0)
+        //Check if handVisual gameobject is a child of this gameobject
+        if (_handVisual != null && !_handVisual.transform.IsChildOf(transform))
         {
-            return null;
+            Debug.LogError($"{_handVisual.name} must be a child of {gameObject.name} for the hand following funtionality to work");
         }
-
-        //find closest pickupAble from pickupAble withing trigger list
-        float closestDistance = float.MaxValue;
-        PickupAble closestPickupAble = null;
-        foreach (PickupAble pickupAble in _pickupAblesInTriggerRadius)
-        {
-            if (pickupAble == null)
-            {
-                continue;
-            }
-
-            float distance = Vector3.Distance(pickupAble.transform.position, transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestPickupAble = pickupAble;
-            }
-        }
-
-        return closestPickupAble;
-    }
-
-    private void AttachPickupAbleToController(PickupAble pickupAble)
-    {
-        if (pickupAble == null)
-            return;
-        
-        //Detach pickupable from already held hand if it is already held
-        if (pickupAble.currentHeldByHand != null)
-        {
-            DetachPickupAbleFromController(pickupAble);
-        }
-        
-        //Attach PickupAble to controller fixed joint, and disable velocity to avoid the fixed joint breaking
-        pickupAble.SetHoldPointToTransform(transform);
-        FixedJoint.connectedBody = pickupAble.RigidBody;
-        FixedJoint.breakForce = pickupAble.BreakForceToDetach;
-
-        //Set held values
-        CurrentlyHeldPickupAble = pickupAble;
-        pickupAble.currentHeldByHand = this;
-    }
-
-    private void DetachPickupAbleFromController(PickupAble pickupAble)
-    {
-        if (pickupAble == null)
-            return;
-        
-        //Detach from controller fixed joint
-        pickupAble.currentHeldByHand.FixedJoint.connectedBody = null;
-        
-        //Set pickupAble held since respawn to true
-        pickupAble.heldSinceRespawn = true;
-        //reset pickupAble seconds since last held
-        pickupAble.lastHeldFixedTime = Time.fixedTime;
-        
-        //Apply velocity of controllers
-        pickupAble.RigidBody.velocity = _handController.BehaviourPose.GetVelocity();    //add check for when velocity does not need to be calculated
-        pickupAble.RigidBody.angularVelocity = _handController.BehaviourPose.GetAngularVelocity();
-        
-        //Clear held values
-        pickupAble.currentHeldByHand.CurrentlyHeldPickupAble = null;
-        pickupAble.currentHeldByHand = null;
     }
 }

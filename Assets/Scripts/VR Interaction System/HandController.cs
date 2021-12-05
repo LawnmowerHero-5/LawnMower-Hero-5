@@ -1,9 +1,9 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Object = System.Object;
 
 [RequireComponent(typeof(SteamVR_Behaviour_Pose))]
+[RequireComponent(typeof(SphereCollider))]
 public class HandController : MonoBehaviour
 {
     /*
@@ -11,60 +11,134 @@ public class HandController : MonoBehaviour
     Only the input on the controller this script is attached are handled, so one script for each controller is required
     The reason I made the actions into properties is because I find it cleaner and more efficient than putting them in update each frame
     */
+    [Header("Button References")]
+    [SerializeField] private SteamVR_Action_Boolean _triggerButtonAction;
+    [SerializeField] private SteamVR_Action_Boolean _trackpadButtonAction;
     
-    [SerializeField] private SteamVR_Action_Boolean _triggerDownAction;
+    private List<PickupAble> _pickupAblesInControllerRadius = new List<PickupAble>();
+    private List<InteractAble> _interactAblesInControllerRadius = new List<InteractAble>();
+    private List<HandStickAble> _handStickAblesInControllerRadius = new List<HandStickAble>();
 
-    public SteamVR_Behaviour_Pose BehaviourPose { get; private set; }
+    public PickupAble ClosestPickupAble => CheckGetClosestObject(_pickupAblesInControllerRadius);   //might be null
+    public InteractAble ClosestInteractAble => CheckGetClosestObject(_interactAblesInControllerRadius); //might be null
+    public HandStickAble ClosestHandStickAble => CheckGetClosestObject(_handStickAblesInControllerRadius);   //might be null
 
-    //Might be deleted since it is probably better to only be able to get when a value is changed, on not just its current state
-    /*public bool IsTriggerDown   //Is trigger of this controller currently held down or not
-    {
-        get
-        {
-            return _triggerDownAction.GetState(BehaviourPose.inputSource);
-        }
-    }*/
-
-    //Not used since the sendmessage system is now used
-    /*public bool IsTriggerStateUp    //Has the trigger changed from down to up this frame
-    {
-        get
-        {
-            return _triggerDownAction.GetStateUp(BehaviourPose.inputSource);
-        }
-    }
-    
-    public bool IsTriggerStateDown  //Has the trigger changed from up to down this frame
-    {
-        get
-        {
-            return _triggerDownAction.GetStateDown(BehaviourPose.inputSource);
-        }
-    }*/
+    private SteamVR_Behaviour_Pose _behaviourPose;
 
     private void Awake()
     {
-        BehaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
+        _behaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
     }
 
-    private void OnEnable()
+    private void OnTriggerEnter(Collider other) //Update Trigger content lists
     {
-        if (_triggerDownAction != null)
+        CheckAddTypeToList(ref _pickupAblesInControllerRadius, other);
+        CheckAddTypeToList(ref _interactAblesInControllerRadius, other);
+        CheckAddTypeToList(ref _handStickAblesInControllerRadius, other);
+    }
+    private void CheckAddTypeToList<T>(ref List<T> listToAddTo, Collider colliderToCheck) where T : MonoBehaviour
+    {
+        if (colliderToCheck.TryGetComponent(out T typeInstance))
         {
-            _triggerDownAction.AddOnChangeListener(SendTriggerStateChangedMessage, BehaviourPose.inputSource);
+            listToAddTo.Add(typeInstance);
         }
     }
 
-    private void OnDisable()
+    private void OnTriggerExit(Collider other)  //Update Trigger content lists
     {
-        if (_triggerDownAction != null)
+        CheckRemoveTypeFromList(ref _pickupAblesInControllerRadius, other);
+        CheckRemoveTypeFromList(ref _interactAblesInControllerRadius, other);
+        CheckRemoveTypeFromList(ref _handStickAblesInControllerRadius, other);
+    }
+    private void CheckRemoveTypeFromList<T>(ref List<T> listToRemoveFrom, Collider colliderToCheck) where T : MonoBehaviour
+    {
+        if (colliderToCheck.TryGetComponent(out T typeInstance))
         {
-            _triggerDownAction.RemoveAllListeners(BehaviourPose.inputSource);
+            listToRemoveFrom.Remove(typeInstance);
         }
     }
 
-    private void SendTriggerStateChangedMessage(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    private void OnEnable() //Add listeners for input changes
     {
-        gameObject.SendMessage("OnTriggerButtonChanged", state);
+        if (_triggerButtonAction != null)
+        {
+            _triggerButtonAction.AddOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
+        }
+
+        if (_trackpadButtonAction != null)
+        {
+            _trackpadButtonAction.AddOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
+        }
+    }
+
+    private void OnDisable()    //remove listeners if disabled
+    {
+        if (_triggerButtonAction != null)
+        {
+            _triggerButtonAction.RemoveOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
+        }
+
+        if (_trackpadButtonAction != null)
+        {
+            _trackpadButtonAction.RemoveOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
+        }
+    }
+
+    private void OnValidate()
+    {
+        //The spherecollider must be a trigger to prevent actual collisions
+        SphereCollider sc = GetComponent<SphereCollider>();
+        if (!sc.isTrigger)
+        {
+            sc.isTrigger = true;
+            Debug.Log($"SphereCollider in {gameObject.name} must be a trigger. Automatically set to true by script");
+        }
+    }
+
+    private T CheckGetClosestObject<T>(List<T> objectList) where T : MonoBehaviour  //Null check and get closest object of type, null if none present
+    {
+        if (objectList.Count == 0)
+        {
+            return null;
+        }
+
+        //find closest pickupAble from pickupAble withing trigger list
+        float closestDistance = float.MaxValue;
+        T closestObject = null;
+        foreach (T objectOfType in objectList)
+        {
+            if (objectOfType == null)
+            {
+                continue;
+            }
+
+            float distance = Vector3.Distance(objectOfType.transform.position, transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestObject = objectOfType;
+            }
+        }
+
+        return closestObject;
+    }
+
+    private void SendMessageOnButtonChanged(string functionName, bool state)    //Sends message about change to this gameobject, and the interactable closest to contoller
+    {
+        gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
+        InteractAble closestInteractable = ClosestInteractAble;
+        if (closestInteractable == null)
+            return;
+        closestInteractable.gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
+    }
+
+    private void SendMessageOnTriggerButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    {
+        SendMessageOnButtonChanged("OnTriggerButtonChanged", state);
+    }
+
+    private void SendMessageOnTrackpadButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    {
+        SendMessageOnButtonChanged("OnTrackpadButtonChanged", state);
     }
 }

@@ -1,7 +1,5 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
-using Valve.VR;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PickupAble : MonoBehaviour
@@ -15,42 +13,91 @@ public class PickupAble : MonoBehaviour
     [Tooltip("Force required to detach object on collisions (can be set to infinity to make unbreakable) (is applied directly to the fixed joint of controller)")]
     [SerializeField] private float _breakForceToDetach = 2500f;
 
+    [Header("Hold Mesh")]
+    [Tooltip("Custom controller hold mesh for this PickupAble")]
+    [SerializeField] private Mesh _customlosedHandMesh;
+
     [Header("Hold Point Visualization")]
     [Tooltip("Weither to visualize mesh hold point or not")] 
     [SerializeField] private bool e_visualizeHoldPoint;
-    [Tooltip("Mash of the controller holding the object")]
+    [Tooltip("Mash of the controller holding the object (defaults to closed hand mesh if not set")]
     [SerializeField] private Mesh e_controllerMesh;
-
-    public float BreakForceToDetach => _breakForceToDetach;
+    
+    public Mesh CustomClosedHandMesh => _customlosedHandMesh;
 
     [NonSerialized] public HandFunctionality currentHeldByHand;
     [NonSerialized] public bool heldSinceRespawn;
     [NonSerialized] public float lastHeldFixedTime;
-    
-    public Rigidbody RigidBody { get; private set; }
+
+    private Rigidbody _rigidBody;
 
     private void Awake()
     {
-        RigidBody = GetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
         //Nullsafe hold point
         _holdPoint = (_holdPoint == null) ? transform : _holdPoint;
     }
 
+    private void OnValidate()
+    {
+        //Send error if hold point is not a child of this gameobject
+        if (_holdPoint != null && !_holdPoint.IsChildOf(transform))
+        {
+            Debug.LogError($"hold point {_holdPoint.name} must be a child of {gameObject.name} " +
+                           $"for the hold point functionality to work");
+        }
+    }
+
     private void OnDrawGizmos() //visualize hold point
     {
-        //Calculate offset pos for position and rotation
+        if (!e_visualizeHoldPoint)
+            return;
+        Mesh holdMesh = (e_controllerMesh == null) ? CustomClosedHandMesh : e_controllerMesh;
         Transform holdPoint = (_holdPoint == null) ? transform : _holdPoint;
         Vector3 pos = transform.position + (holdPoint.position - transform.position);
         Quaternion rot = transform.rotation * holdPoint.rotation * Quaternion.Inverse(transform.rotation);
-        Gizmos.DrawMesh(e_controllerMesh, pos, rot);
+        Gizmos.DrawMesh(holdMesh, pos, rot);
     }
 
-    public void SetHoldPointToTransform(Transform trans)   //Moves the object's hold point to the transform parameter in function
+    public void AttachPickupAbleToController(HandFunctionality handFunctionality)
     {
-        RigidBody.velocity = Vector3.zero;
-        RigidBody.angularVelocity = Vector3.zero;
-        transform.SetPositionAndRotation(trans.position, trans.rotation);
+        //Detach pickupable from already held hand if it is already held
+        if (currentHeldByHand != null)
+        {
+            DetachPickupAbleFromController();
+        }
+        
+        //Set held values
+        currentHeldByHand = handFunctionality;
+        currentHeldByHand.CurrentlyHeldPickupAble = this;
+
+        //Attach PickupAble to controller fixed joint, and disable velocity to avoid the fixed joint breaking
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
+        transform.SetPositionAndRotation(handFunctionality.transform.position, handFunctionality.transform.rotation);
         transform.Translate(-(_holdPoint.position - transform.position));
         transform.Rotate(-(_holdPoint.eulerAngles - transform.eulerAngles));
+        
+        currentHeldByHand.FixedJoint.connectedBody = _rigidBody;
+        currentHeldByHand.FixedJoint.breakForce = _breakForceToDetach;
+    }
+    
+    public void DetachPickupAbleFromController()
+    {
+        //Detach from controller fixed joint
+        currentHeldByHand.FixedJoint.connectedBody = null;
+        
+        //Set pickupAble held since respawn to true
+        heldSinceRespawn = true;
+        //reset pickupAble seconds since last held
+        lastHeldFixedTime = Time.fixedTime;
+        
+        //Apply velocity of controllers
+        _rigidBody.velocity = currentHeldByHand.BehaviourPose.GetVelocity();
+        _rigidBody.angularVelocity = currentHeldByHand.BehaviourPose.GetAngularVelocity();
+        
+        //Clear held values
+        currentHeldByHand.CurrentlyHeldPickupAble = null;
+        currentHeldByHand = null;
     }
 }
