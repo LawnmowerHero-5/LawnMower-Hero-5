@@ -11,6 +11,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 public class Music : MonoBehaviour
 {
     public static Music instance;
+    public Transform playAtPos;
 
     //Channel variables
     public int channelCount;
@@ -57,7 +58,7 @@ public class Music : MonoBehaviour
         if (music != null)
         {
             musicInstance = RuntimeManager.CreateInstance(music);
-            musicInstance.set3DAttributes(gameObject.transform.To3DAttributes());
+            musicInstance.set3DAttributes(playAtPos.To3DAttributes());
             musicInstance.start();
         }
     }
@@ -89,7 +90,7 @@ public class Music : MonoBehaviour
     private void Update()
     {
         //Makes the music instance follow the object
-        musicInstance.set3DAttributes(gameObject.transform.To3DAttributes());
+        musicInstance.set3DAttributes(playAtPos.To3DAttributes());
 
         #region - ChannelLogic -
         
