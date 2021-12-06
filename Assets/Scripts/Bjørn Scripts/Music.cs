@@ -13,6 +13,11 @@ public class Music : MonoBehaviour
     public static Music instance;
     public Transform playAtPos;
 
+    [HideInInspector] public float masterVolume = 1f;
+    [HideInInspector] public float musicVolume = 1f;
+    [HideInInspector] public float ambianceVolume = 1f;
+    [HideInInspector] public float sfxVolume = 1f;
+
     //Channel variables
     public int channelCount;
     private int currentChannel;
@@ -157,12 +162,16 @@ public class Music : MonoBehaviour
         if (timelineInfo.BPM < 30f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
         if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
         else _SpeakerAnimation.StopPSNotes();
-        
-        RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
 
         #endregion
 
-        RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
+        var firsttest = RuntimeManager.StudioSystem.setParameterByName("AudioOn", _Input.radioOn);
+        var secondtest = RuntimeManager.StudioSystem.setParameterByName("MasterVolume", masterVolume);
+        RuntimeManager.StudioSystem.setParameterByName("MusicVolume", musicVolume);
+        RuntimeManager.StudioSystem.setParameterByName("AmbienceVolume", ambianceVolume);
+        RuntimeManager.StudioSystem.setParameterByName("SFXVolume", sfxVolume);
+
+        print(firsttest + " : " + secondtest + " : " + masterVolume);
     }
     
     //Returns information from the current GCHandle
