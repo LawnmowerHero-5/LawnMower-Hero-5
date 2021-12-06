@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -22,6 +20,11 @@ public class RespawnAble : MonoBehaviour
     {
         [Tooltip("And pairs of conditions (Both must be true for the whole statement to be true)")]
         public RespawnCondition[] conditions;
+
+        public AndCollection()
+        {
+            conditions = new RespawnCondition[] { RespawnCondition.OutOfBounds };
+        }
     }
 
     [Header("Respawn Options")]
@@ -118,7 +121,7 @@ public class RespawnAble : MonoBehaviour
             if (TryGetComponent(out PickupAble p))
                 break;
             Debug.LogWarning($"{gameObject.name} needs a PickupAble component to be compatable with " +
-                                 $"{RespawnCondition.SecondsSincePickupAbleHeld.ToString()} in {this.name}. " +
+                                 $"{RespawnCondition.SecondsSincePickupAbleHeld.ToString()} in {GetType().Name}. " +
                                  "Not adding the component will cause Errors in runtime.");
             break;
             
@@ -186,7 +189,7 @@ public class RespawnAble : MonoBehaviour
             
             default:    //default
                 Debug.LogWarning($"RespawnCondition \"{respawnCondition.ToString()}\" " +
-                                 $"not recognized in switch statement in {gameObject.name} in {this.name}");
+                                 $"not recognized in switch statement in {gameObject.name} in {GetType().Name}");
                 return false;
         }
     }
