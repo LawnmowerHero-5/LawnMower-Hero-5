@@ -25,6 +25,7 @@ public class FollowLawnmowerBody : MonoBehaviour
         target = lawnMowerBody.transform.position + offset;
         if (isSmoothed)
         {
+            transform.rotation = lawnMowerBody.transform.rotation;
             transform.position = Vector3.SmoothDamp(transform.position, target, ref velocity, smoothTime);
         }
         else
