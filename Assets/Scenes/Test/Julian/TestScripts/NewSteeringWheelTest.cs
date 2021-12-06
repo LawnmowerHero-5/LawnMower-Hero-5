@@ -7,24 +7,16 @@ using Valve.VR.InteractionSystem;
 
 public class NewSteeringWheelTest : MonoBehaviour
 {
-    [Header("Hand to track")] 
-    public HandController leftController;
-    public HandController rightController;
-    
-    
-    public GameObject hand;
-    public bool handLeftSticked = false;
-    public bool handRightSticked = false;
-    //SteamVR_Controller.Device TrackedController = null;
-    private SteamVR_TrackedObject leftHandInput;
-    private SteamVR_TrackedObject rightHandInput;
-    
-    
+    [Header("Hand")]
+    private List<Transform> _handsTransforms = new List<Transform>();
+    public bool handSticked = false;
 
     private float angleStickyOffset; // offset between wheel rotation and hand position on grab
-    private float wheelLastSpeed; // wheel speed at moment of ungrab, then reduces gradually due to INERTIA
+    private float wheelLastSpeed; // wheel speed at the moment of ungrab, then gradually decreases due to INERTIA
     private static float INERTIA = 0.95f; // 1-wheel never stops // 0 - wheel stops instantly
-    public static float MAX_ROTATION = 360; //maximal degree rotation of the wheel
+    
+    [Tooltip("Maxima rotation of the wheel")]
+    public static float MAX_ROTATION = 360; 
     private static float WHEEL_HAPTIC_FREQUENCY = 360/12; //every wheel will click 12 times per wheel rotation
 
     [Header("Steering Wheel Relative Point")]
@@ -45,25 +37,48 @@ public class NewSteeringWheelTest : MonoBehaviour
     public List<float> formulaDiffs = new List<float>(); // stores formulated diffs
     public List<float> increment = new List<float>(); // calculating incrementation
 
-    private void Awake()
-    {
-    }
-
-    void Start()
+    private void Start()
     {
         CreateArrays(5); // CALLING FUNCTION WHICH CREATES ARRAYS
         angleStickyOffset = 0f;
-        handLeftSticked = false;
-        handRightSticked = false;
+        handSticked = false;
         wheelLastSpeed = 0;
     }
 
-
-    private void OnTriggerStay(Collider other)
+    private void OnStickedHandsChanged(InteractAble.Hand[] stickedHands)
+    {
+        foreach (InteractAble.Hand hand in stickedHands)
+        {
+            if (hand.Transform != null)
+            {
+                _handsTransforms.Add(hand.Transform);
+                if (handSticked != true)
+                {
+                    CalculateOffset();
+                }
+                handSticked = true;
+            }
+            else
+            {
+                _handsTransforms.Remove(hand.LastFrameStickedHandTransform);
+                if (_handsTransforms.Count == 0)
+                {
+                    handSticked = false;
+                    wheelLastSpeed = outputAngle - lastValues[3];
+                }
+                else //??
+                {
+                    CalculateOffset();
+                }
+            }
+        }
+        
+    }
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("LeftHand"))
         {
-            if (!leftController.IsTriggerDown) return;
+            //if (!leftController.IsTriggerDown) return;
             if (handLeftSticked != true)
             {
                 CalculateOffset();
@@ -73,14 +88,15 @@ public class NewSteeringWheelTest : MonoBehaviour
 
         if (other.CompareTag("RightHand"))
         {
-            if (!rightController.IsTriggerDown) return;
+            //if (!rightController.IsTriggerDown) return;
             if (handRightSticked != true)
             {
                 CalculateOffset();
             }
             handRightSticked = true;
         }
-    }
+    }*/
+    
     /*
     public void OnStick(SteamVR_TrackedController TrackedController)
     {
@@ -92,14 +108,15 @@ public class NewSteeringWheelTest : MonoBehaviour
         this.TrackedController = SteamVR_Controller.Input(checked((int)TrackedController.controllerIndex));
         
 
-    }*/
+    }
+    */
     
-    void CalculateOffset()
+    private void CalculateOffset()
     {
         float rawAngle = CalculateRawAngle();
         angleStickyOffset = outputAngle - rawAngle;
     }
-    
+    /*
     public void OnUnStick()
     {
         if (leftController.IsTriggerDown && rightController.IsTriggerDown) return;
@@ -118,19 +135,20 @@ public class NewSteeringWheelTest : MonoBehaviour
         
         //TrackedController = null; ???
     }
+    */
     
-    float CalculateRawAngle()
+    private float CalculateRawAngle()
     {
-        RelativePos = WheelBase.transform.InverseTransformPoint(hand.transform.position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
+        RelativePos = WheelBase.transform.InverseTransformPoint(_handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
         return Mathf.Atan2(RelativePos.y, RelativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Y RELATIVES  VECTORS
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //steeringWheelOutPut.outAngle = outputAngle; Todo;
         float angle;
-        if (handLeftSticked || handRightSticked)
+        if (handSticked)
         {
             angle = CalculateRawAngle() + angleStickyOffset; // When hands are holding the wheel hand dictates how the wheel moves
             // angleSticky Offset is calculated on wheel grab - makes wheel not to rotate instantly to the users hand
@@ -148,7 +166,7 @@ public class NewSteeringWheelTest : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + wheelLastSpeed;
         }
-        transform.localEulerAngles = new Vector3(outputAngle+90, -90, -90);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        transform.localEulerAngles = new Vector3(outputAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         float haptic_speed_coeff = Mathf.Abs(lastValues[4] - lastValues[3]) + 1;
         if (Mathf.Abs(outputAngle % WHEEL_HAPTIC_FREQUENCY) <= haptic_speed_coeff &&
@@ -162,7 +180,7 @@ public class NewSteeringWheelTest : MonoBehaviour
         
     }
     
-    void CreateArrays(int firstPparam) // FUNCTION WHICH CREATING ARRAYS
+    private void CreateArrays(int firstPparam) // FUNCTION WHICH CREATING ARRAYS
     {
         for (int i = 0; i < firstPparam; i++) // FOR LOOP WITH PARAM
         {
@@ -221,5 +239,6 @@ public class NewSteeringWheelTest : MonoBehaviour
         }
         print(lastValues[4]); // Returns a value between -360 and 360
         return lastValues[4]; // CALIBRATE TO ZERO WHEN STILL AND RETURN CALCULATED VALUE
+        
     }
 }
