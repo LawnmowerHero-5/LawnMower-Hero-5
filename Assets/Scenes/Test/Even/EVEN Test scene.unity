@@ -286,12 +286,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1864318530}
+      objectReference: {fileID: 1990983566}
     - target: {fileID: 125048174771703345, guid: 2f97a23fbd2206d44ada481308373afc,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1158124603}
+      objectReference: {fileID: 1192428573}
     - target: {fileID: 125048175642013765, guid: 2f97a23fbd2206d44ada481308373afc,
         type: 3}
       propertyPath: m_RootOrder
@@ -583,7 +583,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!43 &1158124603
+--- !u!43 &1192428573
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -958,7 +958,7 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!21 &1864318530
+--- !u!21 &1990983566
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -1006,6 +1006,7 @@ GameObject:
   - component: {fileID: 4082589168103710591}
   - component: {fileID: 4082589168103710590}
   - component: {fileID: 4082589168103710585}
+  - component: {fileID: 4082589168103710592}
   m_Layer: 0
   m_Name: ORTH
   m_TagString: Untagged
@@ -1204,6 +1205,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &4082589168103710592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082589168103710584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca391df9b39a8541977266b30fd3da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4082589168881964090
 Transform:
   m_ObjectHideFlags: 0
