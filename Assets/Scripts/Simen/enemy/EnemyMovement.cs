@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     public transformVariable target;
     public float range = 10f;
 
+    public bool inCombat;
+
     private void Update()
     {
         if (Vector3.Distance(transform.position, target.playerTransform.position) <= range)
@@ -18,10 +20,12 @@ public class EnemyMovement : MonoBehaviour
             float step = speed * Time.deltaTime; // calculate distance to move
             transform.position = Vector3.MoveTowards(transform.position, target.playerTransform.position, step);
             print("Player spotted, chase started");
+            inCombat = true;
         }
         else
         {
             print("Where are you player?");
+            inCombat = false;
         }
     }
     

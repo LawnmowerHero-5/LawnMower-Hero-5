@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countText: {fileID: 5138739344919320409}
-  score: {fileID: 11400000, guid: b0d6255410e5091458341e2f8fdadcbd, type: 2}
+  score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
 --- !u!114 &5138739345410182706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1721,9 +1721,8 @@ MonoBehaviour:
   rowPreFab: {fileID: 7383525593164172513, guid: b60db8f28e42b1a4fb8616f1b4d119f8,
     type: 3}
   rowParent: {fileID: 5138739345680021490}
-  highScoreRowPreFab: {fileID: 7383525593164172513, guid: b60db8f28e42b1a4fb8616f1b4d119f8,
-    type: 3}
-  inputField: {fileID: 5138739345143147715}
+  rowPreFabHighScore: {fileID: 0}
+  firstPlace: {fileID: 0}
 --- !u!1 &5138739345420831665
 GameObject:
   m_ObjectHideFlags: 0

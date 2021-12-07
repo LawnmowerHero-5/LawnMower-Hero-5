@@ -13,11 +13,14 @@ public class Timer : MonoBehaviour
     public TMP_Text timer;
     
     private scoreController _scoreController;
+    private cutedGrass _cutedGrass;
 
     private void Start()
     {
         _scoreController = GetComponent<scoreController>();
         timerIsRunning = true;
+        _cutedGrass = GetComponent<cutedGrass>();
+
     }
 
     private void Update()
