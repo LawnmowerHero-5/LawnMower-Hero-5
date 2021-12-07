@@ -12,11 +12,11 @@ public class Timer : MonoBehaviour
     public bool timerIsRunning = false;
     public TMP_Text timer;
     
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
 
     private void Start()
     {
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
         timerIsRunning = true;
     }
 
