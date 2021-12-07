@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -18,7 +20,9 @@ public class EnemyHealth : MonoBehaviour
     {
         if (health is 0 or < 0)
         {
-            Destroy(gameObject);
+            print("Look how they masacerd my boy");
+            
+            VisualEffect.Send
         }
     }
 

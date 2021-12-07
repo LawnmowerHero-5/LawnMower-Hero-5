@@ -201,22 +201,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  channelCount: 3
-  channelStart:
-  - 0
-  - 60
-  - 95
-  channelLength:
-  - 56
-  - 30
-  - 43
-  channelCurrentTime:
-  - 0
-  - 0
-  - 0
+  playAtPos: {fileID: 0}
+  masterVolume: 1
+  musicVolume: 1
+  ambianceVolume: 1
+  sfxVolume: 1
   music: event:/VR/Controller
   _SpeakerAnimation: {fileID: 6544586214581541402}
   _RadioAnimation: {fileID: 6544586213548160915}
+  _Data: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07, type: 2}
 --- !u!114 &6544586213548160914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,19 +725,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 6544586215406198046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 957eafd8694bc1e40873d57a3fe31abb, type: 3}
+  m_Script: {fileID: 11500000, guid: b2e18cc0c41f742fd86d09b3437ef308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpd: 75
-  channelWidth: 0.8
-  whiteNoiseFadeWidth: 1
+  rotateSpd: 120
+  channelWidth: 1
+  whiteNoiseFadeWidth: 2
   channelHertzValues:
-  - 91
-  - 98
-  - 105
-  hertz: 88
+  - 93
+  - 102
   _Input: {fileID: 6544586213548160912}
   _Music: {fileID: 6544586213548160909}
+  _Data: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07, type: 2}
 --- !u!1001 &6544586215063676867
 PrefabInstance:
   m_ObjectHideFlags: 0
