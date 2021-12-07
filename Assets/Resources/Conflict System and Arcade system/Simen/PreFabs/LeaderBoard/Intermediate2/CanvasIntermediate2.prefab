@@ -419,8 +419,8 @@ GameObject:
   - component: {fileID: 7926981752004728021}
   - component: {fileID: 7926981752004728020}
   - component: {fileID: 7926981752004728023}
-  - component: {fileID: 7926981752004728017}
   - component: {fileID: 1594751682328711555}
+  - component: {fileID: 7437183347839376430}
   m_Layer: 5
   m_Name: CanvasIntermediate2
   m_TagString: Untagged
@@ -528,20 +528,6 @@ MonoBehaviour:
   timeRemaining: 10
   timerIsRunning: 0
   timer: {fileID: 718589545278308442}
---- !u!114 &7926981752004728017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7926981752004728022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1ff81113ef5dd643b01cd9402a7ee10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countText: {fileID: 0}
-  score: {fileID: 11400000, guid: b0d6255410e5091458341e2f8fdadcbd, type: 2}
 --- !u!114 &1594751682328711555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +549,20 @@ MonoBehaviour:
   rowPreFabHighScore: {fileID: 4006076561353992245, guid: 2f3cb9844c046134b9deda1854d561ae,
     type: 3}
   firstPlace: {fileID: 7926981752283018815}
+--- !u!114 &7437183347839376430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7926981752004728022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ff81113ef5dd643b01cd9402a7ee10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countText: {fileID: 0}
+  score: {fileID: 0}
 --- !u!1 &7926981752083026209
 GameObject:
   m_ObjectHideFlags: 0
