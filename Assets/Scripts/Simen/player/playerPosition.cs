@@ -9,12 +9,12 @@ public class playerPosition : MonoBehaviour
     public transformVariable trans;
     public Rigidbody rb;
     private playFabManager _playFabManager;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
 
     private void Start()
     {
         _playFabManager = GetComponent<playFabManager>();
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
     }
 
     private void Update()
