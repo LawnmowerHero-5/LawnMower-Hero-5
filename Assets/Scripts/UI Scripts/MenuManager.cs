@@ -34,6 +34,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] leaderboardlevels;
     public GameObject[] leaderboardDifficulty;
     public GameObject[] otherOptionsMenu;
+    public GameObject[] startButtonArray;
     
     //Slider and volume management. THIS CAN BE MOVED SOMEWHERE ELSE IF NEEDED
 
@@ -76,6 +77,7 @@ public class MenuManager : MonoBehaviour
 
     public void NextLevel()
     {
+        HideStartButton();
         if (difficultyIndex < 2)
         {
             difficultyIndex++;
@@ -88,6 +90,7 @@ public class MenuManager : MonoBehaviour
 
     public void PreviousLevel()
     {
+        HideStartButton();
         if (difficultyIndex > 0)
         {
             difficultyIndex--;
@@ -185,6 +188,14 @@ public class MenuManager : MonoBehaviour
             leaderboardDifficulty[3].SetActive(false);
             leaderboardDifficulty[4].SetActive(true);
             leaderboardDifficulty[5].SetActive(false);
+            
+            startButtonArray[0].SetActive(true);
+            startButtonArray[1].SetActive(false);
+            startButtonArray[2].SetActive(true);
+            startButtonArray[3].SetActive(false);
+            startButtonArray[4].SetActive(true);
+            startButtonArray[5].SetActive(false);
+            
         }
         else
         {
@@ -194,6 +205,13 @@ public class MenuManager : MonoBehaviour
             leaderboardDifficulty[3].SetActive(true);
             leaderboardDifficulty[4].SetActive(false);
             leaderboardDifficulty[5].SetActive(true);
+            
+            startButtonArray[0].SetActive(false);
+            startButtonArray[1].SetActive(true);
+            startButtonArray[2].SetActive(false);
+            startButtonArray[3].SetActive(true);
+            startButtonArray[4].SetActive(false);
+            startButtonArray[5].SetActive(true);
         }
     }
 
@@ -236,5 +254,49 @@ public class MenuManager : MonoBehaviour
         MusicVolume = sliders[3].value;
         
         print("Master: " + MasterVolume + "| SFX: " + SFXVolume + "| Ambience: " + AmbienceVolume + "| Music: " + MusicVolume);
+    }
+
+    private void HideStartButton()
+    {
+        startButtonArray[0].SetActive(false);
+        startButtonArray[1].SetActive(false);
+        startButtonArray[2].SetActive(false);
+        startButtonArray[3].SetActive(false);
+        startButtonArray[4].SetActive(false);
+        startButtonArray[5].SetActive(false);
+    }
+
+    public void StartLevel()
+    {
+        if (levelIndex == 0)
+        {
+            if (difficultyIndex == 0)
+            {
+                print("Now playing Easy1");
+            }
+            else if (difficultyIndex == 1)
+            {
+                print("Now playing Intermediate1");
+            }
+            else
+            {
+                print("Now playing Hard1");
+            }
+        }
+        else
+        {
+            if (difficultyIndex == 0)
+            {
+                print("Now playing Easy2");
+            }
+            else if (difficultyIndex == 1)
+            {
+                print("Now playing Intermediate2");
+            }
+            else
+            {
+                print("Now playing Hard2");
+            }
+        }
     }
 }
