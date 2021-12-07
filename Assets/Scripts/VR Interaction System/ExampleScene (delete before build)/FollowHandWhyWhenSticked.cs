@@ -32,6 +32,7 @@ public class FollowHandWhyWhenSticked : MonoBehaviour
         foreach (Transform trans in _stickedHandsTransforms)
         {
             handsSum += trans.position.y;
+            
         }
         transform.position = new Vector3(transform.position.x, handsSum /_stickedHandsTransforms.Count, transform.position.z);
     }
