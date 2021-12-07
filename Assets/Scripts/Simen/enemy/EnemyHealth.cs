@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         {
             print("Look how they masacerd my boy");
             
-            VisualEffect.Send
+            
         }
     }
 
