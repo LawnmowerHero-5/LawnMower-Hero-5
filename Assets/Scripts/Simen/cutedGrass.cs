@@ -11,7 +11,11 @@ public class cutedGrass : MonoBehaviour
     [FormerlySerializedAs("tex")] public RenderTexture renderTexture;
     [FormerlySerializedAs("myTexture")] public Texture2D newTexture2D;
 
+    public float grassScore;
+    public transformVariable trans;
     private bool IcantBelieveitsNotTrue;
+    private Timer _timer;
+    
     private void Awake()
     {
         newTexture2D = ToTexture2D(renderTexture);
@@ -60,6 +64,12 @@ public class cutedGrass : MonoBehaviour
         }
         
         print(ReadTexture2DPixels(newTexture2D));
+
+        if (!_timer.timerIsRunning && Keyboard.current.oKey.wasPressedThisFrame)
+        {
+            grassScore = ReadTexture2DPixels(newTexture2D);
+            trans.score += (int) grassScore;
+        }
     }
     
     bool IsTransparent(Texture2D tex) {
@@ -69,5 +79,4 @@ public class cutedGrass : MonoBehaviour
                 return false;
         return true;
     }
-
 }

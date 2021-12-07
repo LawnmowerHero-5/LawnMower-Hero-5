@@ -6,5 +6,5 @@ using UnityEngine;
 public class transformVariable : ScriptableObject
 {
     public Transform playerTransform;
-    public float score;
+    public int score;
 }

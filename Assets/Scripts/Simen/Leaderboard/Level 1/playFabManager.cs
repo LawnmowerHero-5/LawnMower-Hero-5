@@ -33,14 +33,12 @@ public class playFabManager : MonoBehaviour
     private string _loggedInPlayFabId;
     private Timer _timer;
     private scoreController _scoreController;
-    private cutedGrass _cutedGrass;
     
     #endregion
     private void Start()
     {
         _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreController>();
-        _cutedGrass = GetComponent<cutedGrass>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -54,7 +52,7 @@ public class playFabManager : MonoBehaviour
     {
         if (_timer.timerIsRunning == false)
         {
-            SendLeaderboard(_scoreController.score.score + );
+            SendLeaderboard(_scoreController.score.score);
         }
     }
 
