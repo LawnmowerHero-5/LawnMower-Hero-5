@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerScore : MonoBehaviour
+public class playerCollisionScore : MonoBehaviour
 {
     public transformVariable score;
-    [Header("Points")]
-    [Space(5)]
-    [Range(0, 1000)] public int killPointsWasp;
-    [Range(0, 1000)] public int killPointsGnome;
-    [Range(0, 1000)] public int loosePointsBee;
-    [Range(0, 1000)] public int loosePointsGoodGnome;
-    
+    private scoreManager _scoreController;
 
     private void Start()
     {
@@ -23,25 +17,25 @@ public class playerScore : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wasp"))
         {
-            score.score += killPointsWasp;
+            score.score += _scoreController.killPointsWasp;
             Destroy(other.gameObject);
         }
         
         if (other.gameObject.CompareTag("EvilGnome"))
         {
-            score.score += killPointsGnome;
+            score.score += _scoreController.killPointsGnome;
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Bee"))
         {
-            score.score -= loosePointsBee;
+            score.score -= _scoreController.loosePointsBee;
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("GoodGnome"))
         {
-            score.score -= loosePointsGoodGnome;
+            score.score -= _scoreController.loosePointsGoodGnome;
             Destroy(other.gameObject);
         }
     }

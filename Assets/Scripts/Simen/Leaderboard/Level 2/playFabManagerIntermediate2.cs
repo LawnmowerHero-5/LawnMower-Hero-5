@@ -31,13 +31,13 @@ public class playFabManagerIntermediate2 : MonoBehaviour
 
     private string _loggedInPlayFabId;
     private Timer _timer;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
     
     #endregion
     private void Start()
     {
         _timer = GetComponent<Timer>();
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }

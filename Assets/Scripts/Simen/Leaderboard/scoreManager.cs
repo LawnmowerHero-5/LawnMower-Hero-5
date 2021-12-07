@@ -7,10 +7,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class scoreController : MonoBehaviour
+public class scoreManager : MonoBehaviour
 {
     public TMP_Text countText;
     public transformVariable score;
+    
+    [Header("Points")] [Space(5)] 
+    [Range(0, 1000)] public int killPointsWasp;
+    [Range(0, 1000)] public int killPointsGnome;
+    [Range(0, 1000)] public int loosePointsBee;
+    [Range(0, 1000)] public int loosePointsGoodGnome;
 
 
     private void Update()

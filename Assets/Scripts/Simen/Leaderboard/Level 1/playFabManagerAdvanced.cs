@@ -31,14 +31,14 @@ public class playFabManagerAdvanced : MonoBehaviour
 
     private string _loggedInPlayFabId;
     private Timer _timer;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
     private bool _canSubmitScore = true;
 
     #endregion
     private void Start()
     {
         _timer = GetComponent<Timer>();
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
