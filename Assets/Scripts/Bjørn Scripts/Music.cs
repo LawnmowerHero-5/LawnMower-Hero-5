@@ -1,10 +1,10 @@
 using FMODUnity;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
 using System.Runtime.InteropServices;
 using FMOD;
 using FMOD.Studio;
+using PlayerPreferences;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -19,17 +19,7 @@ public class Music : MonoBehaviour
     [HideInInspector] public float sfxVolume = 1f;
 
     //Channel variables
-    public int channelCount;
     private int currentChannel;
-
-    //Start point of channels
-    public float[] channelStart;
-
-    //The total length of the different channel tracks
-    public float[] channelLength;
-  
-    //Keeps track of how long a channel has played for
-    [SerializeField] private float[] channelCurrentTime;
 
     //Which event is played by the musicInstance
     [SerializeField] [EventRef] private string music;
@@ -45,6 +35,8 @@ public class Music : MonoBehaviour
     [SerializeField] private RadioAnimation _RadioAnimation;
 
     private PlayerInput _Input;
+
+    [SerializeField] private DataController _Data;
 
     //Class used to store information about the timeline
     [StructLayout(LayoutKind.Sequential)]
@@ -79,6 +71,8 @@ public class Music : MonoBehaviour
             musicInstance.setCallback(beatCallback,
                 EVENT_CALLBACK_TYPE.TIMELINE_BEAT | 
                           EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+            //Makes the radio play from where it previously stopped at
+            SetChannel(_Data.currentChannel);
         }
 
         _Input = GetComponent<PlayerInput>();
@@ -92,6 +86,11 @@ public class Music : MonoBehaviour
         timelineHandle.Free();
     }
 
+    private void OnApplicationQuit()
+    {
+        _Data.SetPlayerData();
+    }
+
     private void Update()
     {
         //Makes the music instance follow the object
@@ -100,23 +99,11 @@ public class Music : MonoBehaviour
         #region - ChannelLogic -
         
         //Update channel play time
-        for (var i = 0; i < channelCount; i++)
-        {
-            channelCurrentTime[i] += Time.deltaTime;
+        _Data.channel1Time += Time.deltaTime;
+        _Data.channel2Time += Time.deltaTime;
 
-            if (channelCurrentTime[i] >= channelLength[i]) channelCurrentTime[i] -= channelLength[i];
-        }
-
-        //Swap Channel
-        if (Keyboard.current.nKey.wasPressedThisFrame)
-        {
-            currentChannel++;
-            if (currentChannel >= channelCount) currentChannel = 0;
-
-            var timePos = (int) ((channelStart[currentChannel] + channelCurrentTime[currentChannel])*1000); //Multiply by 1000 to change seconds into milliseconds
-            musicInstance.setTimelinePosition(timePos);
-            print("Changed timeline position to " + timePos);
-        }
+        if (_Data.channel1Time >= _Data.channel1Length) _Data.channel1Time = 0;
+        if (_Data.channel2Time >= _Data.channel2Length) _Data.channel2Time = 0;
 
         #endregion - ChannelLogic -
 
@@ -238,16 +225,19 @@ public class Music : MonoBehaviour
         return value;
     }
 
+    //Sets radio to channel & time for that channel
     public void SetChannel(int channel)
     {
-        if (currentChannel != channel && channel < channelCount && channel >= 0)
+        if (currentChannel != channel && channel < _Data.channelCount && channel >= 0)
         {
             currentChannel = channel;
-            if (currentChannel >= channelCount || currentChannel < 0) currentChannel = 0;
-
-            var timePos =
-                (int) ((channelStart[currentChannel] + channelCurrentTime[currentChannel]) *
-                       1000); //Multiply by 1000 to change seconds into milliseconds
+            if (currentChannel >= _Data.channelCount || currentChannel < 0) currentChannel = 0;
+            _Data.currentChannel = channel; //Saves the current channel to data
+            
+            var timePos = 0;
+            if (currentChannel == 0) timePos = (int) (_Data.channel1Start + _Data.channel1Time) * 1000;
+            else timePos = (int) (_Data.channel2Start + _Data.channel2Time) * 1000;
+            
             musicInstance.setTimelinePosition(timePos);
         }
     }
