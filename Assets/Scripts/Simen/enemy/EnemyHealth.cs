@@ -16,8 +16,7 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _rigibody = GetComponent<Rigidbody>();
-        
-        
+        _Effect.Stop();
     }
 
     private void Update()
@@ -31,12 +30,6 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
             //StartCoroutine(destroyEnemy());
         }
-        else
-        {
-            _Effect.Stop();
-        }
-        
-        
     }
 
    /* IEnumerator destroyEnemy()
