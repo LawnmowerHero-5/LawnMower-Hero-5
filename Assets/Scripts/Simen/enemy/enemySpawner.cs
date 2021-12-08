@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -41,16 +40,20 @@ public class enemySpawner : MonoBehaviour
             
         canSpawn = false;
         var count = Random.Range(minSpawnCount, maxSpawnCount);
+        var tag = "";
+        if (poolUsed == 0) tag = "gnome";
+        else tag = "wasp";
+        
         
         for (var i = 0; i < count; i++)
         {
-            pooler.SpawnFromPool("gnome",
+            pooler.SpawnFromPool(tag,
                 transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2f, Random.Range(-0.5f, 0.5f)),
                 Quaternion.identity);
             
             pooler.pools[poolUsed].activeObjects++;
             
-            if (pooler.pools[poolUsed].activeObjects >= pooler.pools[0].size) break; //Exits loop if all objects in pool are activated
+            if (pooler.pools[poolUsed].activeObjects >= pooler.pools[poolUsed].size) break; //Exits loop if all objects in pool are activated
         }
         
         triggerCollider = null;
