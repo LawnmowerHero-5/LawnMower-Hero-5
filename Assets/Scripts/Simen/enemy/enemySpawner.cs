@@ -1,12 +1,15 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class enemySpawner : MonoBehaviour
 {
+    public int poolUsed;
+    
     [SerializeField] private int minSpawnCount = 1;
     [SerializeField] private int maxSpawnCount = 3;
-    [SerializeField] private BoxCollider spawnTrigger;
-    [SerializeField] private BoxCollider exitSpawnTrigger;
+    [SerializeField] private Collider spawnTrigger;
+    [SerializeField] private Collider exitSpawnTrigger;
 
     [HideInInspector] public bool triggerEnter;
     [HideInInspector] public bool triggerExit;
@@ -30,7 +33,7 @@ public class enemySpawner : MonoBehaviour
     {
         triggerEnter = false;
 
-        if (!canSpawn || pooler.pools[0].activeObjects >= pooler.pools[0].size)
+        if (!canSpawn || pooler.pools[poolUsed].activeObjects >= pooler.pools[poolUsed].size)
         {
             triggerCollider = null;
             return;
@@ -45,9 +48,9 @@ public class enemySpawner : MonoBehaviour
                 transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2f, Random.Range(-0.5f, 0.5f)),
                 Quaternion.identity);
             
-            pooler.pools[0].activeObjects++;
+            pooler.pools[poolUsed].activeObjects++;
             
-            if (pooler.pools[0].activeObjects >= pooler.pools[0].size) break; //Exits loop if all objects in pool are activated
+            if (pooler.pools[poolUsed].activeObjects >= pooler.pools[0].size) break; //Exits loop if all objects in pool are activated
         }
         
         triggerCollider = null;
@@ -59,4 +62,6 @@ public class enemySpawner : MonoBehaviour
         triggerExit = false;
         canSpawn = true;
     }
+
+    //TODO: Destroy spawner on different attacks
 }
