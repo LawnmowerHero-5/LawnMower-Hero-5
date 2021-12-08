@@ -11,14 +11,15 @@ public class cutedGrass : MonoBehaviour
         public transformVariable trans;
         private bool IcantBelieveitsNotTrue;
         private Timer _timer;
-        [Range(0, 100)] public int grassPoints;
         private bool _canScore;
+        private scoreManager _scoreManager;
         
         
         private void Awake()
         {
             newTexture2D = ToTexture2D(renderTexture);
             _timer = GetComponent<Timer>();
+            _scoreManager = GetComponent<scoreManager>();
             _canScore = true;
         }
     
@@ -66,7 +67,7 @@ public class cutedGrass : MonoBehaviour
                 print("I happened");
                 newTexture2D = ToTexture2D(renderTexture);
                 grassScore = ReadTexture2DPixels(newTexture2D);
-                trans.score2 += grassScore * grassPoints;
+                trans.score2 += grassScore * _scoreManager.grassPoints;
                 _canScore = false;
             }
         }

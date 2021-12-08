@@ -13,12 +13,22 @@ public class scoreManager : MonoBehaviour
     public transformVariable score;
     public int totalScore;
 
-    [Header("Points")] [Space(5)] 
+    #region PointSystem
+    
+    [Header("Point system")]
+    [Header("Gain Points")] [Space(5)]
     [Range(0, 100)] public int killPointsWasp;
     [Range(0, 100)] public int killPointsGnome;
+    
+    [Header("Loose Points")] [Space(5)] 
     [Range(0, 100)] public int loosePointsBee;
     [Range(0, 100)] public int loosePointsGoodGnome;
-
+    
+    [Header("Point per % off grass cut")] [Space(5)] 
+    [Range(2, 10)] public int grassPoints;
+    
+    #endregion
+    
     private void Start()
     {
         score.score = 0;
