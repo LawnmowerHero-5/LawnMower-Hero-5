@@ -9,14 +9,11 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
-    public bool timerIsRunning = false;
+    public bool timerIsRunning;
     public TMP_Text timer;
-    
-    private scoreManager _scoreController;
 
     private void Start()
     {
-        _scoreController = GetComponent<scoreManager>();
         timerIsRunning = true;
     }
 
@@ -31,7 +28,6 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is out,your score is: " + _scoreController.score);
                 timeRemaining = 0;
                 timerIsRunning = false;
             }
