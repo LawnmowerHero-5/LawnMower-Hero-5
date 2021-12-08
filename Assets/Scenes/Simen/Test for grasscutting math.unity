@@ -375,7 +375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175.5, y: 130}
+  m_AnchoredPosition: {x: -175.5, y: 80}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &342526559
@@ -839,7 +839,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4f18ea049cc2754d8f4a7ddaef020ae, type: 2}
+  - {fileID: 2100000, guid: 57ab1f4ded5a5d84a91e0068d810414a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -900,7 +900,6 @@ MonoBehaviour:
   newTexture2D: {fileID: 0}
   grassScore: 0
   trans: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
-  grassPoints: 2
 --- !u!114 &1451436377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,10 +929,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countText: {fileID: 342526559}
   score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
+  totalScore: 0
   killPointsWasp: 0
   killPointsGnome: 0
   loosePointsBee: 0
   loosePointsGoodGnome: 0
+  grassPoints: 2
 --- !u!1 &1639060598
 GameObject:
   m_ObjectHideFlags: 0
