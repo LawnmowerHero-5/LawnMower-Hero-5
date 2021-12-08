@@ -28,6 +28,10 @@ public class ShotgunFire : MonoBehaviour
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
+        if (!trackpadButtonState || !_isHeld)
+        {
+            return;
+        }
         print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
         StartCoroutine(CantFireTimer());
     }
