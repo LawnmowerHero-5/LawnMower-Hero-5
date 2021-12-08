@@ -7,8 +7,6 @@ public class enemySpawner : MonoBehaviour
     
     [SerializeField] private int minSpawnCount = 1;
     [SerializeField] private int maxSpawnCount = 3;
-    [SerializeField] private Collider spawnTrigger;
-    [SerializeField] private Collider exitSpawnTrigger;
 
     [HideInInspector] public bool triggerEnter;
     [HideInInspector] public bool triggerExit;
@@ -43,8 +41,7 @@ public class enemySpawner : MonoBehaviour
         var tag = "";
         if (poolUsed == 0) tag = "gnome";
         else tag = "wasp";
-        
-        
+
         for (var i = 0; i < count; i++)
         {
             pooler.SpawnFromPool(tag,
@@ -66,5 +63,10 @@ public class enemySpawner : MonoBehaviour
         canSpawn = true;
     }
 
-    //TODO: Destroy spawner on different attacks
+    //Is only run by wasp nests
+    public void DeathTrigger()
+    {
+        print("Destroyed");
+        Destroy(gameObject);
+    }
 }
