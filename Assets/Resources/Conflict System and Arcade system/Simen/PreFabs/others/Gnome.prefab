@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2378577501673357765}
   - component: {fileID: 2378577501673357764}
   - component: {fileID: 2378577501673357369}
-  - component: {fileID: 2378577501673357368}
+  - component: {fileID: 8712413432033088413}
+  - component: {fileID: 5849841573991509638}
   m_Layer: 0
   m_Name: Gnome
   m_TagString: EvilGnome
@@ -115,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2378577501673357368
+--- !u!114 &8712413432033088413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +125,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2378577501673357767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d54141a214437a46830b3ccf1d4a567, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cad4ebee1b66744eab57fc4ac3082c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  target: {fileID: 11400000, guid: 8ce4b2bf33c356e46b8bdee853af1055, type: 2}
-  range: 50
+  speed: 0
+  target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
+  range: 10
+  inCombat: 0
+--- !u!114 &5849841573991509638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378577501673357767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d91ed6d1b195f47b51b62217534f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
