@@ -1,3 +1,4 @@
+using PlayerPreferences;
 using UnityEngine;
 
 public class RadioDial : MonoBehaviour
@@ -7,8 +8,6 @@ public class RadioDial : MonoBehaviour
     public float whiteNoiseFadeWidth = 1f; //Distance from no whitenoise to full whitenoise outside each channel
     public float[] channelHertzValues;
 
-    [HideInInspector] public float hertz = 88f;
-    
     private float minHertz = 88f;
     private float maxHertz = 108f;
     private float dialMinAngle = -140f;
@@ -18,7 +17,17 @@ public class RadioDial : MonoBehaviour
 
     [SerializeField] private PlayerInput _Input;
     [SerializeField] private Music _Music;
-    
+    [SerializeField] private DataController _Data;
+
+    private void Awake()
+    {
+        var angle = (_Data.hertz - minHertz) * (dialMaxAngle - dialMinAngle) / (maxHertz - minHertz);
+        var rot = transform.localEulerAngles;
+        
+        transform.localRotation = Quaternion.Euler(rot.x, -angle - dialMinAngle, rot.z);
+        yRot = -angle - dialMinAngle;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,29 +49,31 @@ public class RadioDial : MonoBehaviour
 
         //Calculate Hertz
         var angle = -yRot - dialMinAngle;
-        hertz = minHertz + (angle / (dialMaxAngle - dialMinAngle) * (maxHertz - minHertz));
+        _Data.hertz = minHertz + (angle / (dialMaxAngle - dialMinAngle) * (maxHertz - minHertz));
         
         //Use Hertz to select channel & whitenoise
-        if (hertz <= 95f) _Music.SetChannel(0); //Channel at 91
-        else if (hertz <= 101.5f) _Music.SetChannel(1); //Channel at 98
-        else _Music.SetChannel(2); //Channel at 105
+        if (_Data.hertz <= 97.5f) _Music.SetChannel(0); //Channel at 93
+        else _Music.SetChannel(1); //Channel at 102
 
+        //Calculates whether to play whitenoise or not
         var fullWhitenoise = true;
         for (var i = 0; i < channelHertzValues.Length; i++)
         {
-            var dist = Mathf.Abs(hertz - channelHertzValues[i]);
+            var dist = Mathf.Abs(_Data.hertz - channelHertzValues[i]);
+            //Plays music at full strength without whitenoise
             if (dist <= channelWidth)
             {
                 _Music.SetParameter("Whitenoise", 0);
                 fullWhitenoise = false;
             }
+            //Plays some music and some whitenoise
             else if (dist <= channelWidth + whiteNoiseFadeWidth)
             {
                 _Music.SetParameter("Whitenoise", (dist - channelWidth)/whiteNoiseFadeWidth);
                 fullWhitenoise = false;
-                print((dist - channelWidth)/whiteNoiseFadeWidth);
             }
         }
+        //Only plays whitenoise
         if (fullWhitenoise) _Music.SetParameter("Whitenoise", 1);
     }
 }

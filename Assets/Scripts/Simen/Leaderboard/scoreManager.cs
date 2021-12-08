@@ -18,12 +18,16 @@ public class scoreManager : MonoBehaviour
     [Range(0, 1000)] public int loosePointsBee;
     [Range(0, 1000)] public int loosePointsGoodGnome;
 
+    [Range(0, 1000)] public int killPointsWasp;
+    [Range(0, 1000)] public int killPointsGnome;
+    [Range(0, 1000)] public int loosePointsBee;
+    [Range(0, 1000)] public int loosePointsGoodGnome;
+    
 
     private void Update()
     {
         SetCountText();
     }
-    
 
     void SetCountText()
     {

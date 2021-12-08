@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 public class NewSteeringWheelTest : MonoBehaviour
 {
     [Header("Hand")]
-    private List<Transform> _handsTransforms = new List<Transform>();
+    public List<Transform> _handsTransforms = new List<Transform>();
     public bool handSticked = false;
+    public Transform trackedHand;
 
     private float angleStickyOffset; // offset between wheel rotation and hand position on grab
     private float wheelLastSpeed; // wheel speed at the moment of ungrab, then gradually decreases due to INERTIA
@@ -51,97 +48,49 @@ public class NewSteeringWheelTest : MonoBehaviour
         {
             if (hand.Transform != null)
             {
+                print(hand.Transform);
+                
                 _handsTransforms.Add(hand.Transform);
-                if (handSticked != true)
+                if (!handSticked)
                 {
+                    trackedHand = hand.Transform;
                     CalculateOffset();
                 }
                 handSticked = true;
             }
             else
             {
+                print(hand.LastFrameStickedHandTransform);
+                
                 _handsTransforms.Remove(hand.LastFrameStickedHandTransform);
-                if (_handsTransforms.Count == 0)
+                if (hand.LastFrameStickedHandTransform == trackedHand)
                 {
-                    handSticked = false;
-                    wheelLastSpeed = outputAngle - lastValues[3];
+                    if (_handsTransforms.Count == 0)
+                    {
+                        handSticked = false;
+                        wheelLastSpeed = outputAngle - lastValues[3];
+                    }
+                    else
+                    {
+                        trackedHand = _handsTransforms[0];
+                        CalculateOffset();
+                    }
                 }
-                else //??
-                {
-                    CalculateOffset();
-                }
             }
         }
-        
     }
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("LeftHand"))
-        {
-            //if (!leftController.IsTriggerDown) return;
-            if (handLeftSticked != true)
-            {
-                CalculateOffset();
-            }
-            handLeftSticked = true;
-        }
 
-        if (other.CompareTag("RightHand"))
-        {
-            //if (!rightController.IsTriggerDown) return;
-            if (handRightSticked != true)
-            {
-                CalculateOffset();
-            }
-            handRightSticked = true;
-        }
-    }*/
-    
-    /*
-    public void OnStick(SteamVR_TrackedController TrackedController)
-    {
-        if (handSticked != true)
-        {
-            CalculateOffset();
-        }
-        handSticked = true;
-        this.TrackedController = SteamVR_Controller.Input(checked((int)TrackedController.controllerIndex));
-        
-
-    }
-    */
-    
     private void CalculateOffset()
     {
         float rawAngle = CalculateRawAngle();
         angleStickyOffset = outputAngle - rawAngle;
     }
-    /*
-    public void OnUnStick()
-    {
-        if (leftController.IsTriggerDown && rightController.IsTriggerDown) return;
-        if (!leftController.IsTriggerDown)
-        {
-            handLeftSticked = false;
-            //leftController = null;
-        }
 
-        if (!rightController.IsTriggerDown)
-        {
-            handRightSticked = false;
-            //rightController = null;
-        }
-        wheelLastSpeed = outputAngle - lastValues[3];
-        
-        //TrackedController = null; ???
-    }
-    */
-    
     private float CalculateRawAngle()
     {
         RelativePos = WheelBase.transform.InverseTransformPoint(_handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
-        return Mathf.Atan2(RelativePos.y, RelativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Y RELATIVES  VECTORS
+        return Mathf.Atan2( RelativePos.y, RelativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
     }
     
     private void FixedUpdate()
@@ -155,10 +104,11 @@ public class NewSteeringWheelTest : MonoBehaviour
         }
         else
         {
-            // when wheel is released we apply a little of inertia
+            // when wheel is released we apply a little bit of inertia
             angle = outputAngle + wheelLastSpeed; //last wheel speed is updated when wheel is ungrabbed and then gradually returns to zero
             wheelLastSpeed *= INERTIA;
         }
+        
         lastValues.RemoveAt(0); // REMOVING FIRST ITEM FROM ARRAY
         lastValues.Add(angle); // ADD LAST ITEM TO ARRAY
 
@@ -166,7 +116,7 @@ public class NewSteeringWheelTest : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + wheelLastSpeed;
         }
-        transform.localEulerAngles = new Vector3(outputAngle, transform.localEulerAngles.y, transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, outputAngle);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         float haptic_speed_coeff = Mathf.Abs(lastValues[4] - lastValues[3]) + 1;
         if (Mathf.Abs(outputAngle % WHEEL_HAPTIC_FREQUENCY) <= haptic_speed_coeff &&
@@ -237,7 +187,7 @@ public class NewSteeringWheelTest : MonoBehaviour
 
             } Todo Haptics?*/
         }
-        print(lastValues[4]); // Returns a value between -360 and 360
+        //print(lastValues[4]); // Returns a value between -360 and 360
         return lastValues[4]; // CALIBRATE TO ZERO WHEN STILL AND RETURN CALCULATED VALUE
         
     }

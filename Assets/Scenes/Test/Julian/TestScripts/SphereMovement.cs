@@ -16,11 +16,17 @@ public class SphereMovement : MonoBehaviour
     // A kind of Multiplier for the forward power, and the Turning
     private float speedInput, turnInput;
     
-    // Used to transform teh Lawnmower to stick to the ground;
+    // Used to transform the Lawnmower to stick to the ground;
     private Quaternion slopeRotation;
     
     [Tooltip("Assign the Ground layer")]
     public LayerMask groundEquals;
+
+    public testGASCRANK gasCrank;
+    public NewSteeringWheelTest steeringWheel;
+    [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
+    public float steeringDivider = 270, gasDivider = 20;
+    
     
     void Start()
     {
@@ -46,14 +52,32 @@ public class SphereMovement : MonoBehaviour
         //Same as "OnMove()", but for turning
         turnInput = inputValue.Get<Vector2>().x;
     }
-    
+
     void Update()
     {
+        TranslateSteering();
+        Mathf.Clamp(turnInput, -1, 1);
         transform.position = sphereRB.transform.position;
         
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         RayCast();
+    }
+    
+    private void TranslateSteering()
+    {
+        //Since theres a clamp, it wont go above 1 or below -1
+        // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
+        turnInput = (steeringWheel.outputAngle / steeringDivider);
+        float tempSpeed = (gasCrank.outputAngle / gasDivider);
+        if (tempSpeed > 0)
+        {
+            speedInput = tempSpeed * acceleration;
+        }
+        else
+        {
+            speedInput = tempSpeed * reverseAccel;
+        }
     }
 
     private void RayCast()
