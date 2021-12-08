@@ -16,7 +16,8 @@ public class ReloadBar : MonoBehaviour
     
     [Header("Reload % per second")]
     [SerializeField] private int reloadSpeed = 25;
-    
+
+    private bool CanShoot = true;
     
     
 
@@ -57,9 +58,20 @@ public class ReloadBar : MonoBehaviour
             CurrentReload = 0;
         }
 
-        if (Keyboard.current.kKey.wasPressedThisFrame)
+        if (Keyboard.current.kKey.wasPressedThisFrame && CanShoot)
         {
-            Shoot();
+            StartCoroutine(ShootWait());
         }
+    }
+
+    
+
+
+    public IEnumerator ShootWait()
+    { 
+        Shoot();
+        CanShoot = false;
+        yield return new WaitForSeconds(20);
+        CanShoot = true;
     }
 }

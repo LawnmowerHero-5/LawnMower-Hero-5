@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class ShotgunFire : MonoBehaviour
 {
@@ -13,12 +14,17 @@ public class ShotgunFire : MonoBehaviour
     public Transform BarrelExit;
     private List<Quaternion> pellets;
     private bool canFire = true;
+    public VisualEffect ShotgunSmoke;
+    private ReloadBar _bar;
+    public float secondsForReload = 20f;
     
     private bool _isHeld;
     
     void Awake()
     {
+        ShotgunSmoke.Stop();
         pellets = new List<Quaternion>(new Quaternion[pelletCount]);
+        _bar = GetComponent<ReloadBar>();
     }
     
     private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
@@ -28,12 +34,16 @@ public class ShotgunFire : MonoBehaviour
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
-        if (!trackpadButtonState || !_isHeld)
+        if (!trackpadButtonState || !_isHeld || !canFire)
         {
             return;
         }
-        print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+
+        
+        StartCoroutine(_bar.ShootWait());
         StartCoroutine(CantFireTimer());
+        print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+        
     }
     
     
@@ -50,11 +60,13 @@ public class ShotgunFire : MonoBehaviour
 
     private IEnumerator CantFireTimer()
     {
+        ShotgunSmoke.Play();
         Fire();
         canFire = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(secondsForReload);
         canFire = true;
     }
+    
         
     void Fire()
     {
