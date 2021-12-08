@@ -9,7 +9,7 @@ public class playerScore : MonoBehaviour
     
     private void Start()
     {
-        score.score = 0;
+        _scoreController = GetComponent<scoreManager>();
     }
     
     private void OnCollisionEnter(Collision other)
