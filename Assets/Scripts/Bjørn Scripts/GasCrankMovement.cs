@@ -1,29 +1,69 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GasCrankMovement : MonoBehaviour
 {
+    
     public float rotateSpd = 1f;
     public float minAngle = -18f;
     public float maxAngle = 45f;
     public float boostMaxAngle = 60f; //Max angle when boosting
     public float deadzoneAngle = 5f; //How big the zRot must be before the crank rotates
     
+    private float angleStickyOffset; // offset between wheel rotation and hand position on grab
+    public List<Transform> _stickedHandsTransforms = new List<Transform>(1);
+    private bool handSticked;
+    
+    public Vector3 RelativePos;
+    public GameObject crankBase;
+
+    //public HingeJoint joint;
+    
     [HideInInspector] public float power; //Used to change the z rotation into a float used to multiply with movement speed of lawnmower
 
     private float zRot; //Targeted z rotation, but actual rotation can be overwritten based on the deadzone
     
-    private Input _Input;
-    
-    void Start()
+    private void OnStickedHandsChanged(InteractAble.Hand[] stickedHands)    //set hand transform List every time hand is changed
     {
-        _Input = GetComponent<Input>();
+        foreach (InteractAble.Hand stickedHand in stickedHands)
+        {
+            if (stickedHand.Transform != null)
+            {
+                _stickedHandsTransforms.Add(stickedHand.Transform);
+                handSticked = true;
+                //CalculateOffset();_______________________________________________________________________________________________________________________ (Commented out by mathias, because of compilation error)
+            }
+            else
+            {
+                _stickedHandsTransforms.Remove(stickedHand.LastFrameStickedHandTransform);
+                handSticked = false;
+            }
+        }
+    }/*
+    private void CalculateOffset()
+    {
+        float rawAngle = CalculateRawAngle();
+        angleStickyOffset = power - rawAngle;
     }
-    
+
+    private float CalculateRawAngle()
+    {
+        RelativePos = crankBase.transform.InverseTransformPoint(_stickedHandsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN CRANK BASE AND HAND
+        
+        return Mathf.Atan2( RelativePos.y, RelativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
+    }
+    */
     void Update()
     {
         //TODO: Make compatible with VR input 
         //Changes crank rotation based on scroll wheel input 
-        var rot = transform.localRotation.eulerAngles;
+        var rot = crankBase.transform.localRotation.eulerAngles;
+        if (handSticked)
+        {
+            //zRot = (CalculateRawAngle() + angleStickyOffset); // When hands are holding the wheel hand dictates how the wheel moves
+            // angleSticky Offset is calculated on wheel grab - makes wheel not to rotate instantly to the users hand
+        }
+        /* Test Input with ScrollWheel
         var add = rotateSpd * Time.deltaTime;
         if (_Input.crankAxis > 0f)
         {
@@ -46,16 +86,59 @@ public class GasCrankMovement : MonoBehaviour
             else zRot = minAngle;
             print("Reverse");
         }
+        */
+        /*if (zRot <= 360 + minAngle || zRot >= maxAngle)
+        {
+            zRot = minAngle;
+        }
+
+        if (zRot >= maxAngle || zRot <= 360 + minAngle)
+        {
+            zRot = maxAngle;
+        }*/
+        
+        
+        
+        Vector3 targetDir =  _stickedHandsTransforms[0].position - crankBase.transform.position;
+        Vector3 forward = crankBase.transform.forward;
+        float angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
+        print(angle);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         //Implementation of the deadzone
-        if (Mathf.Abs(zRot) >= deadzoneAngle) transform.localRotation = Quaternion.Euler(rot.x, rot.y, zRot);
-        else transform.localRotation = Quaternion.Euler(rot.x, rot.y, 0);
+        //crankBase.transform.localEulerAngles = new Vector3(zRot,transform.localEulerAngles.y , transform.localEulerAngles.z);
+        //if (Mathf.Abs(zRot) >= deadzoneAngle) crankBase.transform.localRotation = Quaternion.Euler(zRot, rot.y, rot.z);
+        //else crankBase.transform.localRotation = Quaternion.Euler(0, rot.y, rot.z);
         
         //Sets power based on rotation
-        rot = transform.localRotation.eulerAngles;
+        //rot = transform.localRotation.eulerAngles;
         
-        if (rot.z == 0) power = 0;
-        else if (rot.z  <= 180) power = (rot.z) / maxAngle;
-        else power = (360 - rot.z) / - (maxAngle);
+        if (rot.x == 0) power = 0;
+        else if (rot.x  <= 180) power = (rot.x) / maxAngle;
+        else power = (360 - rot.x) / - (maxAngle);
     }
+    
 }

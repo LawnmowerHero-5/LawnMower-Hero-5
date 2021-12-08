@@ -2,25 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
+
+[RequireComponent(typeof(InteractAble))]
 public class SpratActive : MonoBehaviour
 {
     public GameObject _obj;
-    
+    public VisualEffect SprayEffect;
+
+    private bool _isHeld;
+    //private bool _trackpadButtonDown;
+
+    private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
+    {
+        _isHeld = heldByHand.GameObject != null;
+    }
+
+    private void OnTrackpadButtonChanged(bool trackpadButtonState)
+    {
+        //_trackpadButtonDown = trackpadButtonState;
+
+        if (!trackpadButtonState)
+        {
+            SprayEffect.Stop();
+            _obj.SetActive(false);
+        }
+        else if (_isHeld)
+        {
+            SprayEffect.Play();
+            StartCoroutine(SprayDelay());
+        }
+    }
+
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        if (Keyboard.current.sKey.isPressed)
+        if (_isHeld && _trackpadButtonDown)
         {
+            SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }
         else 
         {
+            SprayEffect.Stop();
             _obj.SetActive(false);
         }
         
-    }
+    }*/
 
     private IEnumerator SprayDelay()
     {
