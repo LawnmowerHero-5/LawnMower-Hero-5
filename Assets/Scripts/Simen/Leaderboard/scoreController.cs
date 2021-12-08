@@ -12,12 +12,16 @@ public class scoreController : MonoBehaviour
     public TMP_Text countText;
     public transformVariable score;
 
+    [Range(0, 1000)] public int killPointsWasp;
+    [Range(0, 1000)] public int killPointsGnome;
+    [Range(0, 1000)] public int loosePointsBee;
+    [Range(0, 1000)] public int loosePointsGoodGnome;
+    
 
     private void Update()
     {
         SetCountText();
     }
-    
 
     void SetCountText()
     {

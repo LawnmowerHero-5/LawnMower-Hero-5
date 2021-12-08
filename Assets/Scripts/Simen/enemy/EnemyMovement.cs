@@ -1,27 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : MonoBehaviour, IPooledObject
 {
     // Movement towards player
     public float speed;
     public transformVariable target;
     public float range = 10f;
 
+    public bool inCombat;
+    public bool isActive;
+
+    public void OnObjectSpawn()
+    {
+        isActive = true;
+    }
+    
     private void Update()
     {
-        if (Vector3.Distance(transform.position, target.playerTransform.position) <= range)
+        if (isActive)
         {
-            // Move our position a step closer to the target
-            float step = speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, target.playerTransform.position, step);
-            print("Player spotted, chase started");
-        }
-        else
-        {
-            print("Where are you player?");
+            if (Vector3.Distance(transform.position, target.playerTransform.position) <= range)
+            {
+                // Move our position a step closer to the target
+                float step = speed * Time.deltaTime; // calculate distance to move
+                transform.position = Vector3.MoveTowards(transform.position, target.playerTransform.position, step);
+                print("Player spotted, chase started");
+                inCombat = true;
+            }
+            else
+            {
+                print("Where are you player?");
+                inCombat = false;
+            }
         }
     }
     
@@ -29,7 +39,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            isActive = false;
+            gameObject.SetActive(false);
         }
     }
 }

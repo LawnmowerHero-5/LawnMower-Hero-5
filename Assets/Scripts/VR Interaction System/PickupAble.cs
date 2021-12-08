@@ -29,6 +29,9 @@ public class PickupAble : MonoBehaviour
     [NonSerialized] public bool heldSinceRespawn;
     [NonSerialized] public float lastHeldFixedTime;
 
+    private Vector3 _holdPointPosModifier;
+    private Vector3 _holdPointRotModifier;
+
     private Rigidbody _rigidBody;
 
     private void Awake()
@@ -36,6 +39,9 @@ public class PickupAble : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         //Nullsafe hold point
         _holdPoint = (_holdPoint == null) ? transform : _holdPoint;
+
+        _holdPointPosModifier = _holdPoint.position - transform.position;
+        _holdPointRotModifier = _holdPoint.eulerAngles - transform.eulerAngles;
     }
 
     private void OnValidate()
@@ -75,8 +81,8 @@ public class PickupAble : MonoBehaviour
         _rigidBody.velocity = Vector3.zero;
         _rigidBody.angularVelocity = Vector3.zero;
         transform.SetPositionAndRotation(handFunctionality.transform.position, handFunctionality.transform.rotation);
-        transform.Translate(-(_holdPoint.position - transform.position));
-        transform.Rotate(-(_holdPoint.eulerAngles - transform.eulerAngles));
+        transform.Translate(-_holdPointPosModifier);
+        transform.Rotate(-_holdPointRotModifier);
         
         currentHeldByHand.FixedJoint.connectedBody = _rigidBody;
         currentHeldByHand.FixedJoint.breakForce = _breakForceToDetach;
