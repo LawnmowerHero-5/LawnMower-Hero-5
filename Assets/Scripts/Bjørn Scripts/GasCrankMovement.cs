@@ -31,7 +31,7 @@ public class GasCrankMovement : MonoBehaviour
             {
                 _stickedHandsTransforms.Add(stickedHand.Transform);
                 handSticked = true;
-                CalculateOffset();
+                //CalculateOffset();_______________________________________________________________________________________________________________________ (Commented out by mathias, because of compilation error)
             }
             else
             {
