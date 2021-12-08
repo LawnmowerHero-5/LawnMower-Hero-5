@@ -16,6 +16,7 @@ public class ShotgunFire : MonoBehaviour
     private bool canFire = true;
     public VisualEffect ShotgunSmoke;
     private ReloadBar _bar;
+    public float secondsForReload = 20f;
     
     private bool _isHeld;
     
@@ -33,16 +34,14 @@ public class ShotgunFire : MonoBehaviour
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
-        if (!trackpadButtonState || !_isHeld)
+        if (!trackpadButtonState || !_isHeld || !canFire)
         {
             return;
         }
 
-        if (canFire)
-        {
-            StartCoroutine(_bar.ShootWait());
-            StartCoroutine(CantFireTimer());
-        }
+        
+        StartCoroutine(_bar.ShootWait());
+        StartCoroutine(CantFireTimer());
         print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
         
     }
@@ -64,7 +63,7 @@ public class ShotgunFire : MonoBehaviour
         ShotgunSmoke.Play();
         Fire();
         canFire = false;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(secondsForReload);
         canFire = true;
     }
     
