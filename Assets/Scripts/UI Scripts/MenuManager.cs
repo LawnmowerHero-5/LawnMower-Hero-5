@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Valve.VR;
 
@@ -73,8 +75,17 @@ public class MenuManager : MonoBehaviour
         {
             sliders[i].value = 1;
         }
+
+        //StartCoroutine(LoadScene());
     }
 
+    private IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        yield return new WaitForEndOfFrame();
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+    }
     public void NextLevel()
     {
         HideStartButton();
