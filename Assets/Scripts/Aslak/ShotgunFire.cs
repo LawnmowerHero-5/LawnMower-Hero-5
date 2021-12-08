@@ -40,7 +40,7 @@ public class ShotgunFire : MonoBehaviour
         }
 
         
-        StartCoroutine(_bar.ShootWait());
+//        StartCoroutine(_bar.ShootWait());
         StartCoroutine(CantFireTimer());
         print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
         

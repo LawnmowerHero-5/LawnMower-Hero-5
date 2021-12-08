@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerScore : MonoBehaviour
+public class playerCollisionScore : MonoBehaviour
 {
     public transformVariable score;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
     
     private void Start()
     {
