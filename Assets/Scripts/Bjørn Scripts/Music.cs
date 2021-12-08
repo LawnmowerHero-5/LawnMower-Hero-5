@@ -157,8 +157,6 @@ public class Music : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("MusicVolume", musicVolume);
         RuntimeManager.StudioSystem.setParameterByName("AmbienceVolume", ambianceVolume);
         RuntimeManager.StudioSystem.setParameterByName("SFXVolume", sfxVolume);
-
-        print(firsttest + " : " + secondtest + " : " + masterVolume);
     }
     
     //Returns information from the current GCHandle
