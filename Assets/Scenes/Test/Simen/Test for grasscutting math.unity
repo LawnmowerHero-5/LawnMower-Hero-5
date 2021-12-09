@@ -870,7 +870,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 57ab1f4ded5a5d84a91e0068d810414a, type: 2}
+  - {fileID: 2100000, guid: 77714f2da6d3b6543a19ba3d0baedd96, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -908,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451436371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2.9}
   m_LocalScale: {x: 5, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca391df9b39a8541977266b30fd3da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: 867d42bcf9f6a41f19a58854548607ed, type: 2}
+  renderTexture: {fileID: 8400000, guid: 905214885555ede43a33b331664f9ed7, type: 2}
   newTexture2D: {fileID: 0}
   grassScore: 0
   trans: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
@@ -1154,7 +1154,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.2735849, y: 0.2735849, z: 0.2735849, w: 0}
+      - m_Value: {x: 0, y: 0, z: 0, w: 0}
         m_Name: Color
         m_Overridden: 1
     m_Uint:
@@ -1449,7 +1449,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 867d42bcf9f6a41f19a58854548607ed, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 905214885555ede43a33b331664f9ed7, type: 2}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 0
