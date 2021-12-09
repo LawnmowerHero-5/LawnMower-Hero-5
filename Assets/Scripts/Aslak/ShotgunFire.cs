@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PickupAble))]
+[RequireComponent(typeof(InteractAble))]
 public class ShotgunFire : MonoBehaviour
 {
     public int pelletCount;
@@ -28,12 +30,20 @@ public class ShotgunFire : MonoBehaviour
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
-        if (!trackpadButtonState || !_isHeld)
+        if (!trackpadButtonState || !_isHeld && !canFire)
         {
             return;
         }
-        print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
-        StartCoroutine(CantFireTimer());
+        
+            print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+
+            if (canFire && _isHeld)
+            {
+                StartCoroutine(CantFireTimer());
+            }
+            
+        
+        
     }
     
     
@@ -52,7 +62,7 @@ public class ShotgunFire : MonoBehaviour
     {
         Fire();
         canFire = false;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(20);
         canFire = true;
     }
         

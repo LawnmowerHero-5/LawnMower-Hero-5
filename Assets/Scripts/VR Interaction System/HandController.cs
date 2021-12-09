@@ -128,7 +128,15 @@ public class HandController : MonoBehaviour
         gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
         InteractAble closestInteractable = ClosestInteractAble;
         if (closestInteractable == null)
+        {
+            //remove later?
+            foreach (Object go in GameObject.FindObjectsOfType(typeof(GameObject)))
+            {
+                ((GameObject) go).SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
+            }
+            //___________
             return;
+        }
         closestInteractable.gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
     }
 

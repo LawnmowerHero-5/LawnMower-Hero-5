@@ -25,8 +25,10 @@ public class SphereMovement : MonoBehaviour
     public testGASCRANK gasCrank;
     public NewSteeringWheelTest steeringWheel;
     [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
-    public float steeringDivider = 270, gasDivider = 20;
-    
+    public float steeringDivider = 270f, gasDivider = 20f;
+    [Tooltip("The amount of slowdown per enemy, 1% = 10f")]
+    public float slowDownMultiplier = 50f;
+    private float slowDown;
     
     void Start()
     {
@@ -62,6 +64,7 @@ public class SphereMovement : MonoBehaviour
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         RayCast();
+        SlowDown();
     }
     
     private void TranslateSteering()
@@ -89,12 +92,17 @@ public class SphereMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, slopeRotation, 1 * Time.deltaTime);
 
     }
+
+    private void SlowDown()
+    {
+        //slowDown = "Enemies" * slowDownMultiplier; 
+    }
     private void FixedUpdate()
     {
         //The function that propels the sphere forward
         if (Mathf.Abs(speedInput) > 0)
         {
-            sphereRB.AddForce(transform.forward * speedInput * accelerationMultiplier);
+            sphereRB.AddForce(transform.forward * speedInput * (accelerationMultiplier-slowDown));
         }
         
     }
