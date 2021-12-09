@@ -99,8 +99,8 @@ public class PickupAble : MonoBehaviour
         lastHeldFixedTime = Time.fixedTime;
         
         //Apply velocity of controllers
-        _rigidBody.velocity = currentHeldByHand.BehaviourPose.GetVelocity();
-        _rigidBody.angularVelocity = currentHeldByHand.BehaviourPose.GetAngularVelocity();
+        //_rigidBody.velocity = currentHeldByHand.BehaviourPose.GetVelocity();
+        //_rigidBody.angularVelocity = currentHeldByHand.BehaviourPose.GetAngularVelocity();
         
         //Clear held values
         currentHeldByHand.CurrentlyHeldPickupAble = null;
