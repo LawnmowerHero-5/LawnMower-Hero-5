@@ -48,9 +48,8 @@ public class GnomeAudio : MonoBehaviour
         move = GetComponent<EnemyMovement>();
         timeUntilIdleSFX = Random.Range(minTimeUntilIdleSFX, maxTimeUntilIdleSFX);
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
         Music.UpdateAudioPosition(sfxMove, transform);
         

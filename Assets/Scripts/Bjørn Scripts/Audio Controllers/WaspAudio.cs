@@ -36,7 +36,7 @@ public class WaspAudio : MonoBehaviour
         if (inst != null) sfxBuzz = (EventInstance) inst;
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         Music.UpdateAudioPosition(sfxBuzz, transform);
     }

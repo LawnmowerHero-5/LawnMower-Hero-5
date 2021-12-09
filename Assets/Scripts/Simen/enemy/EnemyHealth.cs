@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 
 public class EnemyHealth : MonoBehaviour
@@ -20,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        if (health is 0 or < 0)
+        if (health <= 0)
         {
             _Effect.Play();
             Destroy(_Effect, 3f);
@@ -43,7 +37,8 @@ public class EnemyHealth : MonoBehaviour
                 _score.score -= _score.loosePointsFromFriendlyKills;
             }
             
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+
             //StartCoroutine(destroyEnemy());
         }
     }
