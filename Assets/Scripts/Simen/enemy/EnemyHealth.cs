@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health = 10;
     public VisualEffect _Effect;
-    private transformVariable _score;
+    public transformVariable _score;
 
     private void Start()
     {
