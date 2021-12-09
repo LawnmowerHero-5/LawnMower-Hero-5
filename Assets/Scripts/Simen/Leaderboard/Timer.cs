@@ -9,17 +9,17 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
-    public bool timerIsRunning = false;
+    public bool timerIsRunning;
+    public bool canSubmitScore;
     public TMP_Text timer;
-    
-    private scoreController _scoreController;
-    private cutedGrass _cutedGrass;
+    private playFabManagerIntermediate2 _intermediate2;
+    private pauseMenu _pauseMenu;
 
     private void Start()
     {
-        _scoreController = GetComponent<scoreController>();
         timerIsRunning = true;
-        _cutedGrass = GetComponent<cutedGrass>();
+        _intermediate2 = GetComponent<playFabManagerIntermediate2>();
+        _pauseMenu = GetComponent<pauseMenu>();
 
     }
 
@@ -34,8 +34,9 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is out,your score is: " + _scoreController.score);
                 timeRemaining = 0;
+                canSubmitScore = true;
+                _pauseMenu.Pause();
                 timerIsRunning = false;
             }
         }

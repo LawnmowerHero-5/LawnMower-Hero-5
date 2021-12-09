@@ -64,7 +64,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6251194860619064757
 MonoBehaviour:
@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  rotateSpeed: 180
   target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
   range: 10
   inCombat: 0
@@ -237,7 +238,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
@@ -247,7 +248,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
@@ -262,7 +263,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}

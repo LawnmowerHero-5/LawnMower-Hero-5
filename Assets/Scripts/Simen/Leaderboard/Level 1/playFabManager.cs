@@ -9,12 +9,13 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Valve.VR;
 using Random = Unity.Mathematics.Random;
 
 public class playFabManager : MonoBehaviour
 {
-    #region Components
+     #region Components
 
     [Header("Windows")] 
     public GameObject nameWindow;
@@ -32,13 +33,17 @@ public class playFabManager : MonoBehaviour
 
     private string _loggedInPlayFabId;
     private Timer _timer;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
+    private pauseMenu _pMenu;
     
     #endregion
     private void Start()
     {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(false);
         _timer = GetComponent<Timer>();
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
+        _pMenu = GetComponent<pauseMenu>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -53,6 +58,11 @@ public class playFabManager : MonoBehaviour
         if (_timer.timerIsRunning == false)
         {
             SendLeaderboard(_scoreController.score.score);
+        }
+        if (_timer.canSubmitScore)
+        {
+            SetYourName();
+            _timer.canSubmitScore = false;
         }
     }
 
@@ -78,15 +88,6 @@ public class playFabManager : MonoBehaviour
         if (result.InfoResultPayload.PlayerProfile != null)
         {
             name = result.InfoResultPayload.PlayerProfile.DisplayName;
-        }
-
-        if (name == null)
-        {
-            nameWindow.SetActive(true);
-        }
-        else
-        {
-            leaderboardWindow.SetActive(true);
         }
         print(_loggedInPlayFabId);
     }
@@ -224,9 +225,12 @@ public class playFabManager : MonoBehaviour
             DisplayName = nameInput.text,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        PullUpLeaderboard();
+        _pMenu.Resume();
+        SceneManager.LoadScene("MainMenu");
     }
 
-    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Updated display name!");
         leaderboardWindow.SetActive(true);
@@ -243,5 +247,17 @@ public class playFabManager : MonoBehaviour
             GetLeaderboard();
             GetFirstPlace();
         }
+    }
+
+    public void SetYourName()
+    {
+        nameWindow.SetActive(true);
+        leaderboardWindow.SetActive(false);
+    }
+
+    public void PullUpLeaderboard()
+    {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(true);
     }
 }

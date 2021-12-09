@@ -47,9 +47,9 @@ public class ShotgunFire : MonoBehaviour
                 print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             }
 
-            if (!canFire)
+            if (!canFire && _isHeld)
             {
-                Music.PlayOneShot("SFX/shotgun_empty");
+                Music.PlayOneShot("SFX/shotgun_empty", transform.position);
             }
         
         
@@ -64,6 +64,10 @@ public class ShotgunFire : MonoBehaviour
             print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             StartCoroutine(CantFireTimer());
         }
+        else if (Keyboard.current.wKey.wasPressedThisFrame && !canFire)
+        {
+            Music.PlayOneShot("SFX/shotgun_empty", transform.position);
+        }
     }
     // */
 
@@ -71,7 +75,7 @@ public class ShotgunFire : MonoBehaviour
     {
         Fire();
         ShotgunExplotion.Play();
-        Music.PlayOneShot("SFX/shotgun_explode");
+        Music.PlayOneShot("SFX/shotgun_explode", transform.position);
         canFire = false;
         yield return new WaitForSeconds(20);
         canFire = true;

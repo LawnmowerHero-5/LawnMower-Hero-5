@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 [RequireComponent(typeof(SphereCollider))]
