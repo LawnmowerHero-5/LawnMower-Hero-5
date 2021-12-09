@@ -33,6 +33,7 @@ public class HandStickAble : MonoBehaviour
 
     public HandFunctionality AttachedFromHandFunctionality { get; private set; }
     private Transform _attachedHandTransform;
+    private HandVisual _attachedHandVisual;
 
     public Mesh CustomClosedHandMesh => _customClosedHandMesh;
 
@@ -100,6 +101,7 @@ public class HandStickAble : MonoBehaviour
         handFunctionality.CurrentlyAttachedToHandStickAble = this;
         AttachedFromHandFunctionality = handFunctionality;
         _attachedHandTransform = handVisual.transform;
+        _attachedHandVisual = _attachedHandTransform.TryGetComponent(out HandVisual hv) ? hv : null;
     }
 
     public void DetachControllerFromHandStickAble()
@@ -108,6 +110,12 @@ public class HandStickAble : MonoBehaviour
         _attachedHandTransform.position = AttachedFromHandFunctionality.transform.position;
         _attachedHandTransform.rotation = AttachedFromHandFunctionality.transform.rotation;
         _attachedHandTransform.parent = AttachedFromHandFunctionality.transform;
+        
+        //Reset scale of visualHand to avoid huge hands
+        if (_attachedHandVisual != null)
+        {
+            _attachedHandVisual.ResetScaleToAwakeScale();
+        }
         
         //Reset sticked values
         AttachedFromHandFunctionality.CurrentlyAttachedToHandStickAble = null;
