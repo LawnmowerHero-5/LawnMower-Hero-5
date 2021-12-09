@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 [RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 [RequireComponent(typeof(SphereCollider))]
@@ -19,6 +21,8 @@ public class HandController : MonoBehaviour
     private List<InteractAble> _interactAblesInControllerRadius = new List<InteractAble>();
     private List<HandStickAble> _handStickAblesInControllerRadius = new List<HandStickAble>();
 
+    private GameObject[] _interactAbleGameObjectsInHierarchy;
+
     public PickupAble ClosestPickupAble => CheckGetClosestObject(_pickupAblesInControllerRadius);   //might be null
     public InteractAble ClosestInteractAble => CheckGetClosestObject(_interactAblesInControllerRadius); //might be null
     public HandStickAble ClosestHandStickAble => CheckGetClosestObject(_handStickAblesInControllerRadius);   //might be null
@@ -28,6 +32,8 @@ public class HandController : MonoBehaviour
     private void Awake()
     {
         _behaviourPose = GetComponent<SteamVR_Behaviour_Pose>();
+
+        _interactAbleGameObjectsInHierarchy = Array.ConvertAll(FindObjectsOfType<InteractAble>(), i => i.gameObject);
     }
 
     private void OnTriggerEnter(Collider other) //Update Trigger content lists
@@ -123,13 +129,14 @@ public class HandController : MonoBehaviour
         return closestObject;
     }
 
-    private void SendMessageOnButtonChanged(string functionName, bool state)    //Sends message about change to this gameobject, and the interactable closest to contoller
+    private void SendMessageOnButtonChanged(string functionName, bool state)    //Sends message about change to this gameobject, and the interactable in hierarchy
     {
-        gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
-        InteractAble closestInteractable = ClosestInteractAble;
-        if (closestInteractable == null)
-            return;
-        closestInteractable.gameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
+        SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);   //send message to this gameobject
+
+        foreach (GameObject interactAbleGameObject in _interactAbleGameObjectsInHierarchy)  //Send message to every interactable object in hierarchy (only the ones added on awake)
+        {
+            interactAbleGameObject.SendMessage(functionName, state, SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     private void SendMessageOnTriggerButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)

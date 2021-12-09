@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 
@@ -17,6 +15,11 @@ public class SpratActive : MonoBehaviour
     private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
     {
         _isHeld = heldByHand.GameObject != null;
+    }
+
+    private void Start()
+    {
+        SprayEffect.Stop();
     }
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
