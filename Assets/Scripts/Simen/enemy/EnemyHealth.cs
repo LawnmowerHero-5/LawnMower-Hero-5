@@ -29,22 +29,19 @@ public class EnemyHealth : MonoBehaviour
           
             if (gameObject.CompareTag("EvilGnome"))
             {
-                _scoreManager.score.score = _scoreManager.killPointsGnome;
+                _scoreManager.score.score += _scoreManager.killPointsGnome;
             }
             else if (gameObject.CompareTag("Wasp"))
             {
-                _scoreManager.score.score = _scoreManager.killPointsWasp;
-
+                _scoreManager.score.score += _scoreManager.killPointsWasp;
             }
             else if (gameObject.CompareTag("GoodGnome"))
             {
-                _scoreManager.score.score = _scoreManager.loosePointsGoodGnome;
-
+                _scoreManager.score.score -= _scoreManager.loosePointsGoodGnome;
             }
             else if (gameObject.CompareTag("Bee"))
             {
-                _scoreManager.score.score = _scoreManager.loosePointsBee;
-
+                _scoreManager.score.score -= _scoreManager.loosePointsBee;
             }
             
             Destroy(gameObject);
