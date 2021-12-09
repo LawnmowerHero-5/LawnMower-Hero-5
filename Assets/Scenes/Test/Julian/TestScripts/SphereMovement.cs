@@ -16,25 +16,27 @@ public class SphereMovement : MonoBehaviour
     private float accelerationMultiplier = 1000f;
 
     // A kind of Multiplier for the forward power, and the Turning
-    private float speedInput, turnInput;
+    [HideInInspector]public float speedInput, turnInput;
     
     // Used to transform the Lawnmower to stick to the ground;
     private Quaternion slopeRotation;
     
     [Tooltip("Assign the correct layer, for raycasts")]
-    public LayerMask groundEquals, sandPitEquals, pondEquals;
+    public LayerMask groundEquals, sandPitEquals, pondEquals, playerEquals;
 
+    private LayerMask notPlayer;
     public testGASCRANK gasCrank;
     public NewSteeringWheelTest steeringWheel;
     [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
     public float steeringDivider = 270f, gasDivider = 20f;
     [Tooltip("The amount of slowdown per enemy in percent")]
     public float slowDownEnemy = 5f;
-    public float slowDownTerrain = 5f;
+    public float slowDownTerrain = 10f;
     private float slowDown = 1;
     [HideInInspector] public static int EnemiesInRange;
-    private List<int> badWheels = new List<int>();
-    private int slowedWheels;
+    
+    public int[] badWheels = new int[4];
+    public int slowedWheels;
 
     public GameObject[] wheels;
     public VisualEffect[] dust;
@@ -47,6 +49,8 @@ public class SphereMovement : MonoBehaviour
         {
             dust[i].Stop();
         }
+        notPlayer =~playerEquals;
+        print(notPlayer);
     }
     
     
@@ -77,10 +81,9 @@ public class SphereMovement : MonoBehaviour
         
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
-        RayCast();
+        
         SlowDown();
-        WheelCast(sandPitEquals);
-        WheelCast(pondEquals);
+       
     }
     
     private void TranslateSteering()
@@ -112,53 +115,79 @@ public class SphereMovement : MonoBehaviour
     private void WheelCast(LayerMask layerMask)
     {
         RaycastHit hit;
-        for (int i = 0; i < wheels.Length-1; i++)
+        for (var i = 0; i < wheels.Length; i++)
         {
-            if (Physics.Raycast(wheels[i].transform.position, -Vector3.up, out hit, 3000f, layerMask))
+            if (Physics.Raycast(wheels[i].transform.position, Vector3.down, out hit, 3000f, layerMask))
             {
-                if (hit.transform.gameObject.layer == sandPitEquals)
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("SandPit"))
                 {
                     dust[i].Play();
+                    badWheels[i] = 1;
+                    //print("Colliding with Sandpit");
                 }
-                badWheels[i] = 1;
-                print("Raycast hit");
+                else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Pond"))
+                {
+                    badWheels[i] = 2;
+                    //PondVFX Todo
+                    //print("Colliding with Pond");
+                }
+                else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    //GrassVFX todo
+                    dust[i].Stop();
+                    badWheels[i] = 0;
+                    //print("Colliding with ground");
+                }
+                else
+                {
+                    //print(hit.transform.gameObject.layer);
+                }
+                
+                
+                
+                if (hit.transform.gameObject.layer == 3)
+                {
+                    print("collided with IgnorePlayerLayer");
+                }
+                
             }
             else
             {
-                print("Raycast didn't hit");
-                badWheels[i] = 0;
-                dust[i].Stop();
+                //print("Not Colliding");
             }
+            
         }
-        int result = 0;
-        for (int i = 0; i < badWheels.Count; i++)
+        
+        var result = 0;
+        for (var i = 0; i < badWheels.Length; i++)
         {
             if (badWheels[i] == 1)
             {
                 result += 1;
             }
+            slowedWheels = result;
         }
-
-        slowedWheels = result;
+        
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        ;
-        for (int i = 0; i < wheels.Length; i++)
+        foreach (var wheel in wheels)
         {
-            Gizmos.DrawRay(wheels[i].transform.position, -Vector3.up);
+            Gizmos.DrawRay(wheel.transform.position, -Vector3.up);
         }
-
     }
 
     private void SlowDown()
     {
-        slowDown = 1 - ((EnemiesInRange * slowDownEnemy)/100) + ((slowedWheels * slowDownTerrain)/100); 
+        slowDown = 1 - (((EnemiesInRange * slowDownEnemy)/100) + ((slowedWheels * slowDownTerrain)/100));
+        Mathf.Clamp(slowDown, 0.1f, 1f);
     }
     private void FixedUpdate()
     {
+        RayCast();
+        WheelCast(notPlayer);
         //The function that propels the sphere forward
         if (Mathf.Abs(speedInput) > 0)
         {
