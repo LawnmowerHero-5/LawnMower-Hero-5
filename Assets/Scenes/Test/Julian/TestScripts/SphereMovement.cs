@@ -40,7 +40,7 @@ public class SphereMovement : MonoBehaviour
 
     public GameObject[] wheels;
     public VisualEffect[] dust;
-    
+
     private void Start()
     {
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement

@@ -104,7 +104,6 @@ public class LawnmowerAudio : MonoBehaviour
         //Plays reverse sound if reversing
         if (_sphere.speedInput <= -0.05f)
         {
-            print(_sphere.speedInput);
             Music.Play(sfxReverse);
             Music.Play(sfxIdle);
             startedDriving = false;

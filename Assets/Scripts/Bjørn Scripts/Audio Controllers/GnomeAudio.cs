@@ -38,7 +38,6 @@ public class GnomeAudio : MonoBehaviour
     
     #endregion
     
-    // Start is called before the first frame update
     void Start()
     {
         audioSetup.Add(Music.PlayLoop("SFX/walking_grass_1", transform));
@@ -56,8 +55,7 @@ public class GnomeAudio : MonoBehaviour
         if (move.inCombat)
         {
             Music.Play(sfxMove);
-            print("AUDIO");
-            
+
             if (timeUntilIdleSFX <= 0)
             {
                 Music.PlayOneShot(idleSfxNames[Random.Range(0, idleSfxNames.Length)], transform.position);
@@ -69,7 +67,6 @@ public class GnomeAudio : MonoBehaviour
         else
         {
             Music.Pause(sfxMove);
-            print("Paused");
         }
     }
 }
