@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Grass_Shader_Material
   m_Shader: {fileID: 4800000, guid: 26cee2a83feb2624c898843862b23f88, type: 3}
-  m_ShaderKeywords: USE_CS USE_PR USE_RT USE_SC USE_SS USE_VR
+  m_ShaderKeywords: USE_CS USE_RT USE_SS USE_VR
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Distortion:
-        m_Texture: {fileID: 2800000, guid: 529789b31389da34d9a7f98c613bf944, type: 3}
+        m_Texture: {fileID: 2800000, guid: b97e4be25c3932344b0b5b0ffe62377d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -54,7 +54,7 @@ Material:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 4e1d764fa7e47f34eae88e37253c2542, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: 1, y: 1}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -104,7 +104,7 @@ Material:
     - _Mode: 0
     - _NearCameraSmoosh: 1
     - _NoisePower: 2
-    - _NumberOfStacks: 17
+    - _NumberOfStacks: 10
     - _OcclusionStrength: 1
     - _OffsetValue: 2.2
     - _Parallax: 0.02
@@ -138,10 +138,10 @@ Material:
     - _UVSec: 0
     - _UseAmbientLight: 0
     - _UseCS: 1
-    - _UsePR: 1
+    - _UsePR: 0
     - _UseRT: 1
     - _UseShadow: 0
-    - _UseShadowCast: 1
+    - _UseShadowCast: 0
     - _UseSuperStack: 1
     - _UseTP: 0
     - _UseVR: 1
@@ -149,11 +149,11 @@ Material:
     - _WindForce: 0.2
     - _WindMovement: 0.07
     - _WorldRotation: 0
-    - _WorldScale: 21.83
+    - _WorldScale: 31
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 4
     - _ZTestModeDistortion: 8
-    - _ZTestTransparent: 0
+    - _ZTestTransparent: 8
     - _ZWrite: 1
     - __NumberOfStacks: 1
     m_Colors:

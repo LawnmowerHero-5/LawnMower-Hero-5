@@ -9,6 +9,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Valve.VR;
 
 public class playFabManagerIntermediate2 : MonoBehaviour
@@ -31,13 +32,17 @@ public class playFabManagerIntermediate2 : MonoBehaviour
 
     private string _loggedInPlayFabId;
     private Timer _timer;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
+    private pauseMenu _pMenu;
     
     #endregion
     private void Start()
     {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(false);
         _timer = GetComponent<Timer>();
-        _scoreController = GetComponent<scoreController>();
+        _scoreController = GetComponent<scoreManager>();
+        _pMenu = GetComponent<pauseMenu>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
@@ -52,6 +57,12 @@ public class playFabManagerIntermediate2 : MonoBehaviour
         if (_timer.timerIsRunning == false)
         {
             SendLeaderboard(_scoreController.score.score);
+        }
+
+        if (_timer.canSubmitScore)
+        {
+            SetYourName();
+            _timer.canSubmitScore = false;
         }
     }
 
@@ -77,15 +88,6 @@ public class playFabManagerIntermediate2 : MonoBehaviour
         if (result.InfoResultPayload.PlayerProfile != null)
         {
             name = result.InfoResultPayload.PlayerProfile.DisplayName;
-        }
-
-        if (name == null)
-        {
-            nameWindow.SetActive(true);
-        }
-        else
-        {
-            leaderboardWindow.SetActive(true);
         }
         print(_loggedInPlayFabId);
     }
@@ -223,6 +225,9 @@ public class playFabManagerIntermediate2 : MonoBehaviour
             DisplayName = nameInput.text,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        PullUpLeaderboard();
+        _pMenu.Resume();
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
@@ -242,5 +247,17 @@ public class playFabManagerIntermediate2 : MonoBehaviour
             GetLeaderboard();
             GetFirstPlace();
         }
+    }
+
+    public void SetYourName()
+    {
+        nameWindow.SetActive(true);
+        leaderboardWindow.SetActive(false);
+    }
+
+    public void PullUpLeaderboard()
+    {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(true);
     }
 }

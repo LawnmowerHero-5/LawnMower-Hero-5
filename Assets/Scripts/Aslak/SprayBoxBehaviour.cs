@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class SprayBoxBehaviour : MonoBehaviour
 {
     public EnemyHealth EnemyHealth;
-    public float SprayDamage = 3f;
+    public float SprayDamage = 0.1f;
     void Start()
     {
         EnemyHealth = GetComponent<EnemyHealth>();

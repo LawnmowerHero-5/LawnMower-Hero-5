@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RadioAnimation : MonoBehaviour
 {
@@ -25,5 +26,13 @@ public class RadioAnimation : MonoBehaviour
     public void Idle()
     {
         radio.Play("Idle");
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            Music.PlayOneShot("SFX/ough_6", transform.position);
+        }
     }
 }

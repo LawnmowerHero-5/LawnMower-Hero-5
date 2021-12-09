@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -10,6 +12,31 @@ public class ReloadBar : MonoBehaviour
 
     public Slider slider;
     public static float CurrentReload;
+    [SerializeField] private TMP_Text reloadText;
+    
+    [Header("Reload % per second")]
+    [SerializeField] private int reloadSpeed = 25;
+
+    private bool CanShoot = true;
+    
+    private bool _isHeld;
+    
+    private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
+    {
+        _isHeld = heldByHand.GameObject != null;
+    }
+    
+    
+    private void OnTrackpadButtonChanged(bool trackpadButtonState)
+    {
+        if (!trackpadButtonState || !_isHeld && !CanShoot)
+        {
+            return;
+        }
+        
+
+        if (CanShoot && _isHeld) { StartCoroutine(ShootWait()); }
+    }
 
     private void Start()
     {
@@ -21,10 +48,19 @@ public class ReloadBar : MonoBehaviour
         slider.value = reload;
     }
 
+    public void Shoot()
+    {
+        CurrentReload = 0;
+    }
     private void FixedUpdate()
     {
-        CurrentReload += 1 * Time.deltaTime;
+        if (CurrentReload >=100)
+        {
+            return;
+        }
+        CurrentReload += reloadSpeed * Time.deltaTime;
         SetReload(CurrentReload);
+        reloadText.text = Mathf.RoundToInt(CurrentReload) + "%";
     }
 
     private void Update()
@@ -38,5 +74,21 @@ public class ReloadBar : MonoBehaviour
         {
             CurrentReload = 0;
         }
+
+        if (Keyboard.current.wKey.wasPressedThisFrame && CanShoot)
+        {
+            StartCoroutine(ShootWait());
+        }
+    }
+
+    
+
+
+    public IEnumerator ShootWait()
+    { 
+        Shoot();
+        CanShoot = false;
+        yield return new WaitForSeconds(20);
+        CanShoot = true;
     }
 }

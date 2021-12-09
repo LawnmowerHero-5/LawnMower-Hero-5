@@ -13,12 +13,14 @@ public class HandVisual : MonoBehaviour
     [SerializeField] private Mesh _openHandDefault;
     [Tooltip("Default for hand when trigger is down")]
     [SerializeField] private Mesh _closedHandDefault;
-
+    
     private MeshFilter _meshFilter;
+    private Vector3 _scaleOnAwake;
 
     private void Awake()
     {
         _meshFilter = GetComponent<MeshFilter>();
+        _scaleOnAwake = transform.localScale;
     }
 
     private void OnValidate()
@@ -45,5 +47,10 @@ public class HandVisual : MonoBehaviour
     public void SetClosedHandMesh(Mesh mesh)    //Sets Closed hand mesh, but is null checked and defaults to Closed hand default
     {
         _meshFilter.mesh = (mesh == null) ? _closedHandDefault : mesh;
+    }
+
+    public void ResetScaleToAwakeScale()
+    {
+        transform.localScale = _scaleOnAwake;
     }
 }
