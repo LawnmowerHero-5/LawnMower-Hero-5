@@ -241,20 +241,7 @@ public class Music : MonoBehaviour
     }
 
 
-    public static void PlayOneShot(string audio)
-    {
-        //Checks if inputted string is a valid event
-        RuntimeManager.StudioSystem.getEvent(audio, out var eventExists);
-        if (!eventExists.isValid())
-        {
-            print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
-            return;
-        }
-
-        RuntimeManager.PlayOneShot(audio);
-    }
-
-    public static EventInstance? PlayLoop(string audio)
+    public static void PlayOneShot(string audio, Vector3 pos)
     {
         //Adds standard path to string
         audio = "event:/VR/" + audio;
@@ -264,13 +251,35 @@ public class Music : MonoBehaviour
         if (!eventExists.isValid())
         {
             print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
-            return null;
+            return;
+        }
+
+        RuntimeManager.PlayOneShot(audio, pos);
+    }
+
+    public static EventInstance PlayLoop(string audio)
+    {
+        //TODO: Make sure that the PlayLoop gives back a correct event instance that can be altered elsewhere
+        //Adds standard path to string
+        audio = "event:/VR/" + audio;
+        
+        //Checks if inputted string is a valid event
+        RuntimeManager.StudioSystem.getEvent(audio, out var eventExists);
+        if (!eventExists.isValid())
+        {
+            print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
+            return new EventInstance();
         }
 
         var audioInstance = RuntimeManager.CreateInstance(audio);
         audioInstance.start();
 
         return audioInstance;
+    }
+
+    public static void UpdateAudioPosition(EventInstance audio, Transform pos)
+    {
+        audio.set3DAttributes(pos.To3DAttributes());
     }
 
     public static void StopLoop(EventInstance audioInstance)

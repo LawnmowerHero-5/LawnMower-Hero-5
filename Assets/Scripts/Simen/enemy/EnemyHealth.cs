@@ -10,23 +10,40 @@ using UnityEngine.VFX;
 public class EnemyHealth : MonoBehaviour
 {
     public float health = 10;
-    private Rigidbody _rigibody;
     public VisualEffect _Effect;
+    private scoreManager _scoreManager;
 
     private void Start()
     {
-        _rigibody = GetComponent<Rigidbody>();
         _Effect.Stop();
+        _scoreManager = GetComponent<scoreManager>();
     }
 
     private void Update()
     {
         if (health is 0 or < 0)
-            
         {
             _Effect.Play();
             Destroy(_Effect, 3f);
             _Effect.transform.parent = null;
+          
+            if (gameObject.CompareTag("EvilGnome"))
+            {
+                _scoreManager.score.score += _scoreManager.killPointsGnome;
+            }
+            else if (gameObject.CompareTag("Wasp"))
+            {
+                _scoreManager.score.score += _scoreManager.killPointsWasp;
+            }
+            else if (gameObject.CompareTag("GoodGnome"))
+            {
+                _scoreManager.score.score -= _scoreManager.loosePointsGoodGnome;
+            }
+            else if (gameObject.CompareTag("Bee"))
+            {
+                _scoreManager.score.score -= _scoreManager.loosePointsBee;
+            }
+            
             Destroy(gameObject);
             //StartCoroutine(destroyEnemy());
         }
@@ -42,7 +59,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pellet"))
         {
-            print("I Should Be Dead Right Now");
+            _Effect.Play();
+            Destroy(_Effect, 3f);
+            _Effect.transform.parent = null;
+            Destroy(gameObject);
         }
     }
 }

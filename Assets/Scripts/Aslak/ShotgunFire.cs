@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(PickupAble))]
 [RequireComponent(typeof(InteractAble))]
@@ -15,11 +16,14 @@ public class ShotgunFire : MonoBehaviour
     public Transform BarrelExit;
     private List<Quaternion> pellets;
     private bool canFire = true;
+    private ReloadBar _bar;
+    public VisualEffect ShotgunExplotion;
     
     private bool _isHeld;
     
     void Awake()
     {
+        ShotgunExplotion.Stop();
         pellets = new List<Quaternion>(new Quaternion[pelletCount]);
     }
     
@@ -35,32 +39,39 @@ public class ShotgunFire : MonoBehaviour
             return;
         }
         
-            print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+            
 
             if (canFire && _isHeld)
             {
                 StartCoroutine(CantFireTimer());
+                print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             }
-            
+
+            if (!canFire)
+            {
+                Music.PlayOneShot("SFX/shotgun_empty");
+            }
         
         
     }
     
     
-    /*void Update()
+    // /*
+    void Update()
     {
         if (Keyboard.current.wKey.wasPressedThisFrame && canFire)
         {
             print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             StartCoroutine(CantFireTimer());
-
-
         }
-    }*/
+    }
+    // */
 
     private IEnumerator CantFireTimer()
     {
         Fire();
+        ShotgunExplotion.Play();
+        Music.PlayOneShot("SFX/shotgun_explode");
         canFire = false;
         yield return new WaitForSeconds(20);
         canFire = true;

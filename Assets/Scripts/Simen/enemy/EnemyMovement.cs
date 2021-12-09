@@ -10,6 +10,8 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
     public bool inCombat;
     public bool isActive;
 
+    private bool affectingSpeed;
+
     public void OnObjectSpawn()
     {
         isActive = true;
@@ -41,6 +43,7 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
         {
             isActive = false;
             gameObject.SetActive(false);
+            if (affectingSpeed) SphereMovement.EnemiesInRange--;
         }
     }
 }
