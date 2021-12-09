@@ -7,7 +7,6 @@ public class SpawnTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("LawnMower")) return;
-        _spawner.triggerCollider = other;
         _spawner.triggerEnter = true;
     }
 }
