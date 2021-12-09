@@ -27,8 +27,9 @@ public class SphereMovement : MonoBehaviour
     [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
     public float steeringDivider = 270f, gasDivider = 20f;
     [Tooltip("The amount of slowdown per enemy, 1% = 10f")]
-    public float slowDownMultiplier = 50f;
+    public float slowDownMultiplier = 5f;
     private float slowDown;
+    [HideInInspector] public static int EnemiesInRange;
     
     void Start()
     {
@@ -95,14 +96,14 @@ public class SphereMovement : MonoBehaviour
 
     private void SlowDown()
     {
-        //slowDown = "Enemies" * slowDownMultiplier; 
+        slowDown = (EnemiesInRange * slowDownMultiplier)/100; 
     }
     private void FixedUpdate()
     {
         //The function that propels the sphere forward
         if (Mathf.Abs(speedInput) > 0)
         {
-            sphereRB.AddForce(transform.forward * speedInput * (accelerationMultiplier-slowDown));
+            sphereRB.AddForce(transform.forward * speedInput * accelerationMultiplier * slowDown);
         }
         
     }
