@@ -550,6 +550,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-9075278398150649347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/battle_theme/InBattle
+  m_EditorClassIdentifier: 
+  Name: InBattle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-9069296565409461966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,6 +1606,30 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-8657722268660730857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/battle_theme
+  m_EditorClassIdentifier: 
+  Path: event:/VR/battle_theme
+  guid: ed7a42a8fa8c4047bf1575601cefe415
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -9075278398150649347}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 47472
 --- !u!114 &-8653236018394483728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2968,6 +3014,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-8134517597608320463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_driving_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_driving_1
+  guid: f0b193a19036c14daf2ac87611ec6ea0
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5000
 --- !u!114 &-8129288527249814789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4523,10 +4592,10 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637744694643460875
+  lastModified: 637746473436345647
   FileSizes:
   - Name: 
-    Value: 1044
+    Value: 3888
   Exists: 1
 --- !u!114 &-7613795864772395551
 MonoBehaviour:
@@ -4748,6 +4817,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-7556398398517586841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ceramic_break
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ceramic_break
+  guid: d96b329433ac30419db1c0da8987bff4
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 768
 --- !u!114 &-7546836108807689842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,15 +5014,15 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -6771725656801662297}
-  - {fileID: 4646980057109947926}
-  - {fileID: -6040785472840857181}
-  - {fileID: 9131026972661483907}
-  - {fileID: -6488818670008952488}
-  - {fileID: 3621269951765709588}
+  - {fileID: 2199357143292166552}
+  - {fileID: -1781521725519045861}
+  - {fileID: 3248957184126957146}
+  - {fileID: 1563477371738353374}
+  - {fileID: -7478435403082377578}
+  - {fileID: 7488921457173413710}
   MinDistance: 1
   MaxDistance: 20
-  Length: 138000
+  Length: 1953753
 --- !u!114 &-7496605588604284134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4997,6 +5089,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-7478435403082377578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/SFXVolume
+  m_EditorClassIdentifier: 
+  Name: SFXVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-7472085061399616705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5415,6 +5529,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-7338884857907239717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/shotgun_explode
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/shotgun_explode
+  guid: f16740c792c89d45922bb02c4af192ee
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1358
 --- !u!114 &-7336686425593557143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5873,6 +6010,52 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-7188954693399733851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_2
+  guid: 6a9f12ac69fa3a4c9c02e9f18b7f2bcf
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3704
+--- !u!114 &-7183216514462337248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_3
+  guid: 22285bdc64ba3f4f8383f9a55c5cc589
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2485
 --- !u!114 &-7169106549927471234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6005,6 +6188,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-7140788418608200820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/wind_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/wind_2
+  guid: 34990d6a853a9742ac4c34c3a00821f3
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &-7139096169763651056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6797,6 +7003,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-6886287658818102523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/reverse
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/reverse
+  guid: f42938eeea2c464297cbba102bf9dfa5
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4468
 --- !u!114 &-6883943450549447787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7325,6 +7554,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-6707367594022027745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crunch_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crunch_2
+  guid: 824b6bfb17fbdb40b050b5c8b341c801
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 302
 --- !u!114 &-6702576472494118113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7633,6 +7885,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-6630038610806763181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crash_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crash_1
+  guid: 9214c8c4dbeda84b979a9db84711273b
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 519
 --- !u!114 &-6623133075637788423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7853,6 +8128,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-6555438580767541359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/buzz_muffled
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/buzz_muffled
+  guid: b312c6120952c54895020c784b8b6644
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7501
 --- !u!114 &-6554842635180759902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8073,6 +8371,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-6486948103393752643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/equipment_collide
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/equipment_collide
+  guid: cba4ead3d5a40347b91e2974d844740f
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 97
 --- !u!114 &-6473765888246173192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10801,6 +11122,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-5388737123187363952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crash_5
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crash_5
+  guid: a8b92a6c84e90c489a0183461d8393d6
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 656
 --- !u!114 &-5386534169788127475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11329,6 +11673,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-5212856418348134783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_stop_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_stop_1
+  guid: 0e2c17589c385e46990c0a09e9e62b18
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1514
 --- !u!114 &-5211764201290252732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11417,6 +11784,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-5193081165467525541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/pond_splash
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/pond_splash
+  guid: b520a4379e7c8c43914f6bc07f00341c
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1375
 --- !u!114 &-5184262826398208197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11615,6 +12005,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-5149398007887846585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_2
+  guid: 8fdf3f42fd751f4ab30f03d716f4fca6
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 208
 --- !u!114 &-5144655987845752926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12429,6 +12842,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-4870076013916907956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MasterVolume
+  m_EditorClassIdentifier: 
+  Name: MasterVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 0
 --- !u!114 &-4848657582053283819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12774,6 +13209,28 @@ MonoBehaviour:
   Name: Whitenoise
   Min: 0
   Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 0
+--- !u!114 &-4761036853284293586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/SFXVolume
+  m_EditorClassIdentifier: 
+  Name: SFXVolume
+  Min: -80
+  Max: 0
   Default: 0
   ID:
     data1: 0
@@ -13881,6 +14338,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-4341272978873131610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/shotgun_empty
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/shotgun_empty
+  guid: 0e085eb2131ce94abc4e8a358cbb2585
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 456
 --- !u!114 &-4339819594120373512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13991,6 +14471,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-4292666834887917552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_7
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_7
+  guid: 1e917abe0f682646a8620ce762df4e5e
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 331
 --- !u!114 &-4284323731018344682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14871,6 +15374,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-4024041700687689774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/buzz
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/buzz
+  guid: 0ed5c9c60be9014998a6b35a338754e2
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7507
 --- !u!114 &-4017911500067500309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15048,6 +15574,28 @@ MonoBehaviour:
   IsGlobal: 1
   Exists: 0
 --- !u!114 &-3958341338799881420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AudioOn
+  m_EditorClassIdentifier: 
+  Name: AudioOn
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 0
+--- !u!114 &-3957112814269767965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15639,6 +16187,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-3755822237856529010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/menu_hover_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/menu_hover_2
+  guid: 76d7c85fcd2ec24ba1bb5d211df4f0a7
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 339
 --- !u!114 &-3754069535742221947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15705,6 +16276,52 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-3740358983987535718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_idle
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_idle
+  guid: 367d19836302af44affc3c2d702bf4d2
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 26875
+--- !u!114 &-3731915562294861391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_5
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_5
+  guid: bcb1e7e92713e74294b67520d1226a57
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2613
 --- !u!114 &-3719736197873105506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17443,6 +18060,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-3234926997166424431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crash_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crash_3
+  guid: f4847492af1b9641a3652ff84e9bd517
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 755
 --- !u!114 &-3203406813938910368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17531,6 +18171,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-3165491104799998293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_1
+  guid: a87fc9128e8d9a45bc08781e146cf544
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 250
 --- !u!114 &-3152295090945934833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18257,6 +18920,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-2936972896851676297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_1
+  guid: 4f2df3e0cd14fb4887fba59757f543e5
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2241
 --- !u!114 &-2932992486895579897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18323,6 +19009,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-2925647081554977177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/walking_grass_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/walking_grass_1
+  guid: aaa461e157384244afe6c6997c73d1c9
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5328
 --- !u!114 &-2905974691114766261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18345,6 +19054,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-2889786336912791786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/battle_theme/InBattle
+  m_EditorClassIdentifier: 
+  Name: InBattle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 0
 --- !u!114 &-2886682740222151434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18477,6 +19208,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-2835911135324669892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_3
+  guid: 73112e368c89be4886c92e6fc082132f
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2452
 --- !u!114 &-2833687464287304847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20149,6 +20903,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-2228440709549842579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_5
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_5
+  guid: 9858abe0f25a4742a84e22a3a4e8f097
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2631
 --- !u!114 &-2214532216017094218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20193,6 +20970,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-2203745373697586294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_8
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_8
+  guid: 2b81b5d226cefc44a79c94bfc348adfe
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 362
 --- !u!114 &-2201026608572682220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20413,6 +21213,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-2065178819782769601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_4
+  guid: d69031daf7ece54fb86aa5d5e7e6a59e
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 391
 --- !u!114 &-2059037903561054318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20435,6 +21258,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &-2048789385596826495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_3
+  guid: 421a400f03dc204e9a265b0d1bbf2fa1
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 531
 --- !u!114 &-2046805118276468008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21113,6 +21959,52 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1880241075470602773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_6
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_6
+  guid: e287db7f437fa34d9257fdb488e7b714
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 130
+--- !u!114 &-1876073560697522282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_start_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_start_2
+  guid: f49f4bfe74442848a2bde453ab562fad
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 998
 --- !u!114 &-1863696604866286095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21135,6 +22027,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1851984066910641273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_5
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_5
+  guid: 69ae13e58fa8a14fbb08565841ccc56e
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 375
 --- !u!114 &-1847870828398311018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21264,6 +22179,28 @@ MonoBehaviour:
   ID:
     data1: 1076888578
     data2: 3074773078
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
+--- !u!114 &-1781521725519045861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Type: 0
   IsGlobal: 1
   Exists: 1
@@ -21685,6 +22622,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1668050145757679630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/InBattle
+  m_EditorClassIdentifier: 
+  Name: InBattle
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2962679262
+    data2: 4272348649
+  Type: 1
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-1664175490604915564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22499,6 +23458,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1411687203280111740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crash_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crash_4
+  guid: ad6c95f4cd7d41488b9df7836fff5f3c
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 472
 --- !u!114 &-1395669960186736102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22521,6 +23503,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1393122282735715510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_7
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_7
+  guid: 9509fdcb1bb53b45bb017338f7a80655
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2104
 --- !u!114 &-1351390125553429494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22851,6 +23856,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-1253986670838385632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/walking_stone
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/walking_stone
+  guid: 23f64016e8a13d498a62fb4bdba8cbb7
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
 --- !u!114 &-1252394458585195838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25975,6 +27003,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-316707097852987310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ceramic_break_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ceramic_break_2
+  guid: 418cc069eeeb1244b424cf1bf12cf69e
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 959
 --- !u!114 &-315899352029899563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26437,6 +27488,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-120951307997799982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_1
+  guid: 927e21f9fc07744992615ca5b90514a2
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 313
 --- !u!114 &-117016688063859498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26784,6 +27858,75 @@ MonoBehaviour:
   - {fileID: 4401157683044296244}
   EditorEvents:
   - {fileID: -7514739655296326248}
+  - {fileID: 4014277308811125799}
+  - {fileID: -4341272978873131610}
+  - {fileID: -5212856418348134783}
+  - {fileID: -4024041700687689774}
+  - {fileID: 6991133107831975480}
+  - {fileID: 8247969521399146921}
+  - {fileID: 573439009898966297}
+  - {fileID: -4292666834887917552}
+  - {fileID: 551801133419101094}
+  - {fileID: -7183216514462337248}
+  - {fileID: 2585328483869570842}
+  - {fileID: -1253986670838385632}
+  - {fileID: 7421361253450893460}
+  - {fileID: -2203745373697586294}
+  - {fileID: 8952880911742526324}
+  - {fileID: -7140788418608200820}
+  - {fileID: -3740358983987535718}
+  - {fileID: 5318790312887725113}
+  - {fileID: -316707097852987310}
+  - {fileID: -2048789385596826495}
+  - {fileID: 2979090312052260984}
+  - {fileID: -2936972896851676297}
+  - {fileID: 3311977365808825964}
+  - {fileID: 6710461637878304237}
+  - {fileID: 6258189038626860512}
+  - {fileID: -1851984066910641273}
+  - {fileID: -7188954693399733851}
+  - {fileID: -2835911135324669892}
+  - {fileID: -3755822237856529010}
+  - {fileID: 5965110894920005027}
+  - {fileID: -6707367594022027745}
+  - {fileID: -5149398007887846585}
+  - {fileID: -6630038610806763181}
+  - {fileID: 5532128099923440939}
+  - {fileID: -120951307997799982}
+  - {fileID: -1393122282735715510}
+  - {fileID: 6348517191590637290}
+  - {fileID: -2228440709549842579}
+  - {fileID: 1887341126969387071}
+  - {fileID: 5470728797043716577}
+  - {fileID: -3165491104799998293}
+  - {fileID: -5388737123187363952}
+  - {fileID: 413288118796865721}
+  - {fileID: -2925647081554977177}
+  - {fileID: 5228452434244771125}
+  - {fileID: -1411687203280111740}
+  - {fileID: -6555438580767541359}
+  - {fileID: -5193081165467525541}
+  - {fileID: -3731915562294861391}
+  - {fileID: 3695062213498311299}
+  - {fileID: 4741414893588245220}
+  - {fileID: -6486948103393752643}
+  - {fileID: -2065178819782769601}
+  - {fileID: -7556398398517586841}
+  - {fileID: -1880241075470602773}
+  - {fileID: 5787862533544940397}
+  - {fileID: 7077656664148729769}
+  - {fileID: -8657722268660730857}
+  - {fileID: 160763061609192584}
+  - {fileID: -8134517597608320463}
+  - {fileID: -7338884857907239717}
+  - {fileID: -6886287658818102523}
+  - {fileID: -3234926997166424431}
+  - {fileID: -1876073560697522282}
+  - {fileID: 1084427906743230325}
+  - {fileID: 5796595283529656549}
+  - {fileID: 7885568234837062041}
+  - {fileID: 6883639167865003866}
+  - {fileID: 6103774824228024708}
   EditorParameters:
   - {fileID: 4966893188794613102}
   - {fileID: 228557621001438696}
@@ -26791,11 +27934,12 @@ MonoBehaviour:
   - {fileID: -2263250950639101296}
   - {fileID: 4408307674352700634}
   - {fileID: 3218710860365854412}
+  - {fileID: -1668050145757679630}
   MasterBanks:
   - {fileID: 4401157683044296244}
   StringsBanks:
   - {fileID: -7623025589096861205}
-  stringsBankWriteTime: 637744694643460875
+  stringsBankWriteTime: 637746473436345647
   cacheVersion: 8
 --- !u!114 &5341187624342841
 MonoBehaviour:
@@ -27369,6 +28513,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &160763061609192584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_3
+  guid: ef05644c74e592418071362f86a32058
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 391
 --- !u!114 &168057714120956169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28005,6 +29172,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &413288118796865721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_2
+  guid: a91bc9bf4a13d748a9b176b8172a4474
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 699
 --- !u!114 &437928448284320222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28335,6 +29525,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &551801133419101094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_start_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_start_1
+  guid: 215700be90f3384ba13ca3ed7a7f9163
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1713
 --- !u!114 &552212708531121828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28379,6 +29592,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &573439009898966297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/wind_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/wind_1
+  guid: 14f0ef5c4dc2534f9abbc372973e13d2
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 47248
 --- !u!114 &577458758993273724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30029,6 +31265,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &1084427906743230325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/noise
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/noise
+  guid: f6c4583e4ce62249ac26fe5d866ad984
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 96000
 --- !u!114 &1093389558576846190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31795,6 +33054,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &1563477371738353374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AmbianceVolume
+  m_EditorClassIdentifier: 
+  Name: AmbianceVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &1566098319163965711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32675,6 +33956,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &1887341126969387071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_stop_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_stop_2
+  guid: 99d6ae8d7c11a340812f41455e0538a1
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1404
 --- !u!114 &1902380150377114029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32763,6 +34067,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &1944239482248319486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/Whitenoise
+  m_EditorClassIdentifier: 
+  Name: Whitenoise
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 0
 --- !u!114 &1949293851321993733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33379,6 +34705,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &2199357143292166552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/Whitenoise
+  m_EditorClassIdentifier: 
+  Name: Whitenoise
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &2206020563731025763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33577,6 +34925,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &2269153363163897627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 0
 --- !u!114 &2273312139689614941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34523,6 +35893,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &2585328483869570842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/spinout
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/spinout
+  guid: 22dd9de40776114586f7d80f04be4869
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6000
 --- !u!114 &2590372607800229718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35843,6 +37236,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &2979090312052260984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/menu_hover_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/menu_hover_1
+  guid: 4a6a84063673cb4a8ec15673b96d5f64
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 261
 --- !u!114 &2982516683605156359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36635,6 +38051,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &3248957184126957146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MasterVolume
+  m_EditorClassIdentifier: 
+  Name: MasterVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &3249859934364390692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36767,6 +38205,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &3311977365808825964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/main_theme
+  m_EditorClassIdentifier: 
+  Path: event:/VR/main_theme
+  guid: 536d02c5d548934b8bff0a571780427a
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 90911
 --- !u!114 &3312952297784497383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37845,6 +39306,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &3695062213498311299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_4
+  guid: c1168d49647e3a4cac00e1cc9fdf0c67
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 890
 --- !u!114 &3695185803169141506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38879,6 +40363,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &4014277308811125799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_4
+  guid: 0d575beb95e10c40941ba854509727bf
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2631
 --- !u!114 &4028735979550566830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40016,7 +41523,7 @@ MonoBehaviour:
   Path: Assets/FMOD Banks/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637744805740114524
+  lastModified: 637746473436305757
   FileSizes: []
   Exists: 1
 --- !u!114 &4403082643473675209
@@ -41137,6 +42644,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &4741414893588245220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crunch_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crunch_1
+  guid: c3b5a0df6fe284428f5a73e84a17bcb4
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &4746155686394738506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42281,6 +43811,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &5137547253287473399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AmbianceVolume
+  m_EditorClassIdentifier: 
+  Name: AmbianceVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 0
 --- !u!114 &5138122182305104067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42501,6 +44053,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &5228452434244771125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_6
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_6
+  guid: ac20149a878bb34bb88911de595ace3b
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2613
 --- !u!114 &5234837292869298594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42743,6 +44318,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &5318790312887725113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/menu_hover_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/menu_hover_4
+  guid: 3a1c211670e2cd4b84e26b4a1ed488d4
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 339
 --- !u!114 &5322571958229021071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43293,6 +44891,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &5470728797043716577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_4
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_4
+  guid: a696451d3730df47ac65f4439ac3c60a
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2263
 --- !u!114 &5475656748804093987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43491,6 +45112,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &5532128099923440939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_2
+  guid: 9231e03bf2f908418463d28c3e0ffb7c
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3704
 --- !u!114 &5540094019303421459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44259,6 +45903,52 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &5787862533544940397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/shotgun_reload_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/shotgun_reload_2
+  guid: ec6dd55cd5e12542b0356067f434ea65
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 655
+--- !u!114 &5796595283529656549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_muffled_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_muffled_1
+  guid: f6ea182d7ee62442be168d3e47b5e3d7
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2241
 --- !u!114 &5800739126941028155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44673,6 +46363,29 @@ MonoBehaviour:
   lastModified: 637740412532492465
   FileSizes: []
   Exists: 0
+--- !u!114 &5965110894920005027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/crash_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/crash_2
+  guid: 79168a8219de2246b6d4ee7e13e59356
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2266
 --- !u!114 &5972424241947059561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44893,6 +46606,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &6103774824228024708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/walking_sand
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/walking_sand
+  guid: fc98957ad9673c4ebabd030a08f18b45
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9150
 --- !u!114 &6104324467887947073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45265,6 +47001,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &6258189038626860512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gear_change
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gear_change
+  guid: 66a5f7d0f83d3d4e81f9b1306a45ef6f
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 537
 --- !u!114 &6260764125666857503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45661,6 +47420,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &6348517191590637290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/menu_hover_3
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/menu_hover_3
+  guid: 972e09ae75546544a4356f7d54a817b3
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 653
 --- !u!114 &6354440893964275050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46629,6 +48411,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &6710461637878304237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/ough_6
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/ough_6
+  guid: 5bd7a2b55ddd4440b36e7a53e749dced
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 684
 --- !u!114 &6712974838864778288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47399,6 +49204,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &6883639167865003866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/bugspray
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/bugspray
+  guid: fb48edfec0a51240a30363d3eda5a35f
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4777
 --- !u!114 &6884556500711650542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47751,6 +49579,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &6991133107831975480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/walking_grass_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/walking_grass_2
+  guid: 0f94c4e4d539ef4b88b7d185e66a62de
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2630
 --- !u!114 &6995268746721033800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47927,6 +49778,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &7077656664148729769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/radio_click_5
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/radio_click_5
+  guid: ec86e11959f39a4ca9c11c1a3d3c024e
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 182
 --- !u!114 &7080297659854998359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48715,6 +50589,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &7421361253450893460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/walking_wet
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/walking_wet
+  guid: 24c959a09233c743b36abcf988a829c7
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2550
 --- !u!114 &7437773241331302979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48869,6 +50766,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &7488921457173413710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AudioOn
+  m_EditorClassIdentifier: 
+  Name: AudioOn
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &7495517033171705696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50101,6 +52020,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 1
+--- !u!114 &7885568234837062041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/lawnmower_driving_2
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/lawnmower_driving_2
+  guid: f83093b944d32f4690dafb1075eb2961
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3268
 --- !u!114 &7886190387914165600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51157,6 +53099,29 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 1
+--- !u!114 &8247969521399146921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/gnome_growl_6
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/gnome_growl_6
+  guid: 0fccdcafcd549a4b93a108294f665d15
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2104
 --- !u!114 &8248696000029088503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53203,6 +55168,29 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &8952880911742526324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VR/SFX/shotgun_reload_1
+  m_EditorClassIdentifier: 
+  Path: event:/VR/SFX/shotgun_reload_1
+  guid: 3167919bd0cc0d408c6ad50ee41ab34b
+  Banks:
+  - {fileID: 4401157683044296244}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 685
 --- !u!114 &8955460427655638194
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,10 +58,12 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pellet"))
         {
-            _Effect.Play();
+            /*_Effect.Play();
             Destroy(_Effect, 3f);
             _Effect.transform.parent = null;
-            Destroy(gameObject);
+            Destroy(gameObject);*/
+            
+            print("is realy supposed to be dead rn");
         }
     }
 }

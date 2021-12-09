@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class SphereMovement : MonoBehaviour
 {
@@ -36,12 +37,18 @@ public class SphereMovement : MonoBehaviour
     private int slowedWheels;
 
     public GameObject[] wheels;
-
+    public VisualEffect[] dust;
+    
     private void Start()
     {
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement
         sphereRB.transform.parent = null;
+        for (int i = 0; i < dust.Length - 1; i++)
+        {
+            dust[i].Stop();
+        }
     }
+    
     
     private void OnMove(InputValue inputValue)
     {
@@ -64,7 +71,7 @@ public class SphereMovement : MonoBehaviour
 
     private void Update()
     {
-        TranslateSteering();
+        //TranslateSteering();
         Mathf.Clamp(turnInput, -1, 1);
         transform.position = sphereRB.transform.position;
         
@@ -72,6 +79,8 @@ public class SphereMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         RayCast();
         SlowDown();
+        WheelCast(sandPitEquals);
+        WheelCast(pondEquals);
     }
     
     private void TranslateSteering()
@@ -105,13 +114,20 @@ public class SphereMovement : MonoBehaviour
         RaycastHit hit;
         for (int i = 0; i < wheels.Length-1; i++)
         {
-            if (Physics.Raycast(wheels[i].transform.position, -Vector3.up, out hit, 3f, layerMask))
+            if (Physics.Raycast(wheels[i].transform.position, -Vector3.up, out hit, 3000f, layerMask))
             {
+                if (hit.transform.gameObject.layer == sandPitEquals)
+                {
+                    dust[i].Play();
+                }
                 badWheels[i] = 1;
+                print("Raycast hit");
             }
             else
             {
+                print("Raycast didn't hit");
                 badWheels[i] = 0;
+                dust[i].Stop();
             }
         }
         int result = 0;
@@ -124,6 +140,17 @@ public class SphereMovement : MonoBehaviour
         }
 
         slowedWheels = result;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        ;
+        for (int i = 0; i < wheels.Length; i++)
+        {
+            Gizmos.DrawRay(wheels[i].transform.position, -Vector3.up);
+        }
+
     }
 
     private void SlowDown()
