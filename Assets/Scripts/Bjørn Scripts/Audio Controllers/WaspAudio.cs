@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaspAudio : MonoBehaviour
 {
     private EventInstance sfxBuzz;
-    
+
     #region - PlayLogic -
     
     private void OnDestroy()
