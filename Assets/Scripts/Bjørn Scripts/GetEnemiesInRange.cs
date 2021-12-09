@@ -20,14 +20,16 @@ public class GetEnemiesInRange : MonoBehaviour
         SphereMovement.EnemiesInRange = count;
     }
 
-    private void OnTriggerEnter (Collider other) {
+    private void OnTriggerEnter (Collider other)
+    {
         if (!colliders.Contains(other))
         {
-            colliders.Add(other);
+            if (other.CompareTag("Wasp") || other.CompareTag("EvilGnome")) colliders.Add(other);
         }
     }
  
-    private void OnTriggerExit (Collider other) {
+    private void OnTriggerExit (Collider other)
+    {
         colliders.Remove(other);
     }
 }
