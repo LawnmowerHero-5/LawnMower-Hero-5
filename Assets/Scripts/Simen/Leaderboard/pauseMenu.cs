@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,11 @@ public class pauseMenu : MonoBehaviour
     public static bool GameIsPaused;
 
     public GameObject PauseMenuUI;
+
+    private void Start()
+    {
+        PauseMenuUI.SetActive(false);
+    }
 
     private void Update()
     {
