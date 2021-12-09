@@ -36,6 +36,12 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
                 transform.position = Vector3.MoveTowards(transform.position, target.playerTransform.position, step);
                 print("Player spotted, chase started");
                 inCombat = true;
+                
+                //Rotates towards target
+                var targetDir = target.playerTransform.position - transform.position;
+                var rotateStep = rotateSpeed * Time.deltaTime;
+            
+                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetDir, rotateStep, 0f));
             }
             else
             {
@@ -45,12 +51,6 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
 
             //Sets velocity to prevent impacts from affecting enemies' movement
             _RB.velocity = CompareTag("Wasp") ? Vector3.zero : new Vector3(0f, _RB.velocity.y, 0f);
-            
-            //Rotates towards target
-            var targetDir = target.playerTransform.position - transform.position;
-            var rotateStep = rotateSpeed * Time.deltaTime;
-            
-            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetDir, rotateStep, 0f));
         }
     }
     
