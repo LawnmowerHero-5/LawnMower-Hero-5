@@ -64,7 +64,7 @@ public class SphereMovement : MonoBehaviour
 
     private void Update()
     {
-        TranslateSteering();
+        //TranslateSteering();
         Mathf.Clamp(turnInput, -1, 1);
         transform.position = sphereRB.transform.position;
         
