@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
+[RequireComponent(typeof(PickupAble))]
+[RequireComponent(typeof(InteractAble))]
 public class ShotgunFire : MonoBehaviour
 {
     public int pelletCount;
@@ -14,17 +16,15 @@ public class ShotgunFire : MonoBehaviour
     public Transform BarrelExit;
     private List<Quaternion> pellets;
     private bool canFire = true;
-    public VisualEffect ShotgunSmoke;
     private ReloadBar _bar;
-    public float secondsForReload = 20f;
+    public VisualEffect ShotgunExplotion;
     
     private bool _isHeld;
     
     void Awake()
     {
-        ShotgunSmoke.Stop();
+        ShotgunExplotion.Stop();
         pellets = new List<Quaternion>(new Quaternion[pelletCount]);
-        _bar = GetComponent<ReloadBar>();
     }
     
     private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
@@ -34,39 +34,48 @@ public class ShotgunFire : MonoBehaviour
 
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
-        if (!trackpadButtonState || !_isHeld || !canFire)
+        if (!trackpadButtonState || !_isHeld && !canFire)
         {
             return;
         }
-
         
-        StartCoroutine(_bar.ShootWait());
-        StartCoroutine(CantFireTimer());
-        print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+            
+
+            if (canFire && _isHeld)
+            {
+                StartCoroutine(CantFireTimer());
+                print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
+            }
+
+            if (!canFire)
+            {
+                Music.PlayOneShot("SFX/shotgun_empty");
+            }
+        
         
     }
     
     
-    /*void Update()
+    // /*
+    void Update()
     {
         if (Keyboard.current.wKey.wasPressedThisFrame && canFire)
         {
             print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             StartCoroutine(CantFireTimer());
-
-
         }
-    }*/
+    }
+    // */
 
     private IEnumerator CantFireTimer()
     {
-        ShotgunSmoke.Play();
         Fire();
+        ShotgunExplotion.Play();
+        Music.PlayOneShot("SFX/shotgun_explode");
         canFire = false;
-        yield return new WaitForSeconds(secondsForReload);
+        yield return new WaitForSeconds(20);
         canFire = true;
     }
-    
         
     void Fire()
     {

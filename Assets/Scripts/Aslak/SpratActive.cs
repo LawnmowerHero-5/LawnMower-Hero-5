@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
@@ -19,6 +18,11 @@ public class SpratActive : MonoBehaviour
         _isHeld = heldByHand.GameObject != null;
     }
 
+    private void Start()
+    {
+        SprayEffect.Stop();
+    }
+
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
         //_trackpadButtonDown = trackpadButtonState;
@@ -30,17 +34,19 @@ public class SpratActive : MonoBehaviour
         }
         else if (_isHeld)
         {
+            Music.PlayLoop("SFX/bugspray");
             SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }
     }
 
 
-    // Update is called once per frame
+    //"only" used for testing"
     /*void Update()
     {
-        if (_isHeld && _trackpadButtonDown)
+        if (Keyboard.current.aKey.isPressed)
         {
+            Music.PlayLoop("SFX/bugspray");
             SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }

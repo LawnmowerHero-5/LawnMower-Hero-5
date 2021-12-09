@@ -19,7 +19,24 @@ public class ReloadBar : MonoBehaviour
 
     private bool CanShoot = true;
     
+    private bool _isHeld;
     
+    private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
+    {
+        _isHeld = heldByHand.GameObject != null;
+    }
+    
+    
+    private void OnTrackpadButtonChanged(bool trackpadButtonState)
+    {
+        if (!trackpadButtonState || !_isHeld && !CanShoot)
+        {
+            return;
+        }
+        
+
+        if (CanShoot && _isHeld) { StartCoroutine(ShootWait()); }
+    }
 
     private void Start()
     {
@@ -31,7 +48,7 @@ public class ReloadBar : MonoBehaviour
         slider.value = reload;
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         CurrentReload = 0;
     }
@@ -58,7 +75,7 @@ public class ReloadBar : MonoBehaviour
             CurrentReload = 0;
         }
 
-        if (Keyboard.current.kKey.wasPressedThisFrame && CanShoot)
+        if (Keyboard.current.wKey.wasPressedThisFrame && CanShoot)
         {
             StartCoroutine(ShootWait());
         }

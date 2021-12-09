@@ -157,8 +157,6 @@ public class Music : MonoBehaviour
         RuntimeManager.StudioSystem.setParameterByName("MusicVolume", musicVolume);
         RuntimeManager.StudioSystem.setParameterByName("AmbienceVolume", ambianceVolume);
         RuntimeManager.StudioSystem.setParameterByName("SFXVolume", sfxVolume);
-
-        print(firsttest + " : " + secondtest + " : " + masterVolume);
     }
     
     //Returns information from the current GCHandle
@@ -240,5 +238,45 @@ public class Music : MonoBehaviour
             
             musicInstance.setTimelinePosition(timePos);
         }
+    }
+
+
+    public static void PlayOneShot(string audio)
+    {
+        //Checks if inputted string is a valid event
+        RuntimeManager.StudioSystem.getEvent(audio, out var eventExists);
+        if (!eventExists.isValid())
+        {
+            print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
+            return;
+        }
+
+        RuntimeManager.PlayOneShot(audio);
+    }
+
+    public static EventInstance? PlayLoop(string audio)
+    {
+        //Adds standard path to string
+        audio = "event:/VR/" + audio;
+        
+        //Checks if inputted string is a valid event
+        RuntimeManager.StudioSystem.getEvent(audio, out var eventExists);
+        if (!eventExists.isValid())
+        {
+            print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
+            return null;
+        }
+
+        var audioInstance = RuntimeManager.CreateInstance(audio);
+        audioInstance.start();
+
+        return audioInstance;
+    }
+
+    public static void StopLoop(EventInstance audioInstance)
+    {
+        audioInstance.setUserData(IntPtr.Zero);
+        audioInstance.stop(STOP_MODE.IMMEDIATE);
+        audioInstance.release();
     }
 }

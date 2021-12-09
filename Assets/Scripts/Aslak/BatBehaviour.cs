@@ -1,27 +1,33 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Valve.VR;
 
 public class BatBehaviour : MonoBehaviour
 {
     public Rigidbody rb;
     public float batDamage =  3f;
 
-    private Transform trns;
+    [Tooltip("The tip of the bat")]
+    public Transform batTip;
+
+    private List<Vector3> positionTracker = new List<Vector3>();
+    private float difference;
+    private float speed;
+    [Tooltip("Values used to define the ranges of the damages")]
+    //public int minSpeed1 =10, minSpeed2 = 15, medSpeed1 = 15, medSpeed2 =20, maxSpeed = 20;
     
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        positionTracker.Add(batTip.localPosition);
     }
 
     [ExecuteInEditMode]
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(10, 10, 300, 20), "Velocity: "+ rb.velocity.sqrMagnitude);
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
@@ -36,29 +42,45 @@ public class BatBehaviour : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        // todo: don't track unless in hands.
+        
+        positionTracker.Add(batTip.localPosition);
+        difference = Vector3.Distance(positionTracker[0], positionTracker[1]);
+        positionTracker.Remove(positionTracker[0]);
+
+        speed = difference / Time.deltaTime;
+        
+        if (speed > 20f)
+        {
+           Debug.Log("speed = "+ speed);
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider.CompareTag("EvilGnome") || 
             (other.collider.CompareTag("Gnome Lair")) ||
-            (other.collider.CompareTag("GoodGnome")) && rb.velocity.sqrMagnitude is >= 10 and <= 14)
+            (other.collider.CompareTag("GoodGnome")))
         {
-            GetEnemyDoDamage(other, 1f);
-            print("Im going Fast");
-        }
-        else if (other.collider.CompareTag("EvilGnome") || 
-                 (other.collider.CompareTag("Gnome Lair")) ||
-                 (other.collider.CompareTag("GoodGnome")) && rb.velocity.sqrMagnitude is >= 15 and <= 20)
-        {
-            GetEnemyDoDamage(other, 2f);
+            if (speed >= 21f)
+            {
+                GetEnemyDoDamage(other, 3f);
+                print(speed + ": Fast af Boyyyy");
+            }
 
-            print("Do you have anny idea how fast im going");
-        }
-        else if (other.collider.CompareTag("EvilGnome") || 
-                 (other.collider.CompareTag("Gnome Lair")) ||
-                 (other.collider.CompareTag("GoodGnome")) && rb.velocity.sqrMagnitude >= 21)
-        {
-            GetEnemyDoDamage(other,  3f); 
-            print("Fast AF boyyy");
+            else if (speed is >= 16f)
+            {
+                GetEnemyDoDamage(other, 2f);
+                print("Do you have anny idea how fast im going");
+            }
+
+            else if (speed is >= 8f)
+            {
+                GetEnemyDoDamage(other, 1f);
+                print("I'm Fast");
+            }
         }
     }
 

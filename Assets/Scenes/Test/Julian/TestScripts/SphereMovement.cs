@@ -19,22 +19,27 @@ public class SphereMovement : MonoBehaviour
     // Used to transform the Lawnmower to stick to the ground;
     private Quaternion slopeRotation;
     
-    [Tooltip("Assign the Ground layer")]
-    public LayerMask groundEquals;
+    [Tooltip("Assign the correct layer, for raycasts")]
+    public LayerMask groundEquals, sandPitEquals, pondEquals;
 
     public testGASCRANK gasCrank;
     public NewSteeringWheelTest steeringWheel;
     [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
-    public float steeringDivider = 270, gasDivider = 20;
-    
-    
-    void Start()
+    public float steeringDivider = 270f, gasDivider = 20f;
+    [Tooltip("The amount of slowdown per enemy in percent")]
+    public float slowDownMultiplier = 5f;
+    private float slowDown = 1;
+    [HideInInspector] public static int EnemiesInRange;
+
+    public GameObject[] wheels;
+
+    private void Start()
     {
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement
         sphereRB.transform.parent = null;
     }
     
-    void OnMove(InputValue inputValue)
+    private void OnMove(InputValue inputValue)
     {
         // Here it gets input from the New Player Input, adds acceleration/ reverse acceleration based on if the vector is positive or negative (This is for controllers, and not from the VR interaction)
         if (inputValue.Get<Vector2>().x > 0)
@@ -47,13 +52,13 @@ public class SphereMovement : MonoBehaviour
         }
     }
 
-    void OnLook(InputValue inputValue)
+    private void OnLook(InputValue inputValue)
     {
         //Same as "OnMove()", but for turning
         turnInput = inputValue.Get<Vector2>().x;
     }
 
-    void Update()
+    private void Update()
     {
         TranslateSteering();
         Mathf.Clamp(turnInput, -1, 1);
@@ -62,6 +67,7 @@ public class SphereMovement : MonoBehaviour
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         RayCast();
+        SlowDown();
     }
     
     private void TranslateSteering()
@@ -89,12 +95,22 @@ public class SphereMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, slopeRotation, 1 * Time.deltaTime);
 
     }
+
+    private void WheelCast()
+    {
+        
+    }
+
+    private void SlowDown()
+    {
+        slowDown = ((EnemiesInRange * slowDownMultiplier)/100) ; 
+    }
     private void FixedUpdate()
     {
         //The function that propels the sphere forward
         if (Mathf.Abs(speedInput) > 0)
         {
-            sphereRB.AddForce(transform.forward * speedInput * accelerationMultiplier);
+            sphereRB.AddForce(transform.forward * speedInput * accelerationMultiplier * slowDown);
         }
         
     }
