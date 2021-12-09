@@ -49,7 +49,7 @@ public class ShotgunFire : MonoBehaviour
 
             if (!canFire)
             {
-                Music.PlayOneShot("SFX/shotgun_empty");
+                Music.PlayOneShot("SFX/shotgun_empty", transform.position);
             }
         
         
@@ -71,7 +71,7 @@ public class ShotgunFire : MonoBehaviour
     {
         Fire();
         ShotgunExplotion.Play();
-        Music.PlayOneShot("SFX/shotgun_explode");
+        Music.PlayOneShot("SFX/shotgun_explode", transform.position);
         canFire = false;
         yield return new WaitForSeconds(20);
         canFire = true;
