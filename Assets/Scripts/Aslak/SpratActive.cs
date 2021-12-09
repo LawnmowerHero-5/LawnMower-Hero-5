@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 
@@ -33,17 +34,19 @@ public class SpratActive : MonoBehaviour
         }
         else if (_isHeld)
         {
+            Music.PlayLoop("SFX/bugspray");
             SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }
     }
 
 
-    // Update is called once per frame
+    //"only" used for testing"
     /*void Update()
     {
-        if (_isHeld && _trackpadButtonDown)
+        if (Keyboard.current.aKey.isPressed)
         {
+            Music.PlayLoop("SFX/bugspray");
             SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }
