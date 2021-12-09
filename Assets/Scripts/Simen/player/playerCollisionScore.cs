@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerScore : MonoBehaviour
+public class playerCollisionScore : MonoBehaviour
 {
     public transformVariable score;
-    private scoreController _scoreController;
+    private scoreManager _scoreController;
     
     private void Start()
     {
-        score.score = 0;
+        _scoreController = GetComponent<scoreManager>();
     }
     
     private void OnCollisionEnter(Collision other)
