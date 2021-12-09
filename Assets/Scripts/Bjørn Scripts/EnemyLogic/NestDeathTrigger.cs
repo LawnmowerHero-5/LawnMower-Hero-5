@@ -6,7 +6,10 @@ public class NestDeathTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("LawnMower")) return;
+        if (!other.CompareTag("LawnMower"))
+        {
+            return;
+        }
         _spawner.DeathTrigger();
     }
 }
