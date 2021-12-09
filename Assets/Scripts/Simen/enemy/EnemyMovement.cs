@@ -4,6 +4,7 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
 {
     // Movement towards player
     public float speed;
+    public float rotateSpeed;
     public transformVariable target;
     public float range = 10f;
 
@@ -11,6 +12,13 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
     public bool isActive;
 
     private bool affectingSpeed;
+
+    private Rigidbody _RB;
+
+    private void Start()
+    {
+        _RB = GetComponent<Rigidbody>();
+    }
 
     public void OnObjectSpawn()
     {
@@ -34,16 +42,27 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
                 print("Where are you player?");
                 inCombat = false;
             }
+
+            //Sets velocity to prevent impacts from affecting enemies' movement
+            _RB.velocity = CompareTag("Wasp") ? Vector3.zero : new Vector3(0f, _RB.velocity.y, 0f);
+            
+            //Rotates towards target
+            var targetDir = target.playerTransform.position - transform.position;
+            var rotateStep = rotateSpeed * Time.deltaTime;
+            
+            transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetDir, rotateStep, 0f));
         }
     }
     
     private void OnCollisionEnter(Collision other)
     {
+        /*
         if (other.gameObject.CompareTag("Player"))
         {
             isActive = false;
             gameObject.SetActive(false);
             if (affectingSpeed) SphereMovement.EnemiesInRange--;
         }
+        */
     }
 }
