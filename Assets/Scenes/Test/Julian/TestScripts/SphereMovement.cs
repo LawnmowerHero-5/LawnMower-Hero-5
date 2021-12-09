@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,9 +28,12 @@ public class SphereMovement : MonoBehaviour
     [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
     public float steeringDivider = 270f, gasDivider = 20f;
     [Tooltip("The amount of slowdown per enemy in percent")]
-    public float slowDownMultiplier = 5f;
+    public float slowDownEnemy = 5f;
+    public float slowDownTerrain = 5f;
     private float slowDown = 1;
     [HideInInspector] public static int EnemiesInRange;
+    private List<int> badWheels = new List<int>();
+    private int slowedWheels;
 
     public GameObject[] wheels;
 
@@ -96,14 +100,35 @@ public class SphereMovement : MonoBehaviour
 
     }
 
-    private void WheelCast()
+    private void WheelCast(LayerMask layerMask)
     {
-        
+        RaycastHit hit;
+        for (int i = 0; i < wheels.Length-1; i++)
+        {
+            if (Physics.Raycast(wheels[i].transform.position, -Vector3.up, out hit, 3f, layerMask))
+            {
+                badWheels[i] = 1;
+            }
+            else
+            {
+                badWheels[i] = 0;
+            }
+        }
+        int result = 0;
+        for (int i = 0; i < badWheels.Count; i++)
+        {
+            if (badWheels[i] == 1)
+            {
+                result += 1;
+            }
+        }
+
+        slowedWheels = result;
     }
 
     private void SlowDown()
     {
-        slowDown = ((EnemiesInRange * slowDownMultiplier)/100) ; 
+        slowDown = 1 - ((EnemiesInRange * slowDownEnemy)/100) + ((slowedWheels * slowDownTerrain)/100); 
     }
     private void FixedUpdate()
     {
