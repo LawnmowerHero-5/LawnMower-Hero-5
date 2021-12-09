@@ -11,10 +11,12 @@ public class Timer : MonoBehaviour
     public float timeRemaining = 10;
     public bool timerIsRunning;
     public TMP_Text timer;
+    private playFabManagerIntermediate2 _intermediate2;
 
     private void Start()
     {
         timerIsRunning = true;
+        _intermediate2 = GetComponent<playFabManagerIntermediate2>();
     }
 
     private void Update()
@@ -29,6 +31,7 @@ public class Timer : MonoBehaviour
             else
             {
                 timeRemaining = 0;
+                _intermediate2.SetYourName();
                 timerIsRunning = false;
             }
         }

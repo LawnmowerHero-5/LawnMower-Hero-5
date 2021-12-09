@@ -36,6 +36,8 @@ public class playFabManagerIntermediate2 : MonoBehaviour
     #endregion
     private void Start()
     {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(false);
         _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreManager>();
         Login();
@@ -78,7 +80,7 @@ public class playFabManagerIntermediate2 : MonoBehaviour
         {
             name = result.InfoResultPayload.PlayerProfile.DisplayName;
         }
-
+/*
         if (name == null)
         {
             nameWindow.SetActive(true);
@@ -86,7 +88,7 @@ public class playFabManagerIntermediate2 : MonoBehaviour
         else
         {
             leaderboardWindow.SetActive(true);
-        }
+        */
         print(_loggedInPlayFabId);
     }
 
@@ -223,6 +225,7 @@ public class playFabManagerIntermediate2 : MonoBehaviour
             DisplayName = nameInput.text,
         };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+        PullUpLeaderboard();
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
@@ -242,5 +245,17 @@ public class playFabManagerIntermediate2 : MonoBehaviour
             GetLeaderboard();
             GetFirstPlace();
         }
+    }
+
+    public void SetYourName()
+    {
+        nameWindow.SetActive(true);
+        leaderboardWindow.SetActive(false);
+    }
+
+    public void PullUpLeaderboard()
+    {
+        nameWindow.SetActive(false);
+        leaderboardWindow.SetActive(true);
     }
 }
