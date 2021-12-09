@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class scoreManager : MonoBehaviour
 {
     public TMP_Text countText;
+    public TMP_Text inGameScoreText;
     public transformVariable score;
     public int totalScore;
 
@@ -17,16 +18,14 @@ public class scoreManager : MonoBehaviour
     
     [Header("Point system")]
     [Header("Gain Points")] [Space(5)]
-    [Range(0, 100)] public int killPointsWasp;
-    [Range(0, 100)] public int killPointsGnome;
-    
+    [Range(0, 100)] public int killPoints;
+
     [Header("Loose Points")] [Space(5)] 
-    [Range(0, 100)] public int loosePointsBee;
-    [Range(0, 100)] public int loosePointsGoodGnome;
-    
+    [Range(0, 100)] public int loosePoints;
+
     [Header("Point per % off grass cut")] [Space(5)] 
     [Range(2, 10)] public int grassPoints;
-    
+
     #endregion
     
     private void Start()
@@ -35,9 +34,16 @@ public class scoreManager : MonoBehaviour
         score.score2 = 0;
     }
 
+    private void Awake()
+    {
+        score.gainPointsFromKills = killPoints;
+        score.loosePointsFromFriendlyKills = loosePoints;
+    }
+
     private void Update()
     {
         SetCountText();
+        SetGameScoreText();
         print(score.score + score.score2);
         totalScore = (int) (score.score + score.score2);
     }
@@ -45,5 +51,10 @@ public class scoreManager : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Score: " + totalScore;
+    }
+
+    void SetGameScoreText()
+    {
+        inGameScoreText.text = "Score: " + totalScore;
     }
 }

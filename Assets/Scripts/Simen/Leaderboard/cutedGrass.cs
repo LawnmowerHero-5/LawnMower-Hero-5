@@ -45,7 +45,7 @@ public class cutedGrass : MonoBehaviour
             
             for (int x = 0; x < tex.width; x++)
             for (int y = 0; y < tex.height; y++)
-                if (tex.GetPixel(x, y).Equals(new Color(0, 0, 0, 1)))
+                if (tex.GetPixel(x, y).Equals(new Color(70, 70, 70, 1)))
                     colouredPixels++;
     
             // Return new Vector2(colored, totoal);
