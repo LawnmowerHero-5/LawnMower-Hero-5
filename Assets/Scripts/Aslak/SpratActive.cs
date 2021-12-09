@@ -34,7 +34,7 @@ public class SpratActive : MonoBehaviour
         }
         else if (_isHeld)
         {
-            Music.PlayLoop("SFX/bugspray");
+            Music.PlayLoop("SFX/bugspray", transform);
             SprayEffect.Play();
             StartCoroutine(SprayDelay());
         }

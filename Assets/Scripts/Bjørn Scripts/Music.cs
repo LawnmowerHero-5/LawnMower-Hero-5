@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using FMOD;
 using FMOD.Studio;
 using PlayerPreferences;
+using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -93,6 +94,14 @@ public class Music : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            var test = PlayLoop("SFX/lawnmower_idle", transform);
+            print(test);
+            StopLoop(test);
+        }
+
+
         //Makes the music instance follow the object
         musicInstance.set3DAttributes(playAtPos.To3DAttributes());
 
@@ -241,7 +250,7 @@ public class Music : MonoBehaviour
     }
 
 
-    public static void PlayOneShot(string audio, Vector3 pos)
+    public static void PlayOneShot(string audio, Vector3 position)
     {
         //Adds standard path to string
         audio = "event:/VR/" + audio;
@@ -254,10 +263,10 @@ public class Music : MonoBehaviour
             return;
         }
 
-        RuntimeManager.PlayOneShot(audio, pos);
+        RuntimeManager.PlayOneShot(audio, position);
     }
 
-    public static EventInstance PlayLoop(string audio)
+    public static EventInstance PlayLoop(string audio, Transform position)
     {
         //TODO: Make sure that the PlayLoop gives back a correct event instance that can be altered elsewhere
         //Adds standard path to string
@@ -272,14 +281,15 @@ public class Music : MonoBehaviour
         }
 
         var audioInstance = RuntimeManager.CreateInstance(audio);
+        audioInstance.set3DAttributes(position.To3DAttributes());
         audioInstance.start();
 
         return audioInstance;
     }
 
-    public static void UpdateAudioPosition(EventInstance audio, Transform pos)
+    public static void UpdateAudioPosition(EventInstance audio, Transform position)
     {
-        audio.set3DAttributes(pos.To3DAttributes());
+        audio.set3DAttributes(position.To3DAttributes());
     }
 
     public static void StopLoop(EventInstance audioInstance)
