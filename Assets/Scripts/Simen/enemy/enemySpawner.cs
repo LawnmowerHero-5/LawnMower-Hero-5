@@ -10,8 +10,7 @@ public class enemySpawner : MonoBehaviour
 
     [HideInInspector] public bool triggerEnter;
     [HideInInspector] public bool triggerExit;
-    [HideInInspector] public Collider triggerCollider;
-    
+
     private ObjectPooler pooler;
     private bool canSpawn = true;
     
@@ -22,17 +21,16 @@ public class enemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (triggerEnter) EnteredTrigger(triggerCollider);
+        if (triggerEnter) EnteredTrigger();
         else if (triggerExit) ExitedTrigger();
     }
 
-    private void EnteredTrigger(Collider other)
+    private void EnteredTrigger()
     {
         triggerEnter = false;
 
         if (!canSpawn || pooler.pools[poolUsed].activeObjects >= pooler.pools[poolUsed].size)
         {
-            triggerCollider = null;
             return;
         }
             
@@ -52,8 +50,6 @@ public class enemySpawner : MonoBehaviour
             
             if (pooler.pools[poolUsed].activeObjects >= pooler.pools[poolUsed].size) break; //Exits loop if all objects in pool are activated
         }
-        
-        triggerCollider = null;
     }
 
     private void ExitedTrigger()
