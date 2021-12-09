@@ -14,21 +14,6 @@ public class pauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
-
     public void Resume()
     {
         PauseMenuUI.SetActive(false);
