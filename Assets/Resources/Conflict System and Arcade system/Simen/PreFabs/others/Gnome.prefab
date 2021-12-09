@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8712413432033088413}
   - component: {fileID: 5849841573991509638}
   - component: {fileID: -5968110289767989898}
+  - component: {fileID: 5909415728699506529}
   m_Layer: 0
   m_Name: Gnome
   m_TagString: EvilGnome
@@ -115,6 +116,20 @@ MonoBehaviour:
   groundEquals:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &5909415728699506529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378577501673357767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cc8e9572e2c7445868006e786592c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeUntilIdleSFX: 6
+  maxTimeUntilIdleSFX: 13
 --- !u!1 &2753093302438357650
 GameObject:
   m_ObjectHideFlags: 0

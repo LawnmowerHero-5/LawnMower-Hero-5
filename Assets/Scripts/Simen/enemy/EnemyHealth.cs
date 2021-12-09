@@ -11,12 +11,11 @@ public class EnemyHealth : MonoBehaviour
 {
     public float health = 10;
     public VisualEffect _Effect;
-    private scoreManager _scoreManager;
+    private transformVariable _score;
 
     private void Start()
     {
         _Effect.Stop();
-        _scoreManager = GetComponent<scoreManager>();
     }
 
     private void Update()
@@ -29,19 +28,19 @@ public class EnemyHealth : MonoBehaviour
           
             if (gameObject.CompareTag("EvilGnome"))
             {
-                _scoreManager.score.score += _scoreManager.killPointsGnome;
+                _score.score += _score.gainPointsFromKills;
             }
             else if (gameObject.CompareTag("Wasp"))
             {
-                _scoreManager.score.score += _scoreManager.killPointsWasp;
+                _score.score += _score.gainPointsFromKills;
             }
             else if (gameObject.CompareTag("GoodGnome"))
             {
-                _scoreManager.score.score -= _scoreManager.loosePointsGoodGnome;
+                _score.score -= _score.loosePointsFromFriendlyKills;
             }
             else if (gameObject.CompareTag("Bee"))
             {
-                _scoreManager.score.score -= _scoreManager.loosePointsBee;
+                _score.score -= _score.loosePointsFromFriendlyKills;
             }
             
             Destroy(gameObject);

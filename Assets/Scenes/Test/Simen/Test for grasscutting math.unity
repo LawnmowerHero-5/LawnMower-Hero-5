@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 10.508438, g: 37.432068, b: 127.76996, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -914,6 +914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeRemaining: 20
   timerIsRunning: 0
+  canSubmitScore: 0
   timer: {fileID: 568014674}
 --- !u!114 &1451436378
 MonoBehaviour:
@@ -927,7 +928,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ff81113ef5dd643b01cd9402a7ee10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countText: {fileID: 342526559}
+  countText: {fileID: 0}
+  inGameScoreText: {fileID: 342526559}
   score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
   totalScore: 0
   killPointsWasp: 0
@@ -947,6 +949,7 @@ GameObject:
   - component: {fileID: 1639060601}
   - component: {fileID: 1639060600}
   - component: {fileID: 1639060599}
+  - component: {fileID: 1639060603}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1037,6 +1040,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1639060603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639060598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db777c1db8505654f942391d81de1e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenuUI: {fileID: 342526557}
 --- !u!73398921 &4361139806815720144
 VFXRenderer:
   serializedVersion: 1
@@ -1109,7 +1125,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0, y: 0, z: 0, w: 0}
+      - m_Value: {x: 0.2735849, y: 0.2735849, z: 0.2735849, w: 0}
         m_Name: Color
         m_Overridden: 1
     m_Uint:
