@@ -10,13 +10,17 @@ public class Timer : MonoBehaviour
 {
     public float timeRemaining = 10;
     public bool timerIsRunning;
+    public bool canSubmitScore;
     public TMP_Text timer;
     private playFabManagerIntermediate2 _intermediate2;
+    private pauseMenu _pauseMenu;
 
     private void Start()
     {
         timerIsRunning = true;
         _intermediate2 = GetComponent<playFabManagerIntermediate2>();
+        _pauseMenu = GetComponent<pauseMenu>();
+
     }
 
     private void Update()
@@ -31,7 +35,8 @@ public class Timer : MonoBehaviour
             else
             {
                 timeRemaining = 0;
-                _intermediate2.SetYourName();
+                canSubmitScore = true;
+                _pauseMenu.Pause();
                 timerIsRunning = false;
             }
         }
