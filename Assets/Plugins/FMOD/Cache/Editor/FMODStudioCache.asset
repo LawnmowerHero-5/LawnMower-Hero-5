@@ -4922,12 +4922,12 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 8018366056990213746}
-  - {fileID: 1605013455528355994}
-  - {fileID: 4028735979550566830}
-  - {fileID: -1516070137807545666}
-  - {fileID: 3391663504520797064}
-  - {fileID: -3469058426456848565}
+  - {fileID: -6771725656801662297}
+  - {fileID: 4646980057109947926}
+  - {fileID: -6040785472840857181}
+  - {fileID: 9131026972661483907}
+  - {fileID: -6488818670008952488}
+  - {fileID: 3621269951765709588}
   MinDistance: 1
   MaxDistance: 20
   Length: 138000
@@ -7127,6 +7127,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-6771725656801662297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/Whitenoise
+  m_EditorClassIdentifier: 
+  Name: Whitenoise
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-6766310469117226959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8029,6 +8051,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-6488818670008952488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/SFXVolume
+  m_EditorClassIdentifier: 
+  Name: SFXVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-6473765888246173192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9129,6 +9173,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &-6040785472840857181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MasterVolume
+  m_EditorClassIdentifier: 
+  Name: MasterVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &-6019569714270881267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16672,7 +16738,7 @@ MonoBehaviour:
     data2: 0
   Type: 1
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-3463133085711155286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22234,7 +22300,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1508877121061949651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31948,7 +32014,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &1606887220141559212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36876,7 +36942,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &3396028395286036845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37449,6 +37515,28 @@ MonoBehaviour:
   Type: 1
   IsGlobal: 1
   Exists: 0
+--- !u!114 &3621269951765709588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AudioOn
+  m_EditorClassIdentifier: 
+  Name: AudioOn
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Type: 1
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &3626216888037361516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38812,7 +38900,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &4029230850629509419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40763,6 +40851,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &4646980057109947926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/MusicVolume
+  m_EditorClassIdentifier: 
+  Name: MusicVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &4651105081709376967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50254,7 +50364,7 @@ MonoBehaviour:
     data2: 0
   Type: 0
   IsGlobal: 1
-  Exists: 1
+  Exists: 0
 --- !u!114 &8025252374939622944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53709,6 +53819,28 @@ MonoBehaviour:
   Type: 0
   IsGlobal: 1
   Exists: 0
+--- !u!114 &9131026972661483907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Controller/AmbianceVolume
+  m_EditorClassIdentifier: 
+  Name: AmbianceVolume
+  Min: -80
+  Max: 0
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Type: 0
+  IsGlobal: 1
+  Exists: 1
 --- !u!114 &9136010017883239411
 MonoBehaviour:
   m_ObjectHideFlags: 0
