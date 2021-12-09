@@ -1,11 +1,11 @@
 using FMODUnity;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using FMOD;
 using FMOD.Studio;
 using PlayerPreferences;
-using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -94,14 +94,6 @@ public class Music : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            var test = PlayLoop("SFX/lawnmower_idle", transform);
-            print(test);
-            StopLoop(test);
-        }
-
-
         //Makes the music instance follow the object
         musicInstance.set3DAttributes(playAtPos.To3DAttributes());
 
@@ -266,7 +258,8 @@ public class Music : MonoBehaviour
         RuntimeManager.PlayOneShot(audio, position);
     }
 
-    public static EventInstance PlayLoop(string audio, Transform position)
+    //Creates a new loop
+    public static EventInstance? PlayLoop(string audio, Transform position)
     {
         //TODO: Make sure that the PlayLoop gives back a correct event instance that can be altered elsewhere
         //Adds standard path to string
@@ -277,7 +270,7 @@ public class Music : MonoBehaviour
         if (!eventExists.isValid())
         {
             print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
-            return new EventInstance();
+            return null;
         }
 
         var audioInstance = RuntimeManager.CreateInstance(audio);
@@ -291,11 +284,39 @@ public class Music : MonoBehaviour
     {
         audio.set3DAttributes(position.To3DAttributes());
     }
-
-    public static void StopLoop(EventInstance audioInstance)
+    
+    //Destroys the loop
+    public static void StopLoop(EventInstance? audioInstance)
     {
-        audioInstance.setUserData(IntPtr.Zero);
-        audioInstance.stop(STOP_MODE.IMMEDIATE);
-        audioInstance.release();
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.setUserData(IntPtr.Zero);
+        inst.stop(STOP_MODE.IMMEDIATE);
+        inst.release();
+    }
+
+    //Pauses event instance
+    public static void Pause(EventInstance? audioInstance)
+    {
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.getPaused(out bool paused);
+        if (paused) return;
+        
+        inst.stop(STOP_MODE.IMMEDIATE);
+    }
+    
+    //Plays event instance
+    public static void Play(EventInstance? audioInstance)
+    {
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.getPaused(out bool paused);
+        if (!paused) return;
+        
+        inst.start();
     }
 }
