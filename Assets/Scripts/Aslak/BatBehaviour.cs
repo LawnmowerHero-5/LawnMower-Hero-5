@@ -76,7 +76,7 @@ public class BatBehaviour : MonoBehaviour
                 print("Do you have anny idea how fast im going");
             }
 
-            else if (speed is >= 10f)
+            else if (speed is >= 8f)
             {
                 GetEnemyDoDamage(other, 1f);
                 print("I'm Fast");

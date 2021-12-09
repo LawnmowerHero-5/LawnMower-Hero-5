@@ -42,7 +42,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pellet"))
         {
-            print("I Should Be Dead Right Now");
+            _Effect.Play();
+            Destroy(_Effect, 3f);
+            _Effect.transform.parent = null;
+            Destroy(gameObject);
         }
     }
 }
