@@ -89,6 +89,7 @@ public class SphereMovement : MonoBehaviour
         _controllerUsed = true;
         //Same as "OnMove()", but for turning
         turnInput = inputValue.Get<Vector2>().x;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
     }
     
     #endregion
@@ -98,7 +99,7 @@ public class SphereMovement : MonoBehaviour
     
     private void Update()
     {
-        //TranslateSteering();
+        TranslateSteering();
     }
     
     private void TranslateSteering()
