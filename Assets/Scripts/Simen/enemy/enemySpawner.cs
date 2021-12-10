@@ -54,7 +54,6 @@ public class enemySpawner : MonoBehaviour
 
     private void ExitedTrigger()
     {
-        print("EXIT");
         triggerExit = false;
         canSpawn = true;
     }
@@ -62,7 +61,6 @@ public class enemySpawner : MonoBehaviour
     //Is only run by wasp nests
     public void DeathTrigger()
     {
-        print("Destroyed");
         Destroy(gameObject);
     }
 }

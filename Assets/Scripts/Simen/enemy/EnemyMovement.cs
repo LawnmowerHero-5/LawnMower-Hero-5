@@ -53,16 +53,4 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
             _RB.velocity = CompareTag("Wasp") ? Vector3.zero : new Vector3(0f, _RB.velocity.y, 0f);
         }
     }
-    
-    private void OnCollisionEnter(Collision other)
-    {
-        /*
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isActive = false;
-            gameObject.SetActive(false);
-            if (affectingSpeed) SphereMovement.EnemiesInRange--;
-        }
-        */
-    }
 }

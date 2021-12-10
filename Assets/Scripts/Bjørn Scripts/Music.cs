@@ -1,7 +1,6 @@
 using FMODUnity;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using FMOD;
 using FMOD.Studio;
@@ -123,7 +122,7 @@ public class Music : MonoBehaviour
             RuntimeManager.StudioSystem.getParameterByName("Whitenoise", out var noise);
             if ((int) val == 1 && noise < 0.75) //Only runs animations if radio is turned on and the white noise is not too strong
             {
-                if (timelineInfo.BPM > 30f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
+                if (timelineInfo.BPM > 35f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
 
                 //Radio animation
                 if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
@@ -147,7 +146,7 @@ public class Music : MonoBehaviour
         
         //Play PS Notes
         //TODO: Stop PS from playing when no song is playing
-        if (timelineInfo.BPM < 30f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
+        if (timelineInfo.BPM < 35f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
         if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
         else _SpeakerAnimation.StopPSNotes();
 
@@ -305,7 +304,7 @@ public class Music : MonoBehaviour
         inst.getPaused(out bool paused);
         if (paused) return;
         
-        inst.stop(STOP_MODE.IMMEDIATE);
+        inst.setPaused(true);
     }
     
     //Plays event instance
@@ -317,6 +316,6 @@ public class Music : MonoBehaviour
         inst.getPaused(out bool paused);
         if (!paused) return;
         
-        inst.start();
+        inst.setPaused(false);
     }
 }
