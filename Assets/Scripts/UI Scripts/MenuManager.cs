@@ -76,13 +76,18 @@ public class MenuManager : MonoBehaviour
             sliders[i].value = 1;
         }
 
-        //StartCoroutine(LoadScene());
+        //StartCoroutine(LoadLights());
     }
 
-    private IEnumerator LoadScene()
+    private IEnumerator LoadLights()
     {
         yield return new WaitForSeconds(5);
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        AsyncOperation asyncLoadLevel = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        while (!asyncLoadLevel.isDone)
+        {
+            yield return null;
+        }
+        
         yield return new WaitForEndOfFrame();
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
     }
@@ -283,30 +288,30 @@ public class MenuManager : MonoBehaviour
         {
             if (difficultyIndex == 0)
             {
-                print("Now playing Easy1");
+                SceneManager.LoadScene("Easy_Small_Day");
             }
             else if (difficultyIndex == 1)
             {
-                print("Now playing Intermediate1");
+                SceneManager.LoadScene("Intermediate_Medium_Day");
             }
             else
             {
-                print("Now playing Hard1");
+                SceneManager.LoadScene("Advanced_Large_Day");
             }
         }
         else
         {
             if (difficultyIndex == 0)
             {
-                print("Now playing Easy2");
+                SceneManager.LoadScene("Easy_Medium_Night");
             }
             else if (difficultyIndex == 1)
             {
-                print("Now playing Intermediate2");
+                SceneManager.LoadScene("Intermediate_Medium_Night");
             }
             else
             {
-                print("Now playing Hard2");
+                SceneManager.LoadScene("Advanced_Medium_Night");
             }
         }
     }
