@@ -12,12 +12,12 @@ public class Gascrank : MonoBehaviour
     private float _wheelLastSpeed; // wheel speed at the moment of ungrab, then gradually decreases due to INERTIA
     private static float inertia = 0.95f; // 1-wheel never stops // 0 - wheel stops instantly
     
-    [Tooltip("Maxima rotation of the wheel")]
+    [Tooltip("Maximum rotation of the wheel")]
     public static float MAXRotation = 20; 
     private static float wheelHapticFrequency = 360/12; //every wheel will click 12 times per wheel rotation
 
     [Header("Steering Wheel Relative Point")]
-    public GameObject crankBase, crankTarget;
+    public GameObject crankTarget;
 
     [Header("Wheel & Hand relative position")]
     public Vector3 relativePos;
@@ -102,7 +102,7 @@ public class Gascrank : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + _wheelLastSpeed;
         }
-        crankBase.transform.localEulerAngles = new Vector3(outputAngle, crankTarget.transform.localEulerAngles.y, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        transform.localEulerAngles = new Vector3(outputAngle, crankTarget.transform.localEulerAngles.y, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         //transform.RotateAround(WheelBase.transform.position, Vector3.right, Diffs[^1]);
         
@@ -175,7 +175,6 @@ public class Gascrank : MonoBehaviour
 
             } Todo Haptics?*/
         }
-        //print(lastValues[4]); // Returns a value between -360 and 360
         return lastValues[4]; // CALIBRATE TO ZERO WHEN STILL AND RETURN CALCULATED VALUE
         
     }
