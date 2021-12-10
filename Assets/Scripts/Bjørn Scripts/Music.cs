@@ -122,7 +122,7 @@ public class Music : MonoBehaviour
             RuntimeManager.StudioSystem.getParameterByName("Whitenoise", out var noise);
             if ((int) val == 1 && noise < 0.75) //Only runs animations if radio is turned on and the white noise is not too strong
             {
-                if (timelineInfo.BPM > 30f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
+                if (timelineInfo.BPM > 35f) _SpeakerAnimation.SpeakerBounce(); //Speaker Animation
 
                 //Radio animation
                 if (_RadioAnimation.radio.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
@@ -146,7 +146,7 @@ public class Music : MonoBehaviour
         
         //Play PS Notes
         //TODO: Stop PS from playing when no song is playing
-        if (timelineInfo.BPM < 30f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
+        if (timelineInfo.BPM < 35f) _SpeakerAnimation.StopPSNotes(); //NOT TESTED. Code to stop PS when no song is playing
         if (_Input.radioOn == 1) _SpeakerAnimation.PlayPSNotes();
         else _SpeakerAnimation.StopPSNotes();
 
@@ -241,7 +241,7 @@ public class Music : MonoBehaviour
     }
 
 
-    public static void PlayOneShot(string audio, Vector3 pos)
+    public static void PlayOneShot(string audio, Vector3 position)
     {
         //Adds standard path to string
         audio = "event:/VR/" + audio;
@@ -254,10 +254,11 @@ public class Music : MonoBehaviour
             return;
         }
 
-        RuntimeManager.PlayOneShot(audio, pos);
+        RuntimeManager.PlayOneShot(audio, position);
     }
 
-    public static EventInstance PlayLoop(string audio)
+    //Creates a new loop
+    public static EventInstance? PlayLoop(string audio, Transform position)
     {
         //TODO: Make sure that the PlayLoop gives back a correct event instance that can be altered elsewhere
         //Adds standard path to string
@@ -268,24 +269,53 @@ public class Music : MonoBehaviour
         if (!eventExists.isValid())
         {
             print("ERROR: \"" + audio + "\" is not a valid audio name! Please check your spelling, or ask Bjørn for help :)");
-            return new EventInstance();
+            return null;
         }
 
         var audioInstance = RuntimeManager.CreateInstance(audio);
+        audioInstance.set3DAttributes(position.To3DAttributes());
         audioInstance.start();
 
         return audioInstance;
     }
 
-    public static void UpdateAudioPosition(EventInstance audio, Transform pos)
+    public static void UpdateAudioPosition(EventInstance audio, Transform position)
     {
-        audio.set3DAttributes(pos.To3DAttributes());
+        audio.set3DAttributes(position.To3DAttributes());
+    }
+    
+    //Destroys the loop
+    public static void StopLoop(EventInstance? audioInstance)
+    {
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.setUserData(IntPtr.Zero);
+        inst.stop(STOP_MODE.IMMEDIATE);
+        inst.release();
     }
 
-    public static void StopLoop(EventInstance audioInstance)
+    //Pauses event instance
+    public static void Pause(EventInstance? audioInstance)
     {
-        audioInstance.setUserData(IntPtr.Zero);
-        audioInstance.stop(STOP_MODE.IMMEDIATE);
-        audioInstance.release();
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.getPaused(out bool paused);
+        if (paused) return;
+        
+        inst.setPaused(true);
+    }
+    
+    //Plays event instance
+    public static void Play(EventInstance? audioInstance)
+    {
+        if (audioInstance == null) return;
+
+        EventInstance inst = (EventInstance) audioInstance;
+        inst.getPaused(out bool paused);
+        if (!paused) return;
+        
+        inst.setPaused(false);
     }
 }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4859658568729058731}
   - component: {fileID: 8712413432033088413}
   - component: {fileID: 5849841573991509638}
+  - component: {fileID: -5968110289767989898}
+  - component: {fileID: 5909415728699506529}
   m_Layer: 0
   m_Name: Gnome
   m_TagString: EvilGnome
@@ -80,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  rotateSpeed: 180
   target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
   range: 10
   inCombat: 0
@@ -98,6 +101,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   _Effect: {fileID: 4688502087826975489}
+  _score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
+--- !u!114 &-5968110289767989898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378577501673357767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4184e8944b3074dae13b715665376c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundEquals:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &5909415728699506529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378577501673357767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cc8e9572e2c7445868006e786592c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeUntilIdleSFX: 6
+  maxTimeUntilIdleSFX: 13
 --- !u!1 &2753093302438357650
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,12 +341,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bb52721b92682a14a8f8f626807747aa,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb52721b92682a14a8f8f626807747aa,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb52721b92682a14a8f8f626807747aa,
         type: 3}
@@ -323,7 +356,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bb52721b92682a14a8f8f626807747aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bb52721b92682a14a8f8f626807747aa,
         type: 3}

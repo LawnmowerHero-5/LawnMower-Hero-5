@@ -26,7 +26,7 @@ public class PickupAble : MonoBehaviour
     public Mesh CustomClosedHandMesh => _customlosedHandMesh;
 
     [NonSerialized] public HandFunctionality currentHeldByHand;
-    [NonSerialized] public bool heldSinceRespawn;
+    [NonSerialized] public bool heldSinceRespawn; 
     [NonSerialized] public float lastHeldFixedTime;
 
     private Vector3 _holdPointPosModifier;

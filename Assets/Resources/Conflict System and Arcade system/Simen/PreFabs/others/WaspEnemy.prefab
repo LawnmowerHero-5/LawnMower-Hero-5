@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 201811052873048323}
   - component: {fileID: 6251194860619064757}
   - component: {fileID: 370777888621803897}
+  - component: {fileID: 2242446001364677323}
   m_Layer: 0
   m_Name: WaspEnemy
   m_TagString: Wasp
@@ -64,7 +65,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &6251194860619064757
 MonoBehaviour:
@@ -80,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   _Effect: {fileID: 1433933912985866350}
+  _score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
 --- !u!114 &370777888621803897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,10 +95,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  rotateSpeed: 180
   target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
   range: 10
   inCombat: 0
   isActive: 0
+--- !u!114 &2242446001364677323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201811052873048325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bceff4d93500742b98ff9e538e1b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6645544523558815335
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +252,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
@@ -247,7 +262,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
@@ -262,7 +277,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
         type: 3}
