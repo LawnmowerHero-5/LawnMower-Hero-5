@@ -13,7 +13,7 @@ public class InteractAble : MonoBehaviour
         private void OnHeldByHandChanged(InteractAble.hand hand)
         private void OnStickedHandsChanged(InteractAble.hand[] hands)
     */
-
+    
     public class Hand //class containing data about the hand
     {
         public GameObject GameObject { get; }
@@ -83,7 +83,7 @@ public class InteractAble : MonoBehaviour
                 {
                     if (stickedHand == null)
                     {
-                        _currentlyStickedHands[i] = new Hand(LastFrameStickedHandGameObject:lastFrameStickedHand.gameObject);
+                        _currentlyStickedHands[i] = new Hand(LastFrameStickedHandGameObject: lastFrameStickedHand.gameObject);
                     }
                     else
                     {
