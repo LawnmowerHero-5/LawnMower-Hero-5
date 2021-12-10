@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PlayerPreferences;
 using UnityEngine;
 
@@ -8,72 +9,108 @@ public class RadioDial : MonoBehaviour
     public float whiteNoiseFadeWidth = 1f; //Distance from no whitenoise to full whitenoise outside each channel
     public float[] channelHertzValues;
 
-    private float minHertz = 88f;
-    private float maxHertz = 108f;
-    private float dialMinAngle = -140f;
-    private float dialMaxAngle = 140f;
+    private float _minHertz = 88f;
+    private float _maxHertz = 108f;
+    private float _dialMinAngle = -140f;
+    private float _dialMaxAngle = 140f;
 
-    private float yRot;
+    private float _yRot;
 
-    [SerializeField] private PlayerInput _Input;
-    [SerializeField] private Music _Music;
-    [SerializeField] private DataController _Data;
+    private List<Transform> _handsTransforms = new List<Transform>();
+    private bool _handSticked;
+    private float _rotationOffset;
+
+    [SerializeField] private PlayerInput input;
+    [SerializeField] private Music music; 
+    [SerializeField] private DataController data;
 
     private void Awake()
     {
-        var angle = (_Data.hertz - minHertz) * (dialMaxAngle - dialMinAngle) / (maxHertz - minHertz);
+        var angle = (data.hertz - _minHertz) * (_dialMaxAngle - _dialMinAngle) / (_maxHertz - _minHertz);
         var rot = transform.localEulerAngles;
         
-        transform.localRotation = Quaternion.Euler(rot.x, -angle - dialMinAngle, rot.z);
-        yRot = -angle - dialMinAngle;
+        transform.localRotation = Quaternion.Euler(rot.x, -angle - _dialMinAngle, rot.z);
+        _yRot = -angle - _dialMinAngle;
+    }
+    
+    private void OnStickedHandsChanged(InteractAble.Hand[] stickedHands)
+    {
+        foreach (InteractAble.Hand hand in stickedHands)
+        {
+            if (hand.Transform != null)
+            {
+                print(hand.Transform);
+                
+                _handsTransforms.Add(hand.Transform);
+                
+                _handSticked = true;
+                CalculateOffset();
+            }
+            else
+            {
+                print(hand.LastFrameStickedHandTransform);
+                
+                _handsTransforms.Remove(hand.LastFrameStickedHandTransform);
+                _handSticked = false;
+            }
+        }
+    }
+
+    private void CalculateOffset()
+    {
+        _rotationOffset = _yRot + _handsTransforms[0].rotation.y;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         var rot = transform.localEulerAngles;
         var add = rotateSpd * Time.deltaTime;
-
-        if (_Input.rotateDir > 0f)
+        if (_handSticked)
         {
-            if (yRot + add <= dialMaxAngle) yRot += add;
-            else yRot = dialMaxAngle;
+            _yRot = _handsTransforms[0].rotation.y - _rotationOffset;
+            Mathf.Clamp(_yRot, _dialMinAngle, _dialMaxAngle);
         }
-        if (_Input.rotateDir < 0f)
+        if (input.rotateDir > 0f)
         {
-            if (yRot - add >= dialMinAngle) yRot -= add;
-            else yRot = dialMinAngle;
+            if (_yRot + add <= _dialMaxAngle) _yRot += add;
+            else _yRot = _dialMaxAngle;
+        }
+        if (input.rotateDir < 0f)
+        {
+            if (_yRot - add >= _dialMinAngle) _yRot -= add;
+            else _yRot = _dialMinAngle;
         }
         
-        transform.localRotation = Quaternion.Euler(rot.x, yRot, rot.z);
+        transform.localRotation = Quaternion.Euler(rot.x, _yRot, rot.z);
 
         //Calculate Hertz
-        var angle = -yRot - dialMinAngle;
-        _Data.hertz = minHertz + (angle / (dialMaxAngle - dialMinAngle) * (maxHertz - minHertz));
+        var angle = -_yRot - _dialMinAngle;
+        data.hertz = _minHertz + (angle / (_dialMaxAngle - _dialMinAngle) * (_maxHertz - _minHertz));
         
         //Use Hertz to select channel & whitenoise
-        if (_Data.hertz <= 97.5f) _Music.SetChannel(0); //Channel at 93
-        else _Music.SetChannel(1); //Channel at 102
+        if (data.hertz <= 97.5f) music.SetChannel(0); //Channel at 93
+        else music.SetChannel(1); //Channel at 102
 
         //Calculates whether to play whitenoise or not
         var fullWhitenoise = true;
         for (var i = 0; i < channelHertzValues.Length; i++)
         {
-            var dist = Mathf.Abs(_Data.hertz - channelHertzValues[i]);
+            var dist = Mathf.Abs(data.hertz - channelHertzValues[i]);
             //Plays music at full strength without whitenoise
             if (dist <= channelWidth)
             {
-                _Music.SetParameter("Whitenoise", 0);
+                Music.SetParameter("Whitenoise", 0);
                 fullWhitenoise = false;
             }
             //Plays some music and some whitenoise
             else if (dist <= channelWidth + whiteNoiseFadeWidth)
             {
-                _Music.SetParameter("Whitenoise", (dist - channelWidth)/whiteNoiseFadeWidth);
+                Music.SetParameter("Whitenoise", (dist - channelWidth)/whiteNoiseFadeWidth);
                 fullWhitenoise = false;
             }
         }
         //Only plays whitenoise
-        if (fullWhitenoise) _Music.SetParameter("Whitenoise", 1);
+        if (fullWhitenoise) Music.SetParameter("Whitenoise", 1);
     }
 }

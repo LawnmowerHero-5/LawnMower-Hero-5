@@ -211,7 +211,7 @@ public class Music : MonoBehaviour
         return RESULT.OK;
     }
 
-    public void SetParameter(string name, float value)
+    public static void SetParameter(string name, float value)
     {
         RuntimeManager.StudioSystem.setParameterByName(name, value);
     }
@@ -316,7 +316,6 @@ public class Music : MonoBehaviour
         inst.getPaused(out bool paused);
         if (!paused) return;
         
-        print("Played!");
         inst.setPaused(false);
     }
 }

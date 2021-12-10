@@ -20,6 +20,8 @@ public class HandFunctionality : MonoBehaviour
     [Header("Object References")] 
     [Tooltip("The visual hand of this controller (must be a child of this GameObject, and have a HandVisual component")]
     [SerializeField] private HandVisual _handVisual;
+    [Tooltip("The pauseMenu script enabling this controller to pause the game")]
+    [SerializeField] private pauseMenu _pauseMenu;
 
     public PickupAble CurrentlyHeldPickupAble { private get; set; }
     public HandStickAble CurrentlyAttachedToHandStickAble { private get; set; }
@@ -74,6 +76,21 @@ public class HandFunctionality : MonoBehaviour
             }
 
             _handVisual.SetOpenHandMesh(null);  //set open hand mesh to default
+        }
+    }
+
+    private void OnMenuButtonChanged(bool menuButtonState)
+    {
+        if (!menuButtonState || _pauseMenu == null)
+            return;
+        
+        if (pauseMenu.GameIsPaused)
+        {
+            _pauseMenu.Resume();
+        }
+        else
+        {
+            _pauseMenu.Pause();
         }
     }
 

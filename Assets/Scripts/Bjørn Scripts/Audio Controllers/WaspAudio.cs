@@ -4,7 +4,7 @@ using UnityEngine;
 public class WaspAudio : MonoBehaviour
 {
     private EventInstance sfxBuzz;
-    
+
     #region - PlayLogic -
     
     private void OnDestroy()
@@ -36,7 +36,7 @@ public class WaspAudio : MonoBehaviour
         if (inst != null) sfxBuzz = (EventInstance) inst;
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         Music.UpdateAudioPosition(sfxBuzz, transform);
     }
