@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class HackyScaleFix : MonoBehaviour
 {
-    private Vector3 scaleChange;
+    private Vector3 _scaleChange;
 
     private void Awake()
     {
-        scaleChange = transform.localScale;
+        _scaleChange = transform.localScale;
     }
 
     private void FixedUpdate()
@@ -16,7 +16,7 @@ public class HackyScaleFix : MonoBehaviour
             || (0.1f < transform.localScale.y || transform.localScale.y > 1.01) 
             || (0.1f < transform.localScale.z || transform.localScale.z > 1.01))
         {
-            transform.localScale = scaleChange;
+            transform.localScale = _scaleChange;
         }
     }
 }
