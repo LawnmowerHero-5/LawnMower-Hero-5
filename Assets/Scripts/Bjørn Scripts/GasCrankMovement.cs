@@ -10,18 +10,18 @@ public class GasCrankMovement : MonoBehaviour
     public float boostMaxAngle = 60f; //Max angle when boosting
     public float deadzoneAngle = 5f; //How big the zRot must be before the crank rotates
     
-    private float angleStickyOffset; // offset between wheel rotation and hand position on grab
-    public List<Transform> _stickedHandsTransforms = new List<Transform>(1);
-    private bool handSticked;
+    private float _angleStickyOffset; // offset between wheel rotation and hand position on grab
+    public List<Transform> stickedHandsTransforms = new List<Transform>(1);
+    private bool _handSticked;
     
-    public Vector3 RelativePos;
+    public Vector3 relativePos;
     public GameObject crankBase;
 
     //public HingeJoint joint;
     
     [HideInInspector] public float power; //Used to change the z rotation into a float used to multiply with movement speed of lawnmower
 
-    private float zRot; //Targeted z rotation, but actual rotation can be overwritten based on the deadzone
+    private float _zRot; //Targeted z rotation, but actual rotation can be overwritten based on the deadzone
     
     private void OnStickedHandsChanged(InteractAble.Hand[] stickedHands)    //set hand transform List every time hand is changed
     {
@@ -29,14 +29,14 @@ public class GasCrankMovement : MonoBehaviour
         {
             if (stickedHand.Transform != null)
             {
-                _stickedHandsTransforms.Add(stickedHand.Transform);
-                handSticked = true;
+                stickedHandsTransforms.Add(stickedHand.Transform);
+                _handSticked = true;
                 //CalculateOffset();_______________________________________________________________________________________________________________________ (Commented out by mathias, because of compilation error)
             }
             else
             {
-                _stickedHandsTransforms.Remove(stickedHand.LastFrameStickedHandTransform);
-                handSticked = false;
+                stickedHandsTransforms.Remove(stickedHand.LastFrameStickedHandTransform);
+                _handSticked = false;
             }
         }
     }/*
@@ -58,7 +58,7 @@ public class GasCrankMovement : MonoBehaviour
         //TODO: Make compatible with VR input 
         //Changes crank rotation based on scroll wheel input 
         var rot = crankBase.transform.localRotation.eulerAngles;
-        if (handSticked)
+        if (_handSticked)
         {
             //zRot = (CalculateRawAngle() + angleStickyOffset); // When hands are holding the wheel hand dictates how the wheel moves
             // angleSticky Offset is calculated on wheel grab - makes wheel not to rotate instantly to the users hand
@@ -99,7 +99,7 @@ public class GasCrankMovement : MonoBehaviour
         
         
         
-        Vector3 targetDir =  _stickedHandsTransforms[0].position - crankBase.transform.position;
+        Vector3 targetDir =  stickedHandsTransforms[0].position - crankBase.transform.position;
         Vector3 forward = crankBase.transform.forward;
         float angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
         print(angle);
