@@ -47,7 +47,7 @@ public class ShotgunFire : MonoBehaviour
                 print("I AM THE GOD OF HELLFIRE AND I BRING YOU");
             }
 
-            if (!canFire && _isHeld)
+            else if (!canFire && _isHeld)
             {
                 Music.PlayOneShot("SFX/shotgun_empty", transform.position);
             }

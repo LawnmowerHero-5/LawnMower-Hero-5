@@ -33,9 +33,13 @@ public class ReloadBar : MonoBehaviour
         {
             return;
         }
-        
 
-        if (CanShoot && _isHeld) { StartCoroutine(ShootWait()); }
+
+        if (CanShoot && _isHeld)
+        {
+            StartCoroutine(ShootWait());
+            
+        }
     }
 
     private void Start()
