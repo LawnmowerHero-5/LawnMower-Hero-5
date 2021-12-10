@@ -1,58 +1,69 @@
-using System;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 public class SphereMovement : MonoBehaviour
 {
-    [Tooltip("The Rigidbody of the Sphere")]
-    public Rigidbody sphereRB;
+    [Header("Scripts and GameObjects")]
+    public TestGascrank gasCrank;
+    public NewSteeringWheelTest steeringWheel;
     
-    public float acceleration = 8f, reverseAccel = 4f, maxSpeed = 50f, turnSpeed = 90f;
-
+    [Tooltip("Wheels and dust have to be in the same order. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
+    public GameObject[] wheels;
+    [Tooltip("Wheels and dust have to be in the same order. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
+    public VisualEffect[] dust;
+    
+    [Tooltip("The Rigidbody of the Sphere")]
+    public Rigidbody sphereRb;
+    
+    [Header("Driving Modifiers")]
+    public float acceleration = 8f, reverseAccel = 4f, turnSpeed = 90f;
+    
+    [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
+    public float steeringDivider = 270f, gasDivider = 20f;
+    
     // Used to get a better speed feeling, whilst still having reasonable numbers in the inspector
-    private float accelerationMultiplier = 1000f;
+    private const float AccelerationMultiplier = 1000f;
 
     // A kind of Multiplier for the forward power, and the Turning
     [HideInInspector]public float speedInput, turnInput;
     
     // Used to transform the Lawnmower to stick to the ground;
-    private Quaternion slopeRotation;
+    private Quaternion _slopeRotation;
     
+    [Header("LayerMasks")]
     [Tooltip("Assign the correct layer, for raycasts")]
-    public LayerMask groundEquals, sandPitEquals, pondEquals, playerEquals;
+    public LayerMask groundEquals, playerEquals;
 
-    private LayerMask notPlayer;
-    public testGASCRANK gasCrank;
-    public NewSteeringWheelTest steeringWheel;
-    [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
-    public float steeringDivider = 270f, gasDivider = 20f;
+    private LayerMask _notPlayer;
+    
+    [Header("Slowdown")]
     [Tooltip("The amount of slowdown per enemy in percent")]
     public float slowDownEnemy = 5f;
+    [Tooltip("The amount of slowdown per wheel in the terrain(sandpit, pond etc)")]
     public float slowDownTerrain = 10f;
-    private float slowDown = 1;
+    //Corresponds to a speed multiplier, where 1 equals normal speed, and 0.5 is half speed.
+    private float _slowDown = 1;
+    //The amount of wheels slowed down, also used to make the lawnmower even slower in the pond
+    private int _slowedWheels;
     [HideInInspector] public static int EnemiesInRange;
     
-    public int[] badWheels = new int[4];
-    public int slowedWheels;
-
-    public GameObject[] wheels;
-    public VisualEffect[] dust;
+    //Int made to index if a wheel is on bad terrain or not
+    private int[] _badWheels = new int[4];
+    
 
     private void Start()
     {
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement
-        sphereRB.transform.parent = null;
+        sphereRb.transform.parent = null;
         for (int i = 0; i < dust.Length - 1; i++)
         {
             dust[i].Stop();
         }
-        notPlayer =~playerEquals;
-        print(notPlayer);
+        _notPlayer =~playerEquals;
     }
-    
+
+    #region ControllerInput
     
     private void OnMove(InputValue inputValue)
     {
@@ -72,18 +83,15 @@ public class SphereMovement : MonoBehaviour
         //Same as "OnMove()", but for turning
         turnInput = inputValue.Get<Vector2>().x;
     }
+    
+    #endregion
 
+    
+    #region VR Input
+    
     private void Update()
     {
-        //TranslateSteering();
-        Mathf.Clamp(turnInput, -1, 1);
-        transform.position = sphereRB.transform.position;
-        
-        //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
-        
-        SlowDown();
-       
+        TranslateSteering();
     }
     
     private void TranslateSteering()
@@ -91,6 +99,10 @@ public class SphereMovement : MonoBehaviour
         //Since theres a clamp, it wont go above 1 or below -1
         // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
         turnInput = (steeringWheel.outputAngle / steeringDivider);
+        Mathf.Clamp(turnInput, -1, 1);
+        
+        //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         float tempSpeed = (gasCrank.outputAngle / gasDivider);
         if (tempSpeed > 0)
         {
@@ -101,17 +113,33 @@ public class SphereMovement : MonoBehaviour
             speedInput = tempSpeed * reverseAccel;
         }
     }
-
+    
+    #endregion
+    
+    
+    private void FixedUpdate()
+    {
+        //Sends a raycast from the middle of the vehicle to get the slope rotation, to be able to rotate to fit
+        RayCast();
+        
+        //Gets info from the wheels, such as if they're on hard terrain
+        WheelCast(_notPlayer);
+        SlowDown();
+        Drive();
+    }
     private void RayCast()
     {
         RaycastHit hit;
         Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundEquals);
         // Gets the slopeRotation through the raycast, then Slerps (Smooths out) the rotation and then sets the lawnmowers rotation to the ground rotation
-        slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, slopeRotation, 1 * Time.deltaTime);
+        _slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, _slopeRotation, 1 * Time.deltaTime);
 
     }
 
+    
+    #region Slowing
+    
     private void WheelCast(LayerMask layerMask)
     {
         RaycastHit hit;
@@ -122,12 +150,12 @@ public class SphereMovement : MonoBehaviour
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("SandPit"))
                 {
                     dust[i].Play();
-                    badWheels[i] = 1;
+                    _badWheels[i] = 1;
                     //print("Colliding with Sandpit");
                 }
                 else if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Pond"))
                 {
-                    badWheels[i] = 2;
+                    _badWheels[i] = 2;
                     //PondVFX Todo
                     //print("Colliding with Pond");
                 }
@@ -135,64 +163,38 @@ public class SphereMovement : MonoBehaviour
                 {
                     //GrassVFX todo
                     dust[i].Stop();
-                    badWheels[i] = 0;
+                    _badWheels[i] = 0;
                     //print("Colliding with ground");
                 }
-                else
-                {
-                    //print(hit.transform.gameObject.layer);
-                }
-                
-                
-                
-                if (hit.transform.gameObject.layer == 3)
-                {
-                    print("collided with IgnorePlayerLayer");
-                }
-                
             }
-            else
-            {
-                //print("Not Colliding");
-            }
-            
         }
+    }
+    private void SlowDown()
+    {
         
         var result = 0;
-        for (var i = 0; i < badWheels.Length; i++)
+        for (var i = 0; i < _badWheels.Length; i++)
         {
-            if (badWheels[i] == 1)
+            if (_badWheels[i] == 1)
             {
                 result += 1;
             }
-            slowedWheels = result;
+            _slowedWheels = result;
         }
         
+        _slowDown = 1 - (((EnemiesInRange * slowDownEnemy)/100) + ((_slowedWheels * slowDownTerrain)/100));
+        Mathf.Clamp(_slowDown, 0.1f, 1f);
     }
-
-    private void OnDrawGizmos()
+    
+    #endregion
+    
+    private void Drive()
     {
-        Gizmos.color = Color.red;
-        foreach (var wheel in wheels)
-        {
-            Gizmos.DrawRay(wheel.transform.position, -Vector3.up);
-        }
-    }
-
-    private void SlowDown()
-    {
-        slowDown = 1 - (((EnemiesInRange * slowDownEnemy)/100) + ((slowedWheels * slowDownTerrain)/100));
-        Mathf.Clamp(slowDown, 0.1f, 1f);
-    }
-    private void FixedUpdate()
-    {
-        RayCast();
-        WheelCast(notPlayer);
         //The function that propels the sphere forward
         if (Mathf.Abs(speedInput) > 0)
         {
-            sphereRB.AddForce(transform.forward * speedInput * accelerationMultiplier * slowDown);
+            sphereRb.AddForce(transform.forward * speedInput * AccelerationMultiplier * _slowDown);
         }
-        
+        transform.position = sphereRb.transform.position;
     }
 }
