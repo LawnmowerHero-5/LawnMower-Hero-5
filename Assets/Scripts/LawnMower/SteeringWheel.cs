@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class SteeringWheel : MonoBehaviour
 {
     [Header("Hand")]
     public List<Transform> handsTransforms = new List<Transform>();
-    private bool _handSticked = false;
+    public bool _handSticked = false;
     public Transform trackedHand;
 
     private float _angleStickyOffset; // offset between wheel rotation and hand position on grab
@@ -51,6 +50,7 @@ public class SteeringWheel : MonoBehaviour
                 print(hand.Transform);
                 
                 handsTransforms.Add(hand.Transform);
+                
                 if (!_handSticked)
                 {
                     trackedHand = hand.Transform;
@@ -60,13 +60,13 @@ public class SteeringWheel : MonoBehaviour
             }
             else
             {
-                print(hand.LastFrameStickedHandTransform);
-                
+                print("Hand removed");
                 handsTransforms.Remove(hand.LastFrameStickedHandTransform);
                 if (hand.LastFrameStickedHandTransform == trackedHand)
                 {
                     if (handsTransforms.Count == 0)
                     {
+                        trackedHand = wheelBase.transform;
                         _handSticked = false;
                         _wheelLastSpeed = outputAngle - lastValues[3];
                     }
