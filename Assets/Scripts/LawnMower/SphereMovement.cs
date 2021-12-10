@@ -19,7 +19,7 @@ public class SphereMovement : MonoBehaviour
     [Header("Driving Modifiers")]
     public float acceleration = 8f, reverseAccel = 4f, turnSpeed = 90f;
     
-    [Tooltip("Change Divider to make the Steering/Gascrank reach max value with less input")]
+    [Tooltip("Change Divider to make the Steering/GasCrank reach max value with less input")]
     public float steeringDivider = 270f, gasDivider = 20f;
     
     // Used to get a better speed feeling, whilst still having reasonable numbers in the inspector
@@ -33,7 +33,7 @@ public class SphereMovement : MonoBehaviour
     
     [Header("LayerMasks")]
     [Tooltip("Assign the correct layer, for raycasts")]
-    public LayerMask groundEquals, playerEquals;
+    public LayerMask playerEquals;
 
     private LayerMask _notPlayer;
     
@@ -91,7 +91,7 @@ public class SphereMovement : MonoBehaviour
     
     private void Update()
     {
-        TranslateSteering();
+        //TranslateSteering();
     }
     
     private void TranslateSteering()
@@ -130,14 +130,18 @@ public class SphereMovement : MonoBehaviour
     private void RayCast()
     {
         RaycastHit hit;
-        Physics.Raycast(transform.position, -transform.up, out hit, 2f, groundEquals);
-        // Gets the slopeRotation through the raycast, then Slerps (Smooths out) the rotation and then sets the lawnmowers rotation to the ground rotation
-        _slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, _slopeRotation, 1 * Time.deltaTime);
-
+        Physics.Raycast(transform.position, -transform.up, out hit, 2f, _notPlayer);
+        
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") || 
+            (hit.transform.gameObject.layer == LayerMask.NameToLayer("Pond")) || 
+            (hit.transform.gameObject.layer == LayerMask.NameToLayer("SandPit")))
+        {
+            // Gets the slopeRotation through the raycast, then Slerps (Smooths out) the rotation and then sets the lawnmowers rotation to the ground rotation
+            _slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, _slopeRotation, 1 * Time.deltaTime);
+        }
     }
 
-    
     #region Slowing
     
     private void WheelCast(LayerMask layerMask)
@@ -147,6 +151,7 @@ public class SphereMovement : MonoBehaviour
         {
             if (Physics.Raycast(wheels[i].transform.position, Vector3.down, out hit, 3000f, layerMask))
             {
+                // Sets badWheels values as to how much they should be slowed down 
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("SandPit"))
                 {
                     dust[i].Play();

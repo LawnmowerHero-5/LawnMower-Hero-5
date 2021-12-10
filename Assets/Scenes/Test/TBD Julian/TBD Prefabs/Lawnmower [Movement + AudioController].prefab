@@ -2941,6 +2941,7 @@ GameObject:
   - component: {fileID: 8858073471023478084}
   - component: {fileID: 8858073471023478085}
   - component: {fileID: 6301181220424178204}
+  - component: {fileID: 1887999075909447074}
   m_Layer: 8
   m_Name: Lawnmower [Movement + AudioController]
   m_TagString: LawnMower
@@ -3106,6 +3107,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1887999075909447074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301181220424178177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0001411ec646a5249a7899d37ff5045c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6678057171524970870
 GameObject:
   m_ObjectHideFlags: 0
