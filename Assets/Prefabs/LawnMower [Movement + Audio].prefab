@@ -2241,6 +2241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handsTransforms: []
+  _handSticked: 0
   trackedHand: {fileID: 0}
   wheelBase: {fileID: 1058498891040837489}
   relativePos: {x: 0, y: 0, z: 0}
@@ -3972,6 +3973,9 @@ VisualEffect:
       - m_Value: 2
         m_Name: Size
         m_Overridden: 1
+      - m_Value: 25
+        m_Name: Rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -4087,6 +4091,9 @@ VisualEffect:
       m_Array:
       - m_Value: 2
         m_Name: Size
+        m_Overridden: 1
+      - m_Value: 25
+        m_Name: Rate
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
