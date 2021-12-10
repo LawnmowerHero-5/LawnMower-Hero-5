@@ -1,26 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IPooledObject
 {
     public float health = 10;
     public VisualEffect _Effect;
     public transformVariable _score;
 
+    private float maxHealth;
+
     private void Start()
     {
+        maxHealth = health;
+        
         _Effect.Stop();
+    }
+
+    //Resets health when reused
+    public void OnObjectSpawn()
+    {
+        health = maxHealth;
+        
+        gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        if (health is 0 or < 0)
+        if (health <= 0)
         {
             _Effect.Play();
             Destroy(_Effect, 3f);
@@ -29,6 +35,8 @@ public class EnemyHealth : MonoBehaviour
             if (gameObject.CompareTag("EvilGnome"))
             {
                 _score.score += _score.gainPointsFromKills;
+
+                Music.PlayOneShot(Random.Range(0f, 2f) >= 1f ? "SFX/ceramic_break_1" : "SFX/ceramic_break_2", transform.position);
             }
             else if (gameObject.CompareTag("Wasp"))
             {
@@ -37,13 +45,17 @@ public class EnemyHealth : MonoBehaviour
             else if (gameObject.CompareTag("GoodGnome"))
             {
                 _score.score -= _score.loosePointsFromFriendlyKills;
+
+                Music.PlayOneShot(Random.Range(0f, 2f) >= 1f ? "SFX/ceramic_break_1" : "SFX/ceramic_break_2", transform.position);
             }
             else if (gameObject.CompareTag("Bee"))
             {
                 _score.score -= _score.loosePointsFromFriendlyKills;
             }
             
-            Destroy(gameObject);
+            //TODO: Check if enemy deactivates when killed
+            gameObject.SetActive(false);
+
             //StartCoroutine(destroyEnemy());
         }
     }

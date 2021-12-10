@@ -39,7 +39,7 @@ public class SteeringTest : MonoBehaviour
       BothHands
    }
 
-   public WhichHands _handStates;
+   public WhichHands handStates;
    #endregion
 
    private void Update()
@@ -125,7 +125,7 @@ public class SteeringTest : MonoBehaviour
    
    private void HandStates()
    {
-      switch (_handStates)
+      switch (handStates)
       {
          case WhichHands.NoHands:
             StateSwitch("NoHands");
@@ -147,61 +147,61 @@ public class SteeringTest : MonoBehaviour
       switch (stateName)
       {
          case "NoHands" when _rightHandOnWheel && !_leftHandOnWheel:
-            _handStates = WhichHands.RightHandOnly;
+            handStates = WhichHands.RightHandOnly;
             break;
          case "NoHands" when _leftHandOnWheel && !_rightHandOnWheel:
-            _handStates = WhichHands.LeftHandOnly;
+            handStates = WhichHands.LeftHandOnly;
             break;
          case "NoHands":
          {
             if (_leftHandOnWheel && _rightHandOnWheel)
             {
-               _handStates = WhichHands.BothHands;
+               handStates = WhichHands.BothHands;
             }
 
             break;
          }
          case "RightHandOnly" when _leftHandOnWheel && _rightHandOnWheel:
-            _handStates = WhichHands.BothHands;
+            handStates = WhichHands.BothHands;
             break;
          case "RightHandOnly" when _leftHandOnWheel && !_rightHandOnWheel:
-            _handStates = WhichHands.LeftHandOnly;
+            handStates = WhichHands.LeftHandOnly;
             break;
          case "RightHandOnly":
          {
             if (!_leftHandOnWheel && !_rightHandOnWheel)
             {
-               _handStates = WhichHands.NoHands;
+               handStates = WhichHands.NoHands;
             }
 
             break;
          }
          case "LeftHandOnly" when _leftHandOnWheel && _rightHandOnWheel:
-            _handStates = WhichHands.BothHands;
+            handStates = WhichHands.BothHands;
             break;
          case "LeftHandOnly" when !_leftHandOnWheel && _rightHandOnWheel:
-            _handStates = WhichHands.RightHandOnly;
+            handStates = WhichHands.RightHandOnly;
             break;
          case "LeftHandOnly":
          {
             if (!_leftHandOnWheel && !_rightHandOnWheel)
             {
-               _handStates = WhichHands.NoHands;
+               handStates = WhichHands.NoHands;
             }
 
             break;
          }
          case "BothHands" when _leftHandOnWheel && !_rightHandOnWheel:
-            _handStates = WhichHands.LeftHandOnly;
+            handStates = WhichHands.LeftHandOnly;
             break;
          case "BothHands" when !_leftHandOnWheel && _rightHandOnWheel:
-            _handStates = WhichHands.RightHandOnly;
+            handStates = WhichHands.RightHandOnly;
             break;
          case "BothHands":
          {
             if (!_leftHandOnWheel && !_rightHandOnWheel)
             {
-               _handStates = WhichHands.NoHands;
+               handStates = WhichHands.NoHands;
             }
 
             break;

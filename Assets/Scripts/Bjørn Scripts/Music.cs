@@ -316,7 +316,6 @@ public class Music : MonoBehaviour
         inst.getPaused(out bool paused);
         if (!paused) return;
         
-        print("Played!");
         inst.setPaused(false);
     }
 }
