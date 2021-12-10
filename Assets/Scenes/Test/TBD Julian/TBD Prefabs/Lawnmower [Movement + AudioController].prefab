@@ -3017,9 +3017,6 @@ MonoBehaviour:
   gasDivider: 20
   speedInput: 0
   turnInput: 0
-  groundEquals:
-    serializedVersion: 2
-    m_Bits: 128
   playerEquals:
     serializedVersion: 2
     m_Bits: 256
@@ -3119,6 +3116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0001411ec646a5249a7899d37ff5045c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Music: {fileID: 1245450355837256645}
+  _playerInfo: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
 --- !u!1 &6678057171524970870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,3 +4213,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5448141703068562504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245450355837256645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6544586213548160909, guid: e1873fdc264b52148b9e11bdacc3b34b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5448141703068562504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
