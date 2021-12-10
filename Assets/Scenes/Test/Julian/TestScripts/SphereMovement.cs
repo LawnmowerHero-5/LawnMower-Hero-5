@@ -91,7 +91,7 @@ public class SphereMovement : MonoBehaviour
     
     private void Update()
     {
-        TranslateSteering();
+        //TranslateSteering();
     }
     
     private void TranslateSteering()
