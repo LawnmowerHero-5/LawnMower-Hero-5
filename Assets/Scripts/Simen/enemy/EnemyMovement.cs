@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour, IPooledObject
+public class EnemyMovement : MonoBehaviour
 {
     // Movement towards player
     public float speed;
@@ -9,7 +9,6 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
     public float range = 10f;
 
     public bool inCombat;
-    public bool isActive;
 
     private bool affectingSpeed;
 
@@ -22,14 +21,8 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
         _RB = GetComponent<Rigidbody>();
     }
 
-    public void OnObjectSpawn()
-    {
-        isActive = true;
-    }
-    
     private void Update()
     {
-        if (isActive)
         {
             if (Vector3.Distance(transform.position, target.playerTransform.position) <= range)
             {

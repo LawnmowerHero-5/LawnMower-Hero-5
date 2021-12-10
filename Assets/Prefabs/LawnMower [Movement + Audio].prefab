@@ -3902,6 +3902,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 442566731598948516, guid: e1873fdc264b52148b9e11bdacc3b34b,
+        type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07,
+        type: 2}
+    - target: {fileID: 442566731598948516, guid: e1873fdc264b52148b9e11bdacc3b34b,
+        type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 6080846164862346158}
+    - target: {fileID: 442566731598948516, guid: e1873fdc264b52148b9e11bdacc3b34b,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 6080846164862346163}
     - target: {fileID: 6009734685032450738, guid: e1873fdc264b52148b9e11bdacc3b34b,
         type: 3}
       propertyPath: m_Layer
@@ -4024,6 +4040,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1873fdc264b52148b9e11bdacc3b34b, type: 3}
+--- !u!114 &6080846164862346158 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6544586213548160912, guid: e1873fdc264b52148b9e11bdacc3b34b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058498890746975294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ef1f869bd434f45a1b87c98ba8dac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6080846164862346163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6544586213548160909, guid: e1873fdc264b52148b9e11bdacc3b34b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1058498890746975294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6080846165829701161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6544586214581541399, guid: e1873fdc264b52148b9e11bdacc3b34b,
@@ -4070,6 +4110,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 664899278949622837}
     m_Modifications:
+    - target: {fileID: 5098890992149882785, guid: e2705509307226a4aa347383deea4d19,
+        type: 3}
+      propertyPath: _Music
+      value: 
+      objectReference: {fileID: 6080846164862346163}
     - target: {fileID: 5455121554888403498, guid: e2705509307226a4aa347383deea4d19,
         type: 3}
       propertyPath: m_Layer
