@@ -26,7 +26,7 @@ public class PickupAble : MonoBehaviour
     public Mesh CustomClosedHandMesh => _customlosedHandMesh;
 
     [NonSerialized] public HandFunctionality currentHeldByHand;
-    [NonSerialized] public bool heldSinceRespawn; 
+    [NonSerialized] public bool heldSinceRespawn;
     [NonSerialized] public float lastHeldFixedTime;
 
     private Vector3 _holdPointPosModifier;
@@ -42,6 +42,11 @@ public class PickupAble : MonoBehaviour
 
         _holdPointPosModifier = _holdPoint.position - transform.position;
         _holdPointRotModifier = _holdPoint.eulerAngles - transform.eulerAngles;
+    }
+
+    private void Start()
+    {
+        SetPickedUpYetState(false);
     }
 
     private void OnValidate()
@@ -76,6 +81,9 @@ public class PickupAble : MonoBehaviour
         //Set held values
         currentHeldByHand = handFunctionality;
         currentHeldByHand.CurrentlyHeldPickupAble = this;
+        
+        //enable picked up yet mode
+        SetPickedUpYetState(true);
 
         //Attach PickupAble to controller fixed joint, and disable velocity to avoid the fixed joint breaking
         _rigidBody.velocity = Vector3.zero;
@@ -95,6 +103,7 @@ public class PickupAble : MonoBehaviour
         
         //Set pickupAble held since respawn to true
         heldSinceRespawn = true;
+
         //reset pickupAble seconds since last held
         lastHeldFixedTime = Time.fixedTime;
         
@@ -105,5 +114,10 @@ public class PickupAble : MonoBehaviour
         //Clear held values
         currentHeldByHand.CurrentlyHeldPickupAble = null;
         currentHeldByHand = null;
+    }
+
+    public void SetPickedUpYetState(bool state)
+    {
+        _rigidBody.isKinematic = !state;
     }
 }
