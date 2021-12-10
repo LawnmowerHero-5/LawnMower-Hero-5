@@ -67,42 +67,30 @@ public class HandController : MonoBehaviour
 
     private void OnEnable() //Add listeners for input changes when enabled
     {
-        if (_triggerButtonAction != null)
-        {
-            _triggerButtonAction.AddOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_trackpadButtonAction != null)
-        {
-            _trackpadButtonAction.AddOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_menuButtonAction != null)
-        {
-            _menuButtonAction.AddOnChangeListener(SendMessageOnMenuButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_gripButtonAction != null)
-        {
-            _gripButtonAction.AddOnChangeListener(SendMessageOnGripButtonChanged, _behaviourPose.inputSource);
-        }
+        AddOnChangeListenerIfNotNull(_triggerButtonAction, SendMessageOnTriggerButtonChanged);
+        AddOnChangeListenerIfNotNull(_trackpadButtonAction, SendMessageOnTrackpadButtonChanged);
+        AddOnChangeListenerIfNotNull(_menuButtonAction, SendMessageOnMenuButtonChanged);
+        AddOnChangeListenerIfNotNull(_gripButtonAction, SendMessageOnGripButtonChanged);
+    }
+    private void AddOnChangeListenerIfNotNull(SteamVR_Action_Boolean actionBoolean, SteamVR_Action_Boolean.ChangeHandler functionToCall)
+    {
+        if (actionBoolean == null)
+            return;
+        actionBoolean.AddOnChangeListener(functionToCall, _behaviourPose.inputSource);
     }
 
     private void OnDisable()    //remove listeners if disabled
     {
-        if (_triggerButtonAction != null)
-        {
-            _triggerButtonAction.RemoveOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_trackpadButtonAction != null)
-        {
-            _trackpadButtonAction.RemoveOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_menuButtonAction != null)
-        {
-            _menuButtonAction.RemoveOnChangeListener(SendMessageOnMenuButtonChanged, _behaviourPose.inputSource);
-        }
-        if (_gripButtonAction != null)
-        {
-            _gripButtonAction.RemoveOnChangeListener(SendMessageOnGripButtonChanged, _behaviourPose.inputSource);
-        }
+        RemoveOnChangeListenerIfNotNull(_triggerButtonAction, SendMessageOnTriggerButtonChanged);
+        RemoveOnChangeListenerIfNotNull(_trackpadButtonAction, SendMessageOnTrackpadButtonChanged);
+        RemoveOnChangeListenerIfNotNull(_menuButtonAction, SendMessageOnMenuButtonChanged);
+        RemoveOnChangeListenerIfNotNull(_gripButtonAction, SendMessageOnGripButtonChanged);
+    }
+    private void RemoveOnChangeListenerIfNotNull(SteamVR_Action_Boolean actionBoolean, SteamVR_Action_Boolean.ChangeHandler functionToCall)
+    {
+        if (actionBoolean == null)
+            return;
+        actionBoolean.RemoveOnChangeListener(functionToCall, _behaviourPose.inputSource);
     }
 
     private void OnValidate()
