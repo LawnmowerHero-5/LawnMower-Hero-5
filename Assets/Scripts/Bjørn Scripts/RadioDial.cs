@@ -100,17 +100,17 @@ public class RadioDial : MonoBehaviour
             //Plays music at full strength without whitenoise
             if (dist <= channelWidth)
             {
-                music.SetParameter("Whitenoise", 0);
+                Music.SetParameter("Whitenoise", 0);
                 fullWhitenoise = false;
             }
             //Plays some music and some whitenoise
             else if (dist <= channelWidth + whiteNoiseFadeWidth)
             {
-                music.SetParameter("Whitenoise", (dist - channelWidth)/whiteNoiseFadeWidth);
+                Music.SetParameter("Whitenoise", (dist - channelWidth)/whiteNoiseFadeWidth);
                 fullWhitenoise = false;
             }
         }
         //Only plays whitenoise
-        if (fullWhitenoise) music.SetParameter("Whitenoise", 1);
+        if (fullWhitenoise) Music.SetParameter("Whitenoise", 1);
     }
 }
