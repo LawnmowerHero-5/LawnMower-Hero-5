@@ -102,7 +102,7 @@ public class Gascrank : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + _wheelLastSpeed;
         }
-        transform.localEulerAngles = new Vector3(outputAngle, crankTarget.transform.localEulerAngles.y, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        transform.localEulerAngles = new Vector3(crankTarget.transform.localEulerAngles.y, outputAngle, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         //transform.RotateAround(WheelBase.transform.position, Vector3.right, Diffs[^1]);
         
