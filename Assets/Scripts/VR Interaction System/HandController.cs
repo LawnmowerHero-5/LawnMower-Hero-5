@@ -8,13 +8,15 @@ using Valve.VR;
 public class HandController : MonoBehaviour
 {
     /*
-    This simplify getting action values by reducing them to simple get peroperties
+    This simplify getting action values by reducing them to simple get properties
     Only the input on the controller this script is attached are handled, so one script for each controller is required
-    The reason I made the actions into properties is because I find it cleaner and more efficient than putting them in update each frame
+    The reason I made the actions into properties is because I find it cleaner and more efficient than putting them in update each frame 
     */
     [Header("Button References")]
     [SerializeField] private SteamVR_Action_Boolean _triggerButtonAction;
     [SerializeField] private SteamVR_Action_Boolean _trackpadButtonAction;
+    [SerializeField] private SteamVR_Action_Boolean _menuButtonAction;
+    [SerializeField] private SteamVR_Action_Boolean _gripButtonAction;
     
     private List<PickupAble> _pickupAblesInControllerRadius = new List<PickupAble>();
     private List<InteractAble> _interactAblesInControllerRadius = new List<InteractAble>();
@@ -63,16 +65,23 @@ public class HandController : MonoBehaviour
         }
     }
 
-    private void OnEnable() //Add listeners for input changes
+    private void OnEnable() //Add listeners for input changes when enabled
     {
         if (_triggerButtonAction != null)
         {
             _triggerButtonAction.AddOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
         }
-
         if (_trackpadButtonAction != null)
         {
             _trackpadButtonAction.AddOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
+        }
+        if (_menuButtonAction != null)
+        {
+            _menuButtonAction.AddOnChangeListener(SendMessageOnMenuButtonChanged, _behaviourPose.inputSource);
+        }
+        if (_gripButtonAction != null)
+        {
+            _gripButtonAction.AddOnChangeListener(SendMessageOnGripButtonChanged, _behaviourPose.inputSource);
         }
     }
 
@@ -82,10 +91,17 @@ public class HandController : MonoBehaviour
         {
             _triggerButtonAction.RemoveOnChangeListener(SendMessageOnTriggerButtonChanged, _behaviourPose.inputSource);
         }
-
         if (_trackpadButtonAction != null)
         {
             _trackpadButtonAction.RemoveOnChangeListener(SendMessageOnTrackpadButtonChanged, _behaviourPose.inputSource);
+        }
+        if (_menuButtonAction != null)
+        {
+            _menuButtonAction.RemoveOnChangeListener(SendMessageOnMenuButtonChanged, _behaviourPose.inputSource);
+        }
+        if (_gripButtonAction != null)
+        {
+            _gripButtonAction.RemoveOnChangeListener(SendMessageOnGripButtonChanged, _behaviourPose.inputSource);
         }
     }
 
@@ -146,5 +162,15 @@ public class HandController : MonoBehaviour
     private void SendMessageOnTrackpadButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
     {
         SendMessageOnButtonChanged("OnTrackpadButtonChanged", state);
+    }
+
+    private void SendMessageOnMenuButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    {
+        SendMessageOnButtonChanged("OnMenuButtonChanged", state);
+    }
+
+    private void SendMessageOnGripButtonChanged(SteamVR_Action_Boolean actionBoolean, SteamVR_Input_Sources inputSources, bool state)
+    {
+        SendMessageOnButtonChanged("OnGripButtonChanged", state);
     }
 }
