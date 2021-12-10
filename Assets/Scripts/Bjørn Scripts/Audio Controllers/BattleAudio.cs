@@ -61,7 +61,7 @@ public class BattleAudio : MonoBehaviour
             }
             
             Music.SetParameter("InBattle", 1);
-            print("SO MANY ENEMIES");
+            print("SO MANY ENEMIES: " + _playerInfo.enemiesInRange);
             Music.Play(sfxBattle);
 
             if (_playerInfo.enemiesInRange >= 4) Music.SetParameter("Intensity", 1);

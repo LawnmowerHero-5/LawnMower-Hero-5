@@ -82,6 +82,11 @@ public class BatBehaviour : MonoBehaviour
                 print("I'm Fast");
             }
         }
+        
+        if (speed >= 6f)
+        {
+            Music.PlayOneShot("SFX/equipment_collide", transform.position);
+        }
     }
 
     private void GetEnemyDoDamage(Collision gnome, float damage)
