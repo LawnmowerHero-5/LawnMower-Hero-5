@@ -288,30 +288,30 @@ public class MenuManager : MonoBehaviour
         {
             if (difficultyIndex == 0)
             {
-                SceneManager.LoadScene("Easy_Small_Day");
+                SceneController.LoadScene("Easy_Small_Day");
             }
             else if (difficultyIndex == 1)
             {
-                SceneManager.LoadScene("Intermediate_Medium_Day");
+                SceneController.LoadScene("Intermediate_Medium_Day");
             }
             else
             {
-                SceneManager.LoadScene("Advanced_Large_Day");
+                SceneController.LoadScene("Advanced_Large_Day");
             }
         }
         else
         {
             if (difficultyIndex == 0)
             {
-                SceneManager.LoadScene("Easy_Medium_Night");
+                SceneController.LoadScene("Easy_Medium_Night");
             }
             else if (difficultyIndex == 1)
             {
-                SceneManager.LoadScene("Intermediate_Medium_Night");
+                SceneController.LoadScene("Intermediate_Medium_Night");
             }
             else
             {
-                SceneManager.LoadScene("Advanced_Medium_Night");
+                SceneController.LoadScene("Advanced_Medium_Night");
             }
         }
     }

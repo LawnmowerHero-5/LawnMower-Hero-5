@@ -7,16 +7,7 @@
     <list default="true" id="b6700eb9-f139-4ef3-8194-31646426062c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LawnMower-Hero-5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LawnMower-Hero-5/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/3D Models/Tree_medium_1.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/3D Models/Tree_medium_1.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/3D Models/fence middle 1.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/3D Models/fence middle 1.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/3D Models/tree_medium_2.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/3D Models/tree_medium_2.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI Scripts/MenuManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open VR Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open VR Settings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/OpenXR Package Settings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +26,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bjørn Scripts/IPooledObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bjørn Scripts/SetVolume.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bjørn Scripts/ObjectPooler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,6 +51,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds/Lawnmower hero 5 test builds/Build 1 menu test experimental\Lawnmower Hero 5 VR Edition.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Ander\Documents\UNITY\Builds\Lawnmower hero 5 test builds\Build 1 menu test experimental" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -100,6 +100,7 @@
       <workItem from="1638785891978" duration="1095000" />
       <workItem from="1638952487052" duration="7731000" />
       <workItem from="1638981760035" duration="2527000" />
+      <workItem from="1639128452014" duration="306000" />
     </task>
     <servers />
   </component>
