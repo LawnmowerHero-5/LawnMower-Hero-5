@@ -98,7 +98,7 @@ public class SphereMovement : MonoBehaviour
     
     private void Update()
     {
-        //TranslateSteering();
+        TranslateSteering();
     }
     
     private void TranslateSteering()
@@ -107,6 +107,10 @@ public class SphereMovement : MonoBehaviour
         if (Mathf.Abs(_tempSpeed[0]-_tempSpeed[1]) > 0)
         {
             _controllerUsed = false;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
         }
         if (_controllerUsed) return;
         

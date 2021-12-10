@@ -473,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grabRadius: 0.1
   _handVisual: {fileID: 5456095173288631501}
+  _pauseMenu: {fileID: 0}
 --- !u!1 &5456095173745455270
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grabRadius: 0.1
   _handVisual: {fileID: 5456095174326672442}
+  _pauseMenu: {fileID: 0}
 --- !u!1 &5456095173745468374
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0001411ec646a5249a7899d37ff5045c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Music: {fileID: 0}
+  _playerInfo: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
 --- !u!1 &5456095174326672440
 GameObject:
   m_ObjectHideFlags: 0

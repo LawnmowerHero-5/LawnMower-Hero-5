@@ -3,22 +3,21 @@ using UnityEngine.VFX;
 
 public class EnemyHealth : MonoBehaviour, IPooledObject
 {
-    public float health = 10;
+    public float health, maxHealth = 10;
     public VisualEffect _Effect;
     public transformVariable _score;
 
-    private float maxHealth;
-
     private void Start()
     {
-        maxHealth = health;
-        
+        print("Start");
+
         _Effect.Stop();
     }
 
     //Resets health when reused
     public void OnObjectSpawn()
     {
+        print("Spawned");
         health = maxHealth;
         
         gameObject.SetActive(true);
@@ -54,6 +53,7 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
             }
             
             //TODO: Check if enemy deactivates when killed
+            print("Died to Ded");
             gameObject.SetActive(false);
 
             //StartCoroutine(destroyEnemy());
@@ -70,10 +70,7 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
     {
         if (other.gameObject.CompareTag("Pellet"))
         {
-            /*_Effect.Play();
-            Destroy(_Effect, 3f);
-            _Effect.transform.parent = null;
-            Destroy(gameObject);*/
+            health = 0;
             
             print("is realy supposed to be dead rn");
         }
