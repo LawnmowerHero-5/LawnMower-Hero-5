@@ -70,10 +70,7 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
     {
         if (other.gameObject.CompareTag("Pellet"))
         {
-            /*_Effect.Play();
-            Destroy(_Effect, 3f);
-            _Effect.transform.parent = null;
-            Destroy(gameObject);*/
+            health = 0;
             
             print("is realy supposed to be dead rn");
         }
