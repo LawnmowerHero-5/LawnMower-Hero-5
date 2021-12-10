@@ -5,8 +5,8 @@ using UnityEngine.VFX;
 public class SphereMovement : MonoBehaviour
 {
     [Header("Scripts and GameObjects")]
-    public TestGascrank gasCrank;
-    public NewSteeringWheelTest steeringWheel;
+    public Gascrank gasCrank;
+    public SteeringWheel steeringWheel;
     
     [Tooltip("Wheels and dust have to be in the same order. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
     public GameObject[] wheels;
