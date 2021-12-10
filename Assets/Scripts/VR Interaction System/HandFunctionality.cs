@@ -119,10 +119,5 @@ public class HandFunctionality : MonoBehaviour
         {
             Debug.LogError($"{_handVisual.name} must be a child of {gameObject.name} for the hand following funtionality to work");
         }
-        //Send warning if paseMenu script not added
-        if (_pauseMenu == null)
-        {
-            Debug.LogWarning($"pause menu not referenced in inspector in {GetType().Name} in {name}. This will make pausing the game impossible.");
-        }
     }
 }

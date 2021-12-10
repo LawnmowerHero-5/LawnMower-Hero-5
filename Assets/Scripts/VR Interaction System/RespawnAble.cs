@@ -139,6 +139,7 @@ public class RespawnAble : MonoBehaviour
         if (_pickupAble == null)
             return;
         _pickupAble.heldSinceRespawn = false;
+        _pickupAble.SetPickedUpYetState(false);
     }
 
     private void CheckForRespawnInvokeRepeating()   //Respawns the gameobject if any of the inspector defined states are all true
