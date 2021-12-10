@@ -1,12 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestGascrank : MonoBehaviour
+public class SteeringWheel : MonoBehaviour
 {
     [Header("Hand")]
     public List<Transform> handsTransforms = new List<Transform>();
-    public bool handSticked = false;
+    private bool _handSticked = false;
     public Transform trackedHand;
 
     private float _angleStickyOffset; // offset between wheel rotation and hand position on grab
@@ -14,11 +13,11 @@ public class TestGascrank : MonoBehaviour
     private static float inertia = 0.95f; // 1-wheel never stops // 0 - wheel stops instantly
     
     [Tooltip("Maxima rotation of the wheel")]
-    public static float MAXRotation = 20; 
+    private static float MAXRotation = 360; 
     private static float wheelHapticFrequency = 360/12; //every wheel will click 12 times per wheel rotation
 
     [Header("Steering Wheel Relative Point")]
-    public GameObject crankBase, crankTarget;
+    public GameObject wheelBase;
 
     [Header("Wheel & Hand relative position")]
     public Vector3 relativePos;
@@ -29,7 +28,7 @@ public class TestGascrank : MonoBehaviour
 
     //public SteeringWheelOutPut steeringWheelOutPut; Todo;
 
-    [Header("Arrays Values (Debug)")]
+    [Header("Array Values (Debug)")]
     public List<float> lastValues = new List<float>(); // stores last angles
     public List<float> diffs = new List<float>(); // stores difference between each last angles
     public List<float> formulaDiffs = new List<float>(); // stores formulated diffs
@@ -39,7 +38,7 @@ public class TestGascrank : MonoBehaviour
     {
         CreateArrays(5); // CALLING FUNCTION WHICH CREATES ARRAYS
         _angleStickyOffset = 0f;
-        handSticked = false;
+        _handSticked = false;
         _wheelLastSpeed = 0;
     }
 
@@ -52,17 +51,31 @@ public class TestGascrank : MonoBehaviour
                 print(hand.Transform);
                 
                 handsTransforms.Add(hand.Transform);
-                
-                handSticked = true;
-                CalculateOffset();
+                if (!_handSticked)
+                {
+                    trackedHand = hand.Transform;
+                    CalculateOffset();
+                }
+                _handSticked = true;
             }
             else
             {
                 print(hand.LastFrameStickedHandTransform);
                 
                 handsTransforms.Remove(hand.LastFrameStickedHandTransform);
-                handSticked = false;
-                _wheelLastSpeed = outputAngle - lastValues[3];
+                if (hand.LastFrameStickedHandTransform == trackedHand)
+                {
+                    if (handsTransforms.Count == 0)
+                    {
+                        _handSticked = false;
+                        _wheelLastSpeed = outputAngle - lastValues[3];
+                    }
+                    else
+                    {
+                        trackedHand = handsTransforms[0];
+                        CalculateOffset();
+                    }
+                }
             }
         }
     }
@@ -75,7 +88,7 @@ public class TestGascrank : MonoBehaviour
 
     private float CalculateRawAngle()
     {
-        relativePos = crankTarget.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
+        relativePos = wheelBase.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
         return Mathf.Atan2( relativePos.y, relativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
     }
@@ -84,7 +97,7 @@ public class TestGascrank : MonoBehaviour
     {
         //steeringWheelOutPut.outAngle = outputAngle; Todo;
         float angle;
-        if (handSticked)
+        if (_handSticked)
         {
             angle = CalculateRawAngle() + _angleStickyOffset; // When hands are holding the wheel hand dictates how the wheel moves
             // angleSticky Offset is calculated on wheel grab - makes wheel not to rotate instantly to the users hand
@@ -103,9 +116,7 @@ public class TestGascrank : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + _wheelLastSpeed;
         }
-        crankBase.transform.localEulerAngles = new Vector3(outputAngle, crankTarget.transform.localEulerAngles.y, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
-        
-        //transform.RotateAround(WheelBase.transform.position, Vector3.right, Diffs[^1]);
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, outputAngle);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         float hapticSpeedCoeff = Mathf.Abs(lastValues[4] - lastValues[3]) + 1;
         if (Mathf.Abs(outputAngle % wheelHapticFrequency) <= hapticSpeedCoeff &&

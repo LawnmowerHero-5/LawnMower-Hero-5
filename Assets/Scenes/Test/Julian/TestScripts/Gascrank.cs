@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewSteeringWheelTest : MonoBehaviour
+public class Gascrank : MonoBehaviour
 {
     [Header("Hand")]
     public List<Transform> handsTransforms = new List<Transform>();
@@ -13,11 +13,11 @@ public class NewSteeringWheelTest : MonoBehaviour
     private static float inertia = 0.95f; // 1-wheel never stops // 0 - wheel stops instantly
     
     [Tooltip("Maxima rotation of the wheel")]
-    public static float MAXRotation = 360; 
+    public static float MAXRotation = 20; 
     private static float wheelHapticFrequency = 360/12; //every wheel will click 12 times per wheel rotation
 
     [Header("Steering Wheel Relative Point")]
-    public GameObject wheelBase;
+    public GameObject crankBase, crankTarget;
 
     [Header("Wheel & Hand relative position")]
     public Vector3 relativePos;
@@ -51,31 +51,17 @@ public class NewSteeringWheelTest : MonoBehaviour
                 print(hand.Transform);
                 
                 handsTransforms.Add(hand.Transform);
-                if (!handSticked)
-                {
-                    trackedHand = hand.Transform;
-                    CalculateOffset();
-                }
+                
                 handSticked = true;
+                CalculateOffset();
             }
             else
             {
                 print(hand.LastFrameStickedHandTransform);
                 
                 handsTransforms.Remove(hand.LastFrameStickedHandTransform);
-                if (hand.LastFrameStickedHandTransform == trackedHand)
-                {
-                    if (handsTransforms.Count == 0)
-                    {
-                        handSticked = false;
-                        _wheelLastSpeed = outputAngle - lastValues[3];
-                    }
-                    else
-                    {
-                        trackedHand = handsTransforms[0];
-                        CalculateOffset();
-                    }
-                }
+                handSticked = false;
+                _wheelLastSpeed = outputAngle - lastValues[3];
             }
         }
     }
@@ -88,7 +74,7 @@ public class NewSteeringWheelTest : MonoBehaviour
 
     private float CalculateRawAngle()
     {
-        relativePos = wheelBase.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
+        relativePos = crankTarget.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
         return Mathf.Atan2( relativePos.y, relativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
     }
@@ -116,7 +102,9 @@ public class NewSteeringWheelTest : MonoBehaviour
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + _wheelLastSpeed;
         }
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, outputAngle);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        crankBase.transform.localEulerAngles = new Vector3(outputAngle, crankTarget.transform.localEulerAngles.y, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
+        
+        //transform.RotateAround(WheelBase.transform.position, Vector3.right, Diffs[^1]);
         
         float hapticSpeedCoeff = Mathf.Abs(lastValues[4] - lastValues[3]) + 1;
         if (Mathf.Abs(outputAngle % wheelHapticFrequency) <= hapticSpeedCoeff &&
