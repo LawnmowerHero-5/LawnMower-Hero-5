@@ -5,6 +5,8 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     [SerializeField] private float CarSpeed = 5f;
+
+    [SerializeField] private float TimeBeforeCarRotate = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class Car : MonoBehaviour
 
     private IEnumerator CarRotate()
     {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(TimeBeforeCarRotate);
         transform.Rotate(180,0,180);
         StartCoroutine(CarRotate());
     }
