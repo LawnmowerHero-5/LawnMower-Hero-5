@@ -10,7 +10,7 @@ public class BatBehaviour : MonoBehaviour
     [Tooltip("The tip of the bat")]
     public Transform batTip;
 
-    private List<Vector3> positionTracker = new List<Vector3>();
+    public List<Vector3> positionTracker = new List<Vector3>();
     private float difference;
     private float speed;
     [Tooltip("Values used to define the ranges of the damages")]
@@ -20,7 +20,7 @@ public class BatBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        positionTracker.Add(batTip.localPosition);
+        positionTracker.Add(batTip.position);
     }
 
     [ExecuteInEditMode]
@@ -46,13 +46,13 @@ public class BatBehaviour : MonoBehaviour
     {
         // todo: don't track unless in hands.
         
-        positionTracker.Add(batTip.localPosition);
+        positionTracker.Add(batTip.position);
         difference = Vector3.Distance(positionTracker[0], positionTracker[1]);
         positionTracker.Remove(positionTracker[0]);
 
         speed = difference / Time.deltaTime;
         
-        if (speed > 20f)
+        if (speed > 21f)
         {
            Debug.Log("speed = "+ speed);
         }
@@ -76,7 +76,7 @@ public class BatBehaviour : MonoBehaviour
                 print("Do you have anny idea how fast im going");
             }
 
-            else if (speed is >= 8f)
+            else if (speed is >= 6f)
             {
                 GetEnemyDoDamage(other, 1f);
                 print("I'm Fast");
