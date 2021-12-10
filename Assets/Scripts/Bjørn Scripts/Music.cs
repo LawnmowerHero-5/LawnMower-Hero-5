@@ -211,7 +211,7 @@ public class Music : MonoBehaviour
         return RESULT.OK;
     }
 
-    public void SetParameter(string name, float value)
+    public static void SetParameter(string name, float value)
     {
         RuntimeManager.StudioSystem.setParameterByName(name, value);
     }
