@@ -10,7 +10,6 @@ using UnityEngine.UI;
 public class scoreManager : MonoBehaviour
 {
     public TMP_Text countText;
-    public TMP_Text inGameScoreText;
     public transformVariable score;
     public int totalScore;
 
@@ -43,7 +42,6 @@ public class scoreManager : MonoBehaviour
     private void Update()
     {
         SetCountText();
-        SetGameScoreText();
         print(score.score + score.score2);
         totalScore = (int) (score.score + score.score2);
     }
@@ -51,10 +49,5 @@ public class scoreManager : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Score: " + totalScore;
-    }
-
-    void SetGameScoreText()
-    {
-        inGameScoreText.text = "Score: " + totalScore;
     }
 }
