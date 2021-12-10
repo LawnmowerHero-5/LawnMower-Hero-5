@@ -38,7 +38,7 @@ public class GnomeAudio : MonoBehaviour
     
     #endregion
     
-    void Start()
+    private void Start()
     {
         audioSetup.Add(Music.PlayLoop("SFX/walking_grass_1", transform));
 
@@ -48,7 +48,7 @@ public class GnomeAudio : MonoBehaviour
         timeUntilIdleSFX = Random.Range(minTimeUntilIdleSFX, maxTimeUntilIdleSFX);
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Music.UpdateAudioPosition(sfxMove, transform);
         

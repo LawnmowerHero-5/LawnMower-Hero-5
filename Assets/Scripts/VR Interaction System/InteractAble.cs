@@ -6,7 +6,12 @@ public class InteractAble : MonoBehaviour
     /*
     Everything with this script will get messages with information about interactions
     including:
-    OnTriggerButtonChanged, OnTrackpadButtonChanged, OnHeldByHandChanged, OnStickedHandsChanged
+        private void OnTriggerButtonChanged(bool state)
+        private void OnTrackpadButtonChanged(bool state)
+        private void OnMenuButtonChanged(bool state)
+        private void OnGripButtonChanged(bool state)
+        private void OnHeldByHandChanged(InteractAble.hand hand)
+        private void OnStickedHandsChanged(InteractAble.hand[] hands)
     */
 
     public class Hand //class containing data about the hand
