@@ -63,12 +63,12 @@ public class LawnmowerAudio : MonoBehaviour
         Music.UpdateAudioPosition(sfxIdle, transform);
         Music.UpdateAudioPosition(sfxDrive, transform);
         Music.UpdateAudioPosition(sfxReverse, transform);
-        
+
         //Driving forwards
         if (_sphere.speedInput >= 0.05f)
         {
             stoppedDriving = false;
-            timerStoppedDriving = 0.2f;
+            timerStoppedDriving = 0.3f;
             
             //Plays start driving sound once
             if (!startedDriving)
@@ -92,13 +92,13 @@ public class LawnmowerAudio : MonoBehaviour
                 stoppedDriving = true;
             }
             timerStoppedDriving -= Time.fixedDeltaTime;
-            timerStartedDriving = 0.3f;
+            timerStartedDriving = 0.35f;
         }
         //Plays idle sound if not driving forwards
         else
         {
             Music.Pause(sfxDrive);
-            timerStartedDriving = 0.3f;
+            timerStartedDriving = 0.35f;
         }
         
         //Plays reverse sound if reversing
