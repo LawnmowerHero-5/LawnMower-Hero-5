@@ -86,4 +86,11 @@ public class Timer : MonoBehaviour
         // Might use this to unselect input field. Not sure yet
         //EventSystem.current.SetSelectedGameObject(null);
     }
+    
+    // This code is being called from a UnityEvent (button/text field select)
+    public void ShowKeyboard()
+    {
+        SteamVR.instance.overlay.ShowKeyboard(0, 0, 0, "Description", 256, "", 0);
+        textEntry.text = "";
+    }
 }
