@@ -4,14 +4,19 @@ using UnityEngine.VFX;
 
 public class SphereMovement : MonoBehaviour
 {
+    #region Variables
+    
+    
     [Header("Scripts and GameObjects")]
     public Gascrank gasCrank;
     public SteeringWheel steeringWheel;
     
-    [Tooltip("Wheels and dust have to be in the same order. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
+    [Tooltip("Wheels and dust have to be in the same order, the front wheels have to be in array pos 0 and 1. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
     public GameObject[] wheels;
     [Tooltip("Wheels and dust have to be in the same order. (F.eks. Front right wheel has to be 0 for both dust and wheel)")]
     public VisualEffect[] dust;
+    [Tooltip("turnPoints have to be in the same order as the front wheels. (F.eks. Front right wheel has to be 0 for both turnPoint and wheel)")]
+    public GameObject[] turnPoints;
     
     [Tooltip("The Rigidbody of the Sphere")]
     public Rigidbody sphereRb;
@@ -54,6 +59,9 @@ public class SphereMovement : MonoBehaviour
     //todo TestBool, to allow Controller, Potentially Overwrites VR input
     private bool _controllerUsed;
     private float[] _tempSpeed = new float[2];
+    private float _maxWheelTurn = 25f;
+    
+    #endregion
     
 
     private void Start()
@@ -155,8 +163,8 @@ public class SphereMovement : MonoBehaviour
             (hit.transform.gameObject.layer == LayerMask.NameToLayer("SandPit")))
         {
             // Gets the slopeRotation through the raycast, then Slerps (Smooths out) the rotation and then sets the lawnmowers rotation to the ground rotation
-            _slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, _slopeRotation, 1 * Time.deltaTime);
+            Quaternion newRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            Quaternion.Slerp( transform.rotation, newRotation , turnSpeed);
         }
     }
 
@@ -220,4 +228,20 @@ public class SphereMovement : MonoBehaviour
         }
         transform.position = sphereRb.transform.position;
     }
+    
+    #region Visuals
+    
+    
+    private void LateUpdate()
+    {
+        for (int i = 0; i < wheels.Length; i++)
+        {
+            if (i < 2)
+            {
+                turnPoints[i].transform.localRotation = Quaternion.Euler(wheels[i].transform.localRotation.eulerAngles.x, wheels[i].transform.localRotation.eulerAngles.y, (turnInput * _maxWheelTurn)-180);
+            }
+        }
+    }
+    
+    #endregion
 }
