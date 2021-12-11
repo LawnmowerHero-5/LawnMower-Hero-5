@@ -232,6 +232,7 @@ public class playFabManager : MonoBehaviour
         PullUpLeaderboard();
         _pMenu.Resume();
         Time.timeScale = 1f;
+        print("About to load the main menu");
         SceneManager.LoadScene("MainMenu");
     }
 
