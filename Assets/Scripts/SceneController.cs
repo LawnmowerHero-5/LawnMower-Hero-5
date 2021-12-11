@@ -1,14 +1,14 @@
-using System;
-using System.Security.Principal;
+using PlayerPreferences;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-
-    public static void LoadScene(string sceneName)
+    [SerializeField] private DataController _Data;
+    
+    public void LoadScene(string sceneName)
     {
+        _Data.SetPlayerData();
         SceneManager.LoadScene(sceneName);
     }
     
@@ -21,5 +21,4 @@ public class SceneController : MonoBehaviour
     {
         Application.Quit();
     }
-
-}
+    }

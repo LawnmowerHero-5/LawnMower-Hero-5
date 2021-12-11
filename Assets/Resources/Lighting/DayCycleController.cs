@@ -37,6 +37,7 @@ public class DayCycleController : MonoBehaviour
          private void OnValidate()
          {
              UpdateTime();
+             if (skyVolume == null) return;
              skyVolume.profile.TryGet<PhysicallyBasedSky>(out sky);
          }
 
@@ -45,8 +46,17 @@ public class DayCycleController : MonoBehaviour
              float alpha = timeOfDay / 24.0f;
              float sunRotation = Mathf.Lerp(-90, 270, alpha);
              float moonRotation = sunRotation - 180;
-             sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
-             moon.transform.rotation = Quaternion.Euler(moonRotation, -150.0f, 0);
+             
+             if (sun != null)
+             {
+                 sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
+             }
+           
+             if (moon != null)
+             {
+                 moon.transform.rotation = Quaternion.Euler(moonRotation, -150.0f, 0);
+             }
+            
              
              CheckNightDayTransition();
          }
@@ -55,6 +65,7 @@ public class DayCycleController : MonoBehaviour
          {
              if (isNight)
              {
+                 if (moon == null) return;
                  if (moon.transform.rotation.eulerAngles.x > 180)
                  {
                      StartDay();
@@ -63,6 +74,7 @@ public class DayCycleController : MonoBehaviour
              }
              else
              {
+                 if (sun == null) return;
                  if (sun.transform.rotation.eulerAngles.x > 180)
                  {
                      StartNight();

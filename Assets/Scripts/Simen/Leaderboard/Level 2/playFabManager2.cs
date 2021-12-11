@@ -37,7 +37,7 @@ public class playFabManager2 : MonoBehaviour
     
     #endregion
     private void Start()
-    {
+    { 
         nameWindow.SetActive(false);
         leaderboardWindow.SetActive(false);
         _timer = GetComponent<Timer>();

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5849841573991509638}
   - component: {fileID: -5968110289767989898}
   - component: {fileID: 5909415728699506529}
+  - component: {fileID: 6623856355449555182}
   m_Layer: 0
   m_Name: Gnome
   m_TagString: EvilGnome
@@ -102,6 +103,7 @@ MonoBehaviour:
   maxHealth: 10
   _Effect: {fileID: 4688502087826975489}
   _score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
+  pool: -1
 --- !u!114 &-5968110289767989898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +133,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minTimeUntilIdleSFX: 6
   maxTimeUntilIdleSFX: 13
+--- !u!95 &6623856355449555182
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2378577501673357767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: abaaeb5bc2ab439479681e230b31e472, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2753093302438357650
 GameObject:
   m_ObjectHideFlags: 0
