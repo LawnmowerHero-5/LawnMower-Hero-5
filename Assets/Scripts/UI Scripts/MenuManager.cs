@@ -296,7 +296,7 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                SceneController.LoadScene("Advanced_Large_Day");
+                SceneController.LoadScene("Advanced_Medium_Day");
             }
         }
         else
@@ -311,7 +311,7 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                SceneController.LoadScene("Advanced_Medium_Night");
+                SceneController.LoadScene("Advanced_Large_Night");
             }
         }
     }
