@@ -13,6 +13,7 @@ public class pauseEffect : MonoBehaviour
     private void Start()
     {
         PauseMenuUI.SetActive(false);
+        _timer = GetComponent<Timer>();
     }
 
     public void Resume()

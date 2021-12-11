@@ -69,4 +69,9 @@ public class ObjectPooler : MonoBehaviour
 
         return objToSpawn;
     }
+
+    private void Update()
+    {
+        print(pools[0].activeObjects + " : " + pools[1].activeObjects);
+    }
 }
