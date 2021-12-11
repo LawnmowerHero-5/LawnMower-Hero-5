@@ -86,7 +86,6 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
   range: 10
   inCombat: 0
-  isActive: 0
 --- !u!114 &5849841573991509638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 10
   _Effect: {fileID: 4688502087826975489}
   _score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
 --- !u!114 &-5968110289767989898
@@ -382,18 +382,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6995947531718573806}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5235715190018238817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7915059745647887295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1f4baddfcc1844aa19c58585ebf585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &8804861730921061744
 Animator:
   serializedVersion: 4
@@ -414,3 +402,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5235715190018238817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915059745647887295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1f4baddfcc1844aa19c58585ebf585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyMovement: {fileID: 8712413432033088413}

@@ -13,13 +13,13 @@ public class Timer : MonoBehaviour
     public bool canSubmitScore;
     public TMP_Text timer;
     private playFabManagerIntermediate2 _intermediate2;
-    private pauseMenu _pauseMenu;
+    private pauseEffect _pauseMenu;
 
     private void Start()
     {
         timerIsRunning = true;
         _intermediate2 = GetComponent<playFabManagerIntermediate2>();
-        _pauseMenu = GetComponent<pauseMenu>();
+        _pauseMenu = GetComponent<pauseEffect>();
 
     }
 
