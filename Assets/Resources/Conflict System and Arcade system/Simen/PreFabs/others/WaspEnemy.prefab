@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 201811052873048325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.56, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2262837825998305642}
@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 10
   _Effect: {fileID: 1433933912985866350}
   _score: {fileID: 11400000, guid: 86537c72410104938a123e6dbddf13e1, type: 2}
 --- !u!114 &370777888621803897
@@ -99,7 +100,6 @@ MonoBehaviour:
   target: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
   range: 10
   inCombat: 0
-  isActive: 0
 --- !u!114 &2242446001364677323
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class BatBehaviour : MonoBehaviour
 {
     public Rigidbody rb;
-    public float batDamage =  3f;
+    public float batDamage =  2f;
 
     [Tooltip("The tip of the bat")]
     public Transform batTip;
@@ -24,10 +24,10 @@ public class BatBehaviour : MonoBehaviour
     }
 
     [ExecuteInEditMode]
-    /*private void OnGUI()
+    private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 300, 20), "Velocity: "+ rb.velocity.sqrMagnitude);
-    }*/
+        GUI.Label(new Rect(10, 10, 300, 20), "Velocity: "+ speed);
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,10 +52,10 @@ public class BatBehaviour : MonoBehaviour
 
         speed = difference / Time.deltaTime;
         
-        if (speed > 21f)
+        /*if (speed > 21f)
         {
            Debug.Log("speed = "+ speed);
-        }
+        }*/
     }
 
     private void OnCollisionEnter(Collision other)
@@ -66,21 +66,26 @@ public class BatBehaviour : MonoBehaviour
         {
             if (speed >= 21f)
             {
-                GetEnemyDoDamage(other, 3f);
+                GetEnemyDoDamage(other, 5f);
                 print(speed + ": Fast af Boyyyy");
             }
 
-            else if (speed is >= 16f)
+            else if (speed >= 16f)
             {
-                GetEnemyDoDamage(other, 2f);
+                GetEnemyDoDamage(other, 4f);
                 print("Do you have anny idea how fast im going");
             }
 
-            else if (speed is >= 6f)
+            else if (speed >= 6f)
             {
-                GetEnemyDoDamage(other, 1f);
+                GetEnemyDoDamage(other, 2f);
                 print("I'm Fast");
             }
+        }
+        
+        if (speed >= 6f)
+        {
+            Music.PlayOneShot("SFX/equipment_collide", transform.position);
         }
     }
 

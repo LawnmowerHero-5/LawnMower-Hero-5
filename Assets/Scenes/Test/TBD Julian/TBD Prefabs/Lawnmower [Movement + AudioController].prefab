@@ -2942,6 +2942,7 @@ GameObject:
   - component: {fileID: 8858073471023478085}
   - component: {fileID: 6301181220424178204}
   - component: {fileID: 1887999075909447074}
+  - component: {fileID: 6620563282814837910}
   m_Layer: 8
   m_Name: Lawnmower [Movement + AudioController]
   m_TagString: LawnMower
@@ -3017,9 +3018,6 @@ MonoBehaviour:
   gasDivider: 20
   speedInput: 0
   turnInput: 0
-  groundEquals:
-    serializedVersion: 2
-    m_Bits: 128
   playerEquals:
     serializedVersion: 2
     m_Bits: 256
@@ -3119,6 +3117,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0001411ec646a5249a7899d37ff5045c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Music: {fileID: 1245450355837256645}
+  _playerInfo: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
+--- !u!114 &6620563282814837910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6301181220424178177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cb7e7ee6cef594dab6842d36eef49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minOughCooldown: 2
+  maxOughCooldown: 4
+  superOughChance: 200
 --- !u!1 &6678057171524970870
 GameObject:
   m_ObjectHideFlags: 0
@@ -3257,7 +3272,6 @@ MonoBehaviour:
   handsTransforms: []
   handSticked: 0
   trackedHand: {fileID: 0}
-  crankBase: {fileID: 4539029571541011254}
   crankTarget: {fileID: 4539029571290158194}
   relativePos: {x: 0, y: 0, z: 0}
   outputAngle: 0
@@ -4033,7 +4047,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7614127783281942053, guid: 0df4ce6aac1988946812067746b2b2e2,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5098890992149882785, guid: e2705509307226a4aa347383deea4d19, type: 3}
+    - {fileID: 1004835109139745345, guid: e2705509307226a4aa347383deea4d19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2705509307226a4aa347383deea4d19, type: 3}
 --- !u!4 &5958406123907051889 stripped
 Transform:
@@ -4214,3 +4230,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5448141703068562504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1245450355837256645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6544586213548160909, guid: e1873fdc264b52148b9e11bdacc3b34b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5448141703068562504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

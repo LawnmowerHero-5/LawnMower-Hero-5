@@ -1,6 +1,7 @@
+using System;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour, IPooledObject
+public class EnemyMovement : MonoBehaviour
 {
     // Movement towards player
     public float speed;
@@ -9,9 +10,10 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
     public float range = 10f;
 
     public bool inCombat;
-    public bool isActive;
 
     private bool affectingSpeed;
+
+    private bool enteredTargetRange;
 
     private Rigidbody _RB;
 
@@ -20,17 +22,20 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
         _RB = GetComponent<Rigidbody>();
     }
 
-    public void OnObjectSpawn()
-    {
-        isActive = true;
-    }
-    
     private void Update()
     {
-        if (isActive)
         {
             if (Vector3.Distance(transform.position, target.playerTransform.position) <= range)
             {
+                if (CompareTag("EvilGnome") || CompareTag("Wasp"))
+                {
+                    if (!enteredTargetRange)
+                    {
+                        target.enemiesInRange++;
+                        enteredTargetRange = true;
+                    }
+                }
+
                 // Move our position a step closer to the target
                 float step = speed * Time.deltaTime; // calculate distance to move
                 transform.position = Vector3.MoveTowards(transform.position, target.playerTransform.position, step);
@@ -45,12 +50,29 @@ public class EnemyMovement : MonoBehaviour, IPooledObject
             }
             else
             {
+                if (CompareTag("EvilGnome") || CompareTag("Wasp"))
+                {
+                    if (enteredTargetRange)
+                    {
+                        target.enemiesInRange--;
+                        enteredTargetRange = false;
+                    }
+                }
+
                 print("Where are you player?");
                 inCombat = false;
             }
 
             //Sets velocity to prevent impacts from affecting enemies' movement
             _RB.velocity = CompareTag("Wasp") ? Vector3.zero : new Vector3(0f, _RB.velocity.y, 0f);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (CompareTag("EvilGnome") || CompareTag("Wasp"))
+        {
+            target.enemiesInRange--;
         }
     }
 }

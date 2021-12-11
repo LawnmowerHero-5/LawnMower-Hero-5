@@ -51,9 +51,14 @@ public class SphereMovement : MonoBehaviour
     //Int made to index if a wheel is on bad terrain or not
     private int[] _badWheels = new int[4];
     
+    //todo TestBool, to allow Controller, Potentially Overwrites VR input
+    private bool _controllerUsed;
+    private float[] _tempSpeed = new float[2];
+    
 
     private void Start()
     {
+        _tempSpeed[0] = 0;
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement
         sphereRb.transform.parent = null;
         for (int i = 0; i < dust.Length - 1; i++)
@@ -67,6 +72,7 @@ public class SphereMovement : MonoBehaviour
     
     private void OnMove(InputValue inputValue)
     {
+        _controllerUsed = true;
         // Here it gets input from the New Player Input, adds acceleration/ reverse acceleration based on if the vector is positive or negative (This is for controllers, and not from the VR interaction)
         if (inputValue.Get<Vector2>().x > 0)
         {
@@ -80,6 +86,7 @@ public class SphereMovement : MonoBehaviour
 
     private void OnLook(InputValue inputValue)
     {
+        _controllerUsed = true;
         //Same as "OnMove()", but for turning
         turnInput = inputValue.Get<Vector2>().x;
     }
@@ -91,11 +98,22 @@ public class SphereMovement : MonoBehaviour
     
     private void Update()
     {
-        //TranslateSteering();
+        TranslateSteering();
     }
     
     private void TranslateSteering()
     {
+        _tempSpeed[1] = (gasCrank.outputAngle / gasDivider);
+        if (Mathf.Abs(_tempSpeed[0]-_tempSpeed[1]) > 0)
+        {
+            _controllerUsed = false;
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
+        }
+        if (_controllerUsed) return;
+        
         //Since theres a clamp, it wont go above 1 or below -1
         // !!BUT!! if the outputDivider is higher than 360, it will cause the SteeringMultiplier to never reach max multiplier.
         turnInput = (steeringWheel.outputAngle / steeringDivider);
@@ -103,14 +121,14 @@ public class SphereMovement : MonoBehaviour
         
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
-        float tempSpeed = (gasCrank.outputAngle / gasDivider);
-        if (tempSpeed > 0)
+        
+        if (_tempSpeed[1] > 0)
         {
-            speedInput = tempSpeed * acceleration;
+            speedInput = _tempSpeed[1] * acceleration;
         }
         else
         {
-            speedInput = tempSpeed * reverseAccel;
+            speedInput = _tempSpeed[1] * reverseAccel;
         }
     }
     

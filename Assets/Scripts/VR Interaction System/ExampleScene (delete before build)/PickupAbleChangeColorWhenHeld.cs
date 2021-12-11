@@ -28,4 +28,9 @@ public class PickupAbleChangeColorWhenHeld : MonoBehaviour
             _meshRenderer.material = _notHeldMaterial;
         }
     }
+
+    private void OnTrackpadButtonChanged(bool state)
+    {
+        print("Also registers trackpad press state :))");
+    }
 }
