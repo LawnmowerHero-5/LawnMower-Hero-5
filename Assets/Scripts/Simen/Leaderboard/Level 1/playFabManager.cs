@@ -227,6 +227,7 @@ public class playFabManager : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
         PullUpLeaderboard();
         _pMenu.Resume();
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
