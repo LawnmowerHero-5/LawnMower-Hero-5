@@ -20,12 +20,14 @@ public class Timer : MonoBehaviour
     public TMP_Text timer;
     private playFabManagerIntermediate2 _intermediate2;
     private pauseEffect _pauseMenu;
+    public GameObject pointer;
 
     private void Start()
     {
         timerIsRunning = true;
         _intermediate2 = GetComponent<playFabManagerIntermediate2>();
         _pauseMenu = GetComponent<pauseEffect>();
+        pointer.SetActive(false);
 
     }
 
@@ -43,6 +45,8 @@ public class Timer : MonoBehaviour
                 timeRemaining = 0;
                 canSubmitScore = true;
                 _pauseMenu.ScorePause();
+                pointer.SetActive(true);
+                
                 timerIsRunning = false;
             }
         }

@@ -22,7 +22,10 @@ public class DayCycleController : MonoBehaviour
 
     private void Start()
     {
-        skyVolume.profile.TryGet<PhysicallyBasedSky>(out sky);
+        if (skyVolume != null)
+        {
+            skyVolume.profile.TryGet<PhysicallyBasedSky>(out sky);
+        }
     }
 
     void Update()

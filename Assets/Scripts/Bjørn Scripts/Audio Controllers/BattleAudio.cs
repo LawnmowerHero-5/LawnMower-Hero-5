@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using FMOD.Studio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleAudio : MonoBehaviour
 {
@@ -28,11 +29,18 @@ public class BattleAudio : MonoBehaviour
     private void OnDisable()
     {
         Music.Pause(sfxBattle);
+        SceneController.swappedScene -= StopAudio;
     }
 
     private void OnEnable()
     {
+        SceneController.swappedScene += StopAudio;
         //Music.Play(sfxBattle);
+    }
+
+    private void StopAudio()
+    {
+        Music.StopLoop(sfxBattle);
     }
     
     #endregion

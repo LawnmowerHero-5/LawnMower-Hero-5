@@ -20,11 +20,18 @@ public class WaspAudio : MonoBehaviour
     private void OnDisable()
     {
         Music.Pause(sfxBuzz);
+        SceneController.swappedScene -= StopAudio;
     }
 
     private void OnEnable()
     {
         Music.Play(sfxBuzz);
+        SceneController.swappedScene += StopAudio;
+    }
+    
+    private void StopAudio()
+    {
+        Music.StopLoop(sfxBuzz);
     }
     
     #endregion

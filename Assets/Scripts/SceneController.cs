@@ -1,25 +1,54 @@
 using System;
-using System.Security.Principal;
+using PlayerPreferences;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-
-    public static void LoadScene(string sceneName)
+    [SerializeField] private DataController _Data;
+    private float timer;
+    private string action;
+    private string targetScene;
+    private bool doLoadNow;
+    public static event Action swappedScene;
+    
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        swappedScene?.Invoke();
+        _Data.SetPlayerData();
+        targetScene = sceneName;
+        timer = 0.05f;
+        doLoadNow = true;
+        action = "load";
     }
     
     public void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        swappedScene?.Invoke();
+        _Data.SetPlayerData();
+        timer = 0.05f;
+        doLoadNow = true;
+        action = "reset";
     }
 
     public void QuitGame()
     {
-        Application.Quit();
+        swappedScene?.Invoke();
+        _Data.SetPlayerData();
+        timer = 0.05f;
+        doLoadNow = true;
+        action = "quit";
     }
 
+    private void FixedUpdate()
+    {
+        if (timer > 0) timer -= Time.fixedDeltaTime;
+        else if (doLoadNow)
+        {
+            doLoadNow = false;
+            if (action == "load") SceneManager.LoadScene(targetScene);
+            else if (action == "quit") Application.Quit();
+            else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
 }

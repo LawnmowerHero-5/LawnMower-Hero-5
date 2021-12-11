@@ -8,9 +8,8 @@ public class runOverNest : MonoBehaviour
     {
         if (other.CompareTag("LawnMower"))
         {
-            print("Meesa Dedsa");
+            Music.PlayOneShot("SFX/crunch_1", transform.position);
             Destroy(gameObject);
         }
-        else print("Not lawnmower");
     }
 }
