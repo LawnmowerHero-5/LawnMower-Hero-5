@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88044ecde84d73445aa0cc71abf1862e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAtPos: {fileID: 0}
+  playAtPos: {fileID: 6544586214581541399}
   masterVolume: 1
   musicVolume: 1
   ambianceVolume: 1
@@ -376,7 +376,6 @@ GameObject:
   - component: {fileID: 6544586214561964055}
   - component: {fileID: 6544586214561964058}
   - component: {fileID: 6544586214561964053}
-  - component: {fileID: 6544586214561964052}
   m_Layer: 0
   m_Name: ChannelPointer
   m_TagString: Untagged
@@ -449,19 +448,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6544586214561964052
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544586214561964054}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6544586214568476170
 GameObject:
   m_ObjectHideFlags: 0
