@@ -319,4 +319,9 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
+
+    public void LoadCredits()
+    {
+        _SceneController.LoadScene("EndCreditsScene");
+    }
 }
