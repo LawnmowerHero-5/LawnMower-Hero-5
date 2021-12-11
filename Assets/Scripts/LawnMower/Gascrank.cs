@@ -76,7 +76,8 @@ public class Gascrank : MonoBehaviour
     {
         relativePos = crankTarget.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
-        return Mathf.Atan2( relativePos.y, relativePos.x) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
+        //todo Changed relPos.x to relPos.z Check if stuff works // Potentially put it in the opposite order
+        return Mathf.Atan2( relativePos.y, relativePos.z) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
     }
     
     private void FixedUpdate()
