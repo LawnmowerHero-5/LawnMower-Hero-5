@@ -26,16 +26,16 @@ Material:
   m_Name: Water
   m_Shader: {fileID: -6465566751694194690, guid: 27b042674da390c46a1ff4cc2317d5f2,
     type: 3}
-  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON
-  m_LightmapFlags: 4
+  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON _SURFACE_TYPE_TRANSPARENT
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
-    RenderType: TransparentCutout
+    RenderType: Transparent
   disabledShaderPasses:
-  - TransparentDepthPrepass
+  - RayTracingPrepass
   - TransparentDepthPostpass
   - TransparentBackface
   - MOTIONVECTORS
@@ -56,17 +56,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_29A8EAB: 0.82
-    - Vector1_3C2CF0EB: 0.0115
-    - Vector1_53B9698E: 7.2
-    - Vector1_6D9DC178: 25.99
-    - Vector1_93DCFAA9: 9.2
-    - Vector1_95BBCBE0: 32.28
-    - Vector1_C5543ECF: 2.73
-    - Vector1_E23798DE: 0.3
+    - Vector1_29A8EAB: 0.231
+    - Vector1_3C2CF0EB: 0.0059
+    - Vector1_53B9698E: 1
+    - Vector1_6D9DC178: 20.9
+    - Vector1_93DCFAA9: 0
+    - Vector1_95BBCBE0: 40.4
+    - Vector1_C5543ECF: 1.35
+    - Vector1_E23798DE: 0.754
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 1
-    - _AlphaDstBlend: 0
+    - _AlphaDstBlend: 10
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 1
     - _AlphaToMaskInspectorValue: 1
@@ -75,26 +75,33 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _DepthOffsetEnable: 0
+    - _DiffusionProfileHash: 0
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnableBlendModePreserveSpecularLighting: 0
-    - _EnableFogOnTransparent: 1
+    - _EnableFogOnTransparent: 0
     - _OpaqueCullMode: 2
-    - _RenderQueueType: 1
+    - _RayTracing: 0
+    - _ReceivesSSR: 1
+    - _ReceivesSSRTransparent: 1
+    - _RefractionModel: 0
+    - _RenderQueueType: 4
+    - _RequireSplitLighting: 0
     - _SrcBlend: 1
     - _StencilRef: 0
-    - _StencilRefDepth: 0
+    - _StencilRefDepth: 8
     - _StencilRefDistortionVec: 4
-    - _StencilRefGBuffer: 2
-    - _StencilRefMV: 32
+    - _StencilRefGBuffer: 10
+    - _StencilRefMV: 40
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
-    - _SurfaceType: 0
+    - _SupportDecals: 1
+    - _SurfaceType: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -103,14 +110,15 @@ Material:
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 0
-    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3
     - _ZTestTransparent: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - Color_A271762B: {r: 0.06127627, g: 0.15828644, b: 0.16037738, a: 0.3254902}
+    - Color_A271762B: {r: 0.047169805, g: 0.18301885, b: 0.18867922, a: 0.3254902}
     - Color_AFFD055F: {r: 1, g: 1, b: 1, a: 1}
-    - Color_E0824245: {r: 0, g: 0.24343877, b: 0.31132078, a: 0.1764706}
+    - Color_E0824245: {r: 0, g: 0.29114035, b: 0.3679245, a: 0.1764706}
+    - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
