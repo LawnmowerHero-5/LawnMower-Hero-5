@@ -34,7 +34,8 @@ public class playFabManagerAdvanced2 : MonoBehaviour
     private Timer _timer;
     private scoreManager _scoreController;
     private pauseEffect _pMenu;
-    
+    [SerializeField] private SceneController _sceneController;
+
     #endregion
     private void Start()
     {
@@ -226,7 +227,7 @@ public class playFabManagerAdvanced2 : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
         PullUpLeaderboard();
         _pMenu.Resume();
-        SceneManager.LoadScene("MainMenu");
+        _sceneController.LoadScene("MainMenu");
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)

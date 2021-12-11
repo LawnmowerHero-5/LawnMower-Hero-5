@@ -35,7 +35,8 @@ public class playFabManager : MonoBehaviour
     public Timer _timer;
     private scoreManager _scoreController;
     private pauseEffect _pMenu;
-    
+    [SerializeField] private SceneController _sceneController;
+
     #endregion
     private void Start()
     {
@@ -136,6 +137,7 @@ public class playFabManager : MonoBehaviour
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
         if (rowParent == null) return;
+        
         foreach (Transform item in rowParent)
         {
             Destroy(item.gameObject);
@@ -168,6 +170,7 @@ public class playFabManager : MonoBehaviour
     void OnFirstPlaceGet(GetLeaderboardResult result)
     {
         if (firstPlace == null) return;
+        
             foreach (Transform item in firstPlace)
         {
             Destroy(item.gameObject);
@@ -232,8 +235,9 @@ public class playFabManager : MonoBehaviour
         PullUpLeaderboard();
         _pMenu.Resume();
         Time.timeScale = 1f;
+        _sceneController.LoadScene("MainMenu");
         print("About to load the main menu");
-        SceneManager.LoadScene("MainMenu");
+        
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)

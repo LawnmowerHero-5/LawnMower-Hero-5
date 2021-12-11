@@ -34,12 +34,16 @@ public class playFabManager2 : MonoBehaviour
     private Timer _timer;
     private scoreManager _scoreController;
     private pauseEffect _pMenu;
+    [SerializeField] private SceneController _sceneController;
     
     #endregion
     private void Start()
     { 
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(false);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }
         _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreManager>();
         _pMenu = GetComponent<pauseEffect>();
@@ -131,6 +135,8 @@ public class playFabManager2 : MonoBehaviour
 
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
+        if (rowParent == null) return;
+        
         foreach (Transform item in rowParent)
         {
             Destroy(item.gameObject);
@@ -162,6 +168,8 @@ public class playFabManager2 : MonoBehaviour
     
     void OnFirstPlaceGet(GetLeaderboardResult result)
     {
+        if (firstPlace == null) return;
+
         foreach (Transform item in firstPlace)
         {
             Destroy(item.gameObject);
@@ -226,7 +234,9 @@ public class playFabManager2 : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
         PullUpLeaderboard();
         _pMenu.Resume();
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        print("About to load the main menu");
+        _sceneController.LoadScene("MainMenu");
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
@@ -251,12 +261,18 @@ public class playFabManager2 : MonoBehaviour
     public void SetYourName()
     {
         nameWindow.SetActive(true);
-        leaderboardWindow.SetActive(false);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }
     }
 
     public void PullUpLeaderboard()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(true);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(true);
+        }
     }
 }

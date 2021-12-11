@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
     private float timer;
     private string action;
     private string targetScene;
-
+    private bool doLoadNow;
     public static event Action swappedScene;
     
     public void LoadScene(string sceneName)
@@ -18,6 +18,7 @@ public class SceneController : MonoBehaviour
         _Data.SetPlayerData();
         targetScene = sceneName;
         timer = 0.05f;
+        doLoadNow = true;
         action = "load";
     }
     
@@ -26,6 +27,7 @@ public class SceneController : MonoBehaviour
         swappedScene?.Invoke();
         _Data.SetPlayerData();
         timer = 0.05f;
+        doLoadNow = true;
         action = "reset";
     }
 
@@ -34,14 +36,16 @@ public class SceneController : MonoBehaviour
         swappedScene?.Invoke();
         _Data.SetPlayerData();
         timer = 0.05f;
+        doLoadNow = true;
         action = "quit";
     }
 
     private void FixedUpdate()
     {
         if (timer > 0) timer -= Time.fixedDeltaTime;
-        else
+        else if (doLoadNow)
         {
+            doLoadNow = false;
             if (action == "load") SceneManager.LoadScene(targetScene);
             else if (action == "quit") Application.Quit();
             else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
