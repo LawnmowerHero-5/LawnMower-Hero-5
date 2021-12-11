@@ -19,7 +19,10 @@ public class ShotgunFire : MonoBehaviour
     private ReloadBar _bar;
     public VisualEffect ShotgunExplotion;
     
-    private bool _isHeld;
+    //public GameObject LawnmowerObject;
+    //public GameObject ShotgunObject;
+    
+    public bool _isHeld;
     
     void Awake()
     {
@@ -76,6 +79,15 @@ public class ShotgunFire : MonoBehaviour
         Fire();
         ShotgunExplotion.Play();
         Music.PlayOneShot("SFX/shotgun_explode", transform.position);
+        /*if (ShotgunObject.transform.parent ==  LawnmowerObject.transform)
+        {
+            yield return new WaitForSeconds(20);
+            CanFire = true;
+        }
+        else
+        {
+            CanFire = false;
+        }*/
         canFire = false;
         yield return new WaitForSeconds(20);
         canFire = true;

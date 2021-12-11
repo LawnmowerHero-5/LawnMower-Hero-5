@@ -29,11 +29,18 @@ public class GnomeAudio : MonoBehaviour
     private void OnDisable()
     {
         Music.Pause(sfxMove);
+        SceneController.swappedScene -= StopAudio;
     }
 
     private void OnEnable()
     {
         Music.Play(sfxMove);
+        SceneController.swappedScene += StopAudio;
+    }
+
+    private void StopAudio()
+    {
+        Music.StopLoop(sfxMove);
     }
     
     #endregion

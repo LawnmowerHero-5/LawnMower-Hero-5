@@ -78,6 +78,15 @@ public class Music : MonoBehaviour
         _Input = GetComponent<PlayerInput>();
     }
 
+    private void OnEnable()
+    {
+        SceneController.swappedScene += StopAudio;
+    }
+    private void OnDisable()
+    {
+        SceneController.swappedScene -= StopAudio;
+    }
+
     private void OnDestroy()
     {
         musicInstance.setUserData(IntPtr.Zero);
@@ -89,6 +98,14 @@ public class Music : MonoBehaviour
     private void OnApplicationQuit()
     {
         _Data.SetPlayerData();
+    }
+
+    private void StopAudio()
+    {
+        musicInstance.setUserData(IntPtr.Zero);
+        musicInstance.stop(STOP_MODE.IMMEDIATE);
+        musicInstance.release();
+        timelineHandle.Free();
     }
 
     private void Update()

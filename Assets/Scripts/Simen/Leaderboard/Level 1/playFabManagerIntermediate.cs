@@ -34,12 +34,16 @@ public class playFabManagerIntermediate : MonoBehaviour
     private Timer _timer;
     private scoreManager _scoreController;
     private pauseEffect _pMenu;
-    
+    [SerializeField] private SceneController _sceneController;
+
     #endregion
     private void Start()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(false);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }
         _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreManager>();
         _pMenu = GetComponent<pauseEffect>();
@@ -58,7 +62,7 @@ public class playFabManagerIntermediate : MonoBehaviour
         {
             SendLeaderboard(_scoreController.score.score);
         }
-        if (_timer.canSubmitScore)
+        if (_timer.canSubmitScore == true)
         {
             SetYourName();
             _timer.canSubmitScore = false;
@@ -131,6 +135,8 @@ public class playFabManagerIntermediate : MonoBehaviour
 
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
+        if (rowParent == null) return;
+
         foreach (Transform item in rowParent)
         {
             Destroy(item.gameObject);
@@ -162,6 +168,8 @@ public class playFabManagerIntermediate : MonoBehaviour
     
     void OnFirstPlaceGet(GetLeaderboardResult result)
     {
+        if (firstPlace == null) return;
+
         foreach (Transform item in firstPlace)
         {
             Destroy(item.gameObject);
@@ -226,13 +234,18 @@ public class playFabManagerIntermediate : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
         PullUpLeaderboard();
         _pMenu.Resume();
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1f;
+        print("Send me home agian, plz now, oh gad");
+        _sceneController.LoadScene("MainMenu");
     }
 
     private void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Updated display name!");
-        leaderboardWindow.SetActive(true);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(true);
+        }
     }
     
     private IEnumerator GetLeaderboardOnStart()
@@ -251,12 +264,17 @@ public class playFabManagerIntermediate : MonoBehaviour
     public void SetYourName()
     {
         nameWindow.SetActive(true);
-        leaderboardWindow.SetActive(false);
-    }
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }    }
 
     public void PullUpLeaderboard()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(true);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(true);
+        }    
     }
 }
