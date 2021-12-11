@@ -37,13 +37,13 @@ public class ReloadBar : MonoBehaviour
         if (CanShoot && Shotgun._isHeld)
         {
             StartCoroutine(ShootWait());
-            
         }
     }
 
     private void Start()
     {
         CurrentReload = 100;
+        CanShoot = true;
     }
 
     private void SetReload(float reload)
