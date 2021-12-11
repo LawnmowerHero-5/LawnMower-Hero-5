@@ -13,7 +13,7 @@ public class Gascrank : MonoBehaviour
     private static float inertia = 0.95f; // 1-wheel never stops // 0 - wheel stops instantly
     
     [Tooltip("Maximum rotation of the wheel")]
-    public static float MAXRotation = 20; 
+    public float maxRotation = 20; 
     private static float wheelHapticFrequency = 360/12; //every wheel will click 12 times per wheel rotation
 
     [Header("Steering Wheel Relative Point")]
@@ -23,7 +23,11 @@ public class Gascrank : MonoBehaviour
     public Vector3 relativePos;
 
     [Header("Output steering wheel angle")]
-    public float outputAngle=0;
+    public float outputAngle = 0;
+
+    public float targetAngle = 0;
+    public float deadZone = 5;
+    
     public TextMesh textDisplay;
 
     //public SteeringWheelOutPut steeringWheelOutPut; Todo;
@@ -76,7 +80,7 @@ public class Gascrank : MonoBehaviour
     {
         relativePos = crankTarget.transform.InverseTransformPoint(handsTransforms[0].position); // GETTING RELATIVE POSITION BETWEEN STEERING WHEEL BASE AND HAND
         
-        //todo Changed relPos.x to relPos.z Check if stuff works // Potentially put it in the opposite order
+        
         return Mathf.Atan2( relativePos.x, relativePos.z) * Mathf.Rad2Deg; // GETTING CIRCULAR DATA FROM X & Z RELATIVES  VECTORS
     }
     
@@ -92,17 +96,32 @@ public class Gascrank : MonoBehaviour
         else
         {
             // when wheel is released we apply a little bit of inertia
-            angle = outputAngle + _wheelLastSpeed; //last wheel speed is updated when wheel is ungrabbed and then gradually returns to zero
+            angle = targetAngle + _wheelLastSpeed; //last wheel speed is updated when wheel is ungrabbed and then gradually returns to zero
             _wheelLastSpeed *= inertia;
         }
         
         lastValues.RemoveAt(0); // REMOVING FIRST ITEM FROM ARRAY
         lastValues.Add(angle); // ADD LAST ITEM TO ARRAY
 
-        outputAngle = HookedAngles(angle);// SETTING OUTPUT THROUGH FUNCTION
+        targetAngle = HookedAngles(angle);// SETTING OUTPUT THROUGH FUNCTION
         if (textDisplay != null){
             textDisplay.text = Mathf.Round(outputAngle) + "" + ".00 deg. speed " + _wheelLastSpeed;
         }
+
+        #region DeadZone
+        
+        if (targetAngle <= deadZone && targetAngle>= -deadZone)
+        {
+            print("In dead zone, don't change crank pos");
+            outputAngle = 0f;
+        }
+        else
+        {
+            outputAngle = targetAngle;
+        }
+        
+        #endregion
+        
         transform.localEulerAngles = new Vector3(crankTarget.transform.localEulerAngles.y, outputAngle, crankTarget.transform.localEulerAngles.z);// ROTATE WHEEL MODEL FACING TO THE PLAYER
         
         //transform.RotateAround(WheelBase.transform.position, Vector3.right, Diffs[^1]);
@@ -167,7 +186,7 @@ public class Gascrank : MonoBehaviour
 
         lastValues[4] += increment[3];
 
-        if (Mathf.Abs(lastValues[4]) > MAXRotation)
+        if (Mathf.Abs(lastValues[4]) > maxRotation)
         {
             lastValues[4] = lastValues[3];
             /*if (TrackedController != null)
