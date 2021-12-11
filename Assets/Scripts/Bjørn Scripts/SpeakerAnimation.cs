@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SpeakerAnimation : MonoBehaviour
 {
     private Animator speaker;
-    [SerializeField] public ParticleSystem _PSNotes;
+    [SerializeField] public VisualEffect _PSNotes;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class SpeakerAnimation : MonoBehaviour
 
     public void PlayPSNotes()
     {
-        if (!_PSNotes.isPlaying) _PSNotes.Play();
+        _PSNotes.Play();
     }
 
     public void StopPSNotes()
