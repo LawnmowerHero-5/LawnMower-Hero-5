@@ -643,6 +643,7 @@ GameObject:
   - component: {fileID: 6176157034061310763}
   - component: {fileID: 1004835109139745345}
   - component: {fileID: 5098890992149882785}
+  - component: {fileID: 1723163600672807374}
   m_Layer: 0
   m_Name: '[CustomCameraRig]'
   m_TagString: Untagged
@@ -788,6 +789,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Music: {fileID: 0}
   _playerInfo: {fileID: 11400000, guid: 756ef1244e7174d42a743b1048c122ce, type: 2}
+--- !u!114 &1723163600672807374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456095173745468374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664d0bfd045764c48ae1ec779826a272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Data: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07, type: 2}
 --- !u!1 &5456095174326672440
 GameObject:
   m_ObjectHideFlags: 0
