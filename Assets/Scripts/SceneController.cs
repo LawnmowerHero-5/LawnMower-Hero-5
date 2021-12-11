@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    private static DataController _Data;
+    [SerializeField] private DataController _Data;
     
-    public static void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         _Data.SetPlayerData();
         SceneManager.LoadScene(sceneName);
@@ -21,5 +21,4 @@ public class SceneController : MonoBehaviour
     {
         Application.Quit();
     }
-
-}
+    }

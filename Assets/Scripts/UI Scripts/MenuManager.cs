@@ -46,6 +46,8 @@ public class MenuManager : MonoBehaviour
     public static float MusicVolume = 1;
     public Slider[] sliders;
 
+    [SerializeField] private SceneController _SceneController;
+
     void Update()
     {
         //Sets the easy/intermediate/hard text in the difficulty select UI
@@ -289,15 +291,15 @@ public class MenuManager : MonoBehaviour
             if (difficultyIndex == 0)
             {
                 print("Loading easy small day");
-                SceneController.LoadScene("Level_Easy_Small");
+                _SceneController.LoadScene("Level_Easy_Small");
             }
             else if (difficultyIndex == 1)
             {
-                SceneController.LoadScene("Intermediate_Medium_Day");
+                _SceneController.LoadScene("Intermediate_Medium_Day");
             }
             else
             {
-                SceneController.LoadScene("Advanced_Medium_Day");
+                _SceneController.LoadScene("Advanced_Medium_Day");
             }
         }
         else
@@ -305,15 +307,15 @@ public class MenuManager : MonoBehaviour
             if (difficultyIndex == 0)
             {
                 print("loading easy medium night");
-                SceneController.LoadScene("Easy_Medium_Night");
+                _SceneController.LoadScene("Easy_Medium_Night");
             }
             else if (difficultyIndex == 1)
             {
-                SceneController.LoadScene("Intermediate_Medium_Night");
+                _SceneController.LoadScene("Intermediate_Medium_Night");
             }
             else
             {
-                SceneController.LoadScene("Advanced_Large_Night");
+                _SceneController.LoadScene("Advanced_Large_Night");
             }
         }
     }
