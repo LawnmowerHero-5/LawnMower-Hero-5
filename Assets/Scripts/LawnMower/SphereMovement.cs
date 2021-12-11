@@ -62,7 +62,11 @@ public class SphereMovement : MonoBehaviour
     private float _maxWheelTurn = 25f;
     
     #endregion
-    
+
+    private void Awake()
+    {
+        EnemiesInRange = 0;
+    }
 
     private void Start()
     {
