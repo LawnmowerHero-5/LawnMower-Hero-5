@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6251194860619064757}
   - component: {fileID: 370777888621803897}
   - component: {fileID: 2242446001364677323}
-  - component: {fileID: 4552104979561295123}
   m_Layer: 0
   m_Name: WaspEnemy
   m_TagString: Wasp
@@ -114,26 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bceff4d93500742b98ff9e538e1b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &4552104979561295123
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201811052873048325}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14ffd8bba1e4fa24fa1a9438bef3331c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6645544523558815335
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +292,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cc72a959734bfb489169d96041c9117, type: 3}
+--- !u!1 &7162738924737981976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2cc72a959734bfb489169d96041c9117,
+    type: 3}
+  m_PrefabInstance: {fileID: 8045189028453274441}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4428477938275893002
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162738924737981976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14ffd8bba1e4fa24fa1a9438bef3331c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &7506649241975960738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2cc72a959734bfb489169d96041c9117,
