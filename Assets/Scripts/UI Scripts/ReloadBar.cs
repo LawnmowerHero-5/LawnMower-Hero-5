@@ -18,24 +18,23 @@ public class ReloadBar : MonoBehaviour
     [SerializeField] private int reloadSpeed = 25;
 
     private bool CanShoot = true;
+
+    //public GameObject LawnmowerObject;
+    //public GameObject ShotgunObject;
+    public ShotgunFire Shotgun;
     
-    private bool _isHeld;
     
-    private void OnHeldByHandChanged(InteractAble.Hand heldByHand)
-    {
-        _isHeld = heldByHand.GameObject != null;
-    }
     
     
     private void OnTrackpadButtonChanged(bool trackpadButtonState)
     {
-        if (!trackpadButtonState || !_isHeld && !CanShoot)
+        if (!trackpadButtonState || !Shotgun._isHeld && !CanShoot)
         {
             return;
         }
 
 
-        if (CanShoot && _isHeld)
+        if (CanShoot && Shotgun._isHeld)
         {
             StartCoroutine(ShootWait());
             
@@ -92,7 +91,17 @@ public class ReloadBar : MonoBehaviour
     { 
         Shoot();
         CanShoot = false;
+        /*if (ShotgunObject.transform.parent ==  LawnmowerObject.transform)
+        {
+            yield return new WaitForSeconds(20);
+            CanShoot = true;
+        }
+        else
+        {
+            CanShoot = false;
+        }*/
         yield return new WaitForSeconds(20);
         CanShoot = true;
+        
     }
 }
