@@ -238,8 +238,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4281808695
+  m_fontColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9752,7 +9752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7968712843631753557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9787,7 +9787,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 5156190682204330775}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -9854,7 +9854,7 @@ MonoBehaviour:
   - {fileID: 7968712843175682096}
   - {fileID: 7968712841966271333}
   - {fileID: 7968712841966271333}
-  laserPointer: {fileID: 0}
+  laserPointer: {fileID: 5173966599500767479}
 --- !u!1 &8325796552818913075
 GameObject:
   m_ObjectHideFlags: 0
@@ -9873,7 +9873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8325796552818913074
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11283,6 +11283,12 @@ PrefabInstance:
 --- !u!20 &5156190682204330775 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 20124302818794546, guid: 5bea6b8b47b67e54ca72ae0d5a7e0ead,
+    type: 3}
+  m_PrefabInstance: {fileID: 5172673245717595941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5173966599500767479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1295072978053074, guid: 5bea6b8b47b67e54ca72ae0d5a7e0ead,
     type: 3}
   m_PrefabInstance: {fileID: 5172673245717595941}
   m_PrefabAsset: {fileID: 0}
