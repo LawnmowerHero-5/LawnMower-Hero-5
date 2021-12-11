@@ -288,7 +288,8 @@ public class MenuManager : MonoBehaviour
         {
             if (difficultyIndex == 0)
             {
-                SceneController.LoadScene("Easy_Small_Day");
+                print("Loading easy small day");
+                SceneController.LoadScene("Level_Easy_Small");
             }
             else if (difficultyIndex == 1)
             {
@@ -303,6 +304,7 @@ public class MenuManager : MonoBehaviour
         {
             if (difficultyIndex == 0)
             {
+                print("loading easy medium night");
                 SceneController.LoadScene("Easy_Medium_Night");
             }
             else if (difficultyIndex == 1)

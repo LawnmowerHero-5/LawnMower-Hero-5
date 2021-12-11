@@ -32,7 +32,7 @@ public class playFabManager : MonoBehaviour
     public Transform firstPlace;
 
     private string _loggedInPlayFabId;
-    private Timer _timer;
+    public Timer _timer;
     private scoreManager _scoreController;
     private pauseEffect _pMenu;
     
@@ -40,8 +40,10 @@ public class playFabManager : MonoBehaviour
     private void Start()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(false);
-        _timer = GetComponent<Timer>();
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }
         _scoreController = GetComponent<scoreManager>();
         _pMenu = GetComponent<pauseEffect>();
         Login();
@@ -59,7 +61,8 @@ public class playFabManager : MonoBehaviour
         {
             SendLeaderboard(_scoreController.score.score);
         }
-        if (_timer.canSubmitScore)
+        
+        if (_timer.canSubmitScore == true)
         {
             SetYourName();
             _timer.canSubmitScore = false;
@@ -132,6 +135,7 @@ public class playFabManager : MonoBehaviour
 
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
+        if (rowParent == null) return;
         foreach (Transform item in rowParent)
         {
             Destroy(item.gameObject);
@@ -163,7 +167,8 @@ public class playFabManager : MonoBehaviour
     
     void OnFirstPlaceGet(GetLeaderboardResult result)
     {
-        foreach (Transform item in firstPlace)
+        if (firstPlace == null) return;
+            foreach (Transform item in firstPlace)
         {
             Destroy(item.gameObject);
         }
@@ -173,7 +178,6 @@ public class playFabManager : MonoBehaviour
             GameObject newGo = Instantiate(rowPreFabHighScore, firstPlace);
             TMP_Text[] texts = newGo.GetComponentsInChildren<TMP_Text>();
             
-  //          texts[0].text = (item.Position + 1).ToString();
             texts[1].text = item.DisplayName;
             texts[2].text = item.StatValue.ToString();
 
@@ -253,12 +257,19 @@ public class playFabManager : MonoBehaviour
     public void SetYourName()
     {
         nameWindow.SetActive(true);
-        leaderboardWindow.SetActive(false);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }
     }
 
     public void PullUpLeaderboard()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(true);
+        
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(true);
+        }
     }
 }
