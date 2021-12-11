@@ -37,11 +37,20 @@ public class LawnmowerAudio : MonoBehaviour
         Music.Pause(sfxIdle);
         Music.Pause(sfxDrive);
         Music.Pause(sfxReverse);
+        SceneController.swappedScene -= StopAudio;
     }
 
     private void OnEnable()
     {
         Music.Play(sfxIdle);
+        SceneController.swappedScene += StopAudio;
+    }
+
+    private void StopAudio()
+    {
+        Music.StopLoop(sfxIdle);
+        Music.StopLoop(sfxDrive);
+        Music.StopLoop(sfxReverse);
     }
     
     #endregion

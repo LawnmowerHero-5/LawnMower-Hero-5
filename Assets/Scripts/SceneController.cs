@@ -14,6 +14,7 @@ public class SceneController : MonoBehaviour
     
     public void LoadScene(string sceneName)
     {
+        swappedScene?.Invoke();
         _Data.SetPlayerData();
         targetScene = sceneName;
         timer = 0.05f;
@@ -22,6 +23,7 @@ public class SceneController : MonoBehaviour
     
     public void ResetScene()
     {
+        swappedScene?.Invoke();
         _Data.SetPlayerData();
         timer = 0.05f;
         action = "reset";
@@ -29,6 +31,7 @@ public class SceneController : MonoBehaviour
 
     public void QuitGame()
     {
+        swappedScene?.Invoke();
         _Data.SetPlayerData();
         timer = 0.05f;
         action = "quit";
