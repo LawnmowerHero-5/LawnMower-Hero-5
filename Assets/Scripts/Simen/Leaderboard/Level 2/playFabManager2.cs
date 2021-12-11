@@ -33,7 +33,7 @@ public class playFabManager2 : MonoBehaviour
     private string _loggedInPlayFabId;
     private Timer _timer;
     private scoreManager _scoreController;
-    private pauseMenu _pMenu;
+    private pauseEffect _pMenu;
     
     #endregion
     private void Start()
@@ -42,7 +42,7 @@ public class playFabManager2 : MonoBehaviour
         leaderboardWindow.SetActive(false);
         _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreManager>();
-        _pMenu = GetComponent<pauseMenu>();
+        _pMenu = GetComponent<pauseEffect>();
         Login();
         StartCoroutine(GetLeaderboardOnStart());
     }
