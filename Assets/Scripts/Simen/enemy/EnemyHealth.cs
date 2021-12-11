@@ -7,9 +7,14 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
     public VisualEffect _Effect;
     public transformVariable _score;
 
+    [HideInInspector] public int pool = -1;
+    private ObjectPooler pooler;
+
     private void Start()
     {
         print("Start");
+        
+        pooler = ObjectPooler.Instance;
 
         _Effect.Stop();
     }
@@ -54,6 +59,13 @@ public class EnemyHealth : MonoBehaviour, IPooledObject
             
             //TODO: Check if enemy deactivates when killed
             print("Died to Ded");
+
+            if (pool >= 0)
+            {
+                //Removes itself from count in its pool
+                pooler.pools[pool].activeObjects--;
+            }
+            
             gameObject.SetActive(false);
 
             //StartCoroutine(destroyEnemy());

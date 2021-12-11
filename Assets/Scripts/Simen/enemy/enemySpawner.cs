@@ -42,9 +42,11 @@ public class enemySpawner : MonoBehaviour
 
         for (var i = 0; i < count; i++)
         {
-            pooler.SpawnFromPool(tag,
+            var obj = pooler.SpawnFromPool(tag,
                 transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 2f, Random.Range(-0.5f, 0.5f)),
                 Quaternion.identity);
+
+            obj.GetComponent<EnemyHealth>().pool = poolUsed;
             
             pooler.pools[poolUsed].activeObjects++;
             
