@@ -19,6 +19,8 @@ public class RadioDial : MonoBehaviour
     private List<Transform> _handsTransforms = new List<Transform>();
     private bool _handSticked;
     private float _rotationOffset;
+    private float _hackyMultiplier = 100f;
+    private float tempRot;
 
     [SerializeField] private PlayerInput input;
     [SerializeField] private Music music; 
@@ -58,7 +60,7 @@ public class RadioDial : MonoBehaviour
 
     private void CalculateOffset()
     {
-        _rotationOffset = _yRot + _handsTransforms[0].rotation.y;
+        //_rotationOffset = _handsTransforms[0].rotation.z;
     }
 
     // Update is called once per frame
@@ -68,10 +70,11 @@ public class RadioDial : MonoBehaviour
         var add = rotateSpd * Time.deltaTime;
         if (_handSticked)
         {
-            _yRot = _handsTransforms[0].rotation.y - _rotationOffset;
             Mathf.Clamp(_yRot, _dialMinAngle, _dialMaxAngle);
+            tempRot = _handsTransforms[0].rotation.z;
+            _yRot = tempRot * _hackyMultiplier;
         }
-        if (input.rotateDir > 0f)
+        /*if (input.rotateDir > 0f)
         {
             if (_yRot + add <= _dialMaxAngle) _yRot += add;
             else _yRot = _dialMaxAngle;
@@ -80,7 +83,7 @@ public class RadioDial : MonoBehaviour
         {
             if (_yRot - add >= _dialMinAngle) _yRot -= add;
             else _yRot = _dialMinAngle;
-        }
+        }*/
         
         transform.localRotation = Quaternion.Euler(rot.x, _yRot, rot.z);
 
