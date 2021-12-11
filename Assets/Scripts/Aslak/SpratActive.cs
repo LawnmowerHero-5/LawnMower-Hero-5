@@ -75,7 +75,7 @@ public class SpratActive : MonoBehaviour
 
 
     //"only" used for testing"
-    void Update()
+    /*void Update()
     {
         if (Keyboard.current.aKey.isPressed)
         {
@@ -90,7 +90,7 @@ public class SpratActive : MonoBehaviour
             _obj.SetActive(false);
         }
         
-    }
+    }*/
 
     private IEnumerator SprayDelay()
     {

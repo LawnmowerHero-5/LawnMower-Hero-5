@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class pauseMenu : MonoBehaviour
+public class pauseEffect : MonoBehaviour
 {
     public static bool GameIsPaused;
 
