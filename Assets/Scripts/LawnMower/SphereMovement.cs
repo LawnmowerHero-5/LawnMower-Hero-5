@@ -63,13 +63,9 @@ public class SphereMovement : MonoBehaviour
     
     #endregion
 
-    private void Awake()
-    {
-        EnemiesInRange = 0;
-    }
-
     private void Start()
     {
+        EnemiesInRange = 0;
         _tempSpeed[0] = 0;
         //Sets the sphere free, as to not be the child of the lawnmower, which would have made all movement be a sort of "Double" movement
         sphereRb.transform.parent = null;

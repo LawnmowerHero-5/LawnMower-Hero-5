@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class GetEnemiesInRange : MonoBehaviour
     private void Update()
     {
         var count = 0;
+        print(colliders.Count);
         
         foreach (var i in colliders)
         {

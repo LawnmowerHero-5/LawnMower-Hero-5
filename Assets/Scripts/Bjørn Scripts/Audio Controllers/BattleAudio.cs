@@ -47,6 +47,8 @@ public class BattleAudio : MonoBehaviour
 
     private void Start()
     {
+        SphereMovement.EnemiesInRange = 0;
+        
         audioSetup.Add(Music.PlayLoop("battle_theme", transform));
 
         if (audioSetup[0] != null) sfxBattle = (EventInstance) audioSetup[0];
