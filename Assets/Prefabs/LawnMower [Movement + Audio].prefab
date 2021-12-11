@@ -10991,14 +10991,72 @@ PrefabInstance:
       propertyPath: m_Name
       value: RadioNew
       objectReference: {fileID: 0}
+    - target: {fileID: 5611518043177983150, guid: b6b756e8c153462448256be14bb86e47,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49921405
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611518043177983150, guid: b6b756e8c153462448256be14bb86e47,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.50078475
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611518043177983150, guid: b6b756e8c153462448256be14bb86e47,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.49921405
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611518043177983150, guid: b6b756e8c153462448256be14bb86e47,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.50078475
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611518043177983150, guid: b6b756e8c153462448256be14bb86e47,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90.18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b756e8c153462448256be14bb86e47, type: 3}
+--- !u!114 &2567545766398544860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3781727610745470627, guid: b6b756e8c153462448256be14bb86e47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1718867063994021247}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158fbeb9402202b429924e25eb2f2c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2590054735695152373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3759130697631461770, guid: b6b756e8c153462448256be14bb86e47,
     type: 3}
   m_PrefabInstance: {fileID: 1718867063994021247}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5456347548136418835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6657010001619835756, guid: b6b756e8c153462448256be14bb86e47,
+    type: 3}
+  m_PrefabInstance: {fileID: 1718867063994021247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3279818878366792464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456347548136418835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d512d5d32ecb14c974fe5d6435ea74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attachedPickupAble: {fileID: 0}
+  _attachedHandStickAbles:
+  - {fileID: 2567545766398544860}
 --- !u!1001 &5172673245717595941
 PrefabInstance:
   m_ObjectHideFlags: 0
