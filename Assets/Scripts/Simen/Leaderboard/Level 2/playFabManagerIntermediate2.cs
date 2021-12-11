@@ -40,8 +40,10 @@ public class playFabManagerIntermediate2 : MonoBehaviour
     private void Start()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(false);
-        _timer = GetComponent<Timer>();
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }        _timer = GetComponent<Timer>();
         _scoreController = GetComponent<scoreManager>();
         _pMenu = GetComponent<pauseEffect>();
         Login();
@@ -133,6 +135,8 @@ public class playFabManagerIntermediate2 : MonoBehaviour
 
     void OnLeaderoardGet(GetLeaderboardResult result)
     {
+        if (rowParent == null) return;
+
         foreach (Transform item in rowParent)
         {
             Destroy(item.gameObject);
@@ -164,6 +168,8 @@ public class playFabManagerIntermediate2 : MonoBehaviour
     
     void OnFirstPlaceGet(GetLeaderboardResult result)
     {
+        if (firstPlace == null) return;
+
         foreach (Transform item in firstPlace)
         {
             Destroy(item.gameObject);
@@ -228,6 +234,7 @@ public class playFabManagerIntermediate2 : MonoBehaviour
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
         PullUpLeaderboard();
         _pMenu.Resume();
+        Time.timeScale = 1f;
         _sceneController.LoadScene("MainMenu");
     }
 
@@ -253,12 +260,17 @@ public class playFabManagerIntermediate2 : MonoBehaviour
     public void SetYourName()
     {
         nameWindow.SetActive(true);
-        leaderboardWindow.SetActive(false);
-    }
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(false);
+        }    }
 
     public void PullUpLeaderboard()
     {
         nameWindow.SetActive(false);
-        leaderboardWindow.SetActive(true);
+        if (leaderboardWindow != null)
+        {
+            leaderboardWindow.SetActive(true);
+        }
     }
 }
