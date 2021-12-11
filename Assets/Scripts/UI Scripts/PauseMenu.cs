@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +39,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ConfirmQuit()
     {
+        Music.SetParameter("Paused", 0);
         pauseMenuMenu[0].SetActive(false);
         pauseMenuMenu[1].SetActive(false);
         pauseMenuMenu[2].SetActive(true);

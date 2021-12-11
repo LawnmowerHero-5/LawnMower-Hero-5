@@ -23,6 +23,7 @@ public class pauseEffect : MonoBehaviour
             return;
         }
         PauseMenuUI.SetActive(false);
+        Music.SetParameter("Paused", 0);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -30,6 +31,7 @@ public class pauseEffect : MonoBehaviour
     public void Pause()
     {
         PauseMenuUI.SetActive(true);
+        Music.SetParameter("Paused", 1);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
