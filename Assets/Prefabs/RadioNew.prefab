@@ -332,6 +332,70 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1087132276422183284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1824661075489861076}
+  - component: {fileID: 4643099769520646841}
+  - component: {fileID: 3781727610745470627}
+  m_Layer: 0
+  m_Name: DialSnapPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1824661075489861076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087132276422183284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5611518043177983150}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4643099769520646841
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087132276422183284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.06
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3781727610745470627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087132276422183284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158fbeb9402202b429924e25eb2f2c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stickPoint: {fileID: 0}
+  _stickRadius: 0.06
+  _detachDistance: 0.25
+  _customClosedHandMesh: {fileID: 0}
+  e_visualizeStickPoint: 0
+  e_handMesh: {fileID: 0}
 --- !u!1 &1164176312976084764
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +407,6 @@ GameObject:
   - component: {fileID: 846722556792930168}
   - component: {fileID: 5668794655299418820}
   - component: {fileID: 7613441813562035896}
-  - component: {fileID: 2761223699973066544}
   m_Layer: 0
   m_Name: Dial
   m_TagString: Untagged
@@ -358,12 +421,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164176312976084764}
-  m_LocalRotation: {x: 0.5000001, y: 0.50000006, z: -0.4999999, w: -0.49999994}
-  m_LocalPosition: {x: -1.14, y: 0.13, z: -1.12}
-  m_LocalScale: {x: 44.130924, y: 44.130924, z: 44.130924}
+  m_LocalRotation: {x: -0.00000005960463, y: -0.00000005960463, z: -0.00000005960463,
+    w: 1}
+  m_LocalPosition: {x: 0.0019985624, y: 0, z: 0.0026135163}
+  m_LocalScale: {x: 0.6784491, y: 0.67844915, z: 0.67844915}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5754958293609394906}
+  m_Father: {fileID: 5611518043177983150}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5668794655299418820
@@ -417,27 +481,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2761223699973066544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164176312976084764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2e18cc0c41f742fd86d09b3437ef308, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpd: 120
-  channelWidth: 1
-  whiteNoiseFadeWidth: 2
-  channelHertzValues:
-  - 93
-  - 102
-  input: {fileID: 788689093653460572}
-  music: {fileID: 7864730059235911059}
-  data: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07, type: 2}
 --- !u!1 &1215535037726154079
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +755,7 @@ Transform:
   m_GameObject: {fileID: 3759130697631461771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.485877, y: 8.878305, z: 5.240256}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2273926918058643565}
@@ -831,7 +874,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 846722556792930168}
+  - {fileID: 5611518043177983150}
   - {fileID: 8401903687952113933}
   - {fileID: 2687282485966641017}
   - {fileID: 1351585652540418838}
@@ -966,6 +1009,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.288195, y: 2, z: 2.1}
   m_Center: {x: 0.0059025288, y: 0, z: -0.049999952}
+--- !u!1 &6657010001619835756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5611518043177983150}
+  - component: {fileID: 4055959999493791280}
+  m_Layer: 0
+  m_Name: DialMiddle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5611518043177983150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657010001619835756}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.96999997, y: 0, z: -1.1199977}
+  m_LocalScale: {x: 65.04677, y: 65.04676, z: 65.04676}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 846722556792930168}
+  - {fileID: 1824661075489861076}
+  m_Father: {fileID: 5754958293609394906}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
+--- !u!114 &4055959999493791280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657010001619835756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2e18cc0c41f742fd86d09b3437ef308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpd: 120
+  channelWidth: 1
+  whiteNoiseFadeWidth: 2
+  channelHertzValues:
+  - 93
+  - 102
+  input: {fileID: 788689093653460572}
+  music: {fileID: 7864730059235911059}
+  data: {fileID: 11400000, guid: 5d758fd4bf8e5b545b274b651c379e07, type: 2}
 --- !u!1 &6713781832601116934
 GameObject:
   m_ObjectHideFlags: 0
