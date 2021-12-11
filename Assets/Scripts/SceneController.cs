@@ -1,14 +1,14 @@
-using System;
-using System.Security.Principal;
+using PlayerPreferences;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-
-
+    private static DataController _Data;
+    
     public static void LoadScene(string sceneName)
     {
+        _Data.SetPlayerData();
         SceneManager.LoadScene(sceneName);
     }
     
