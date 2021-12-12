@@ -48,6 +48,9 @@ public class scoreManager : MonoBehaviour
     
     void SetCountText()
     {
-        countText.text = "Score: " + totalScore;
+        if (countText != null)
+        {
+            countText.text = "Score: " + totalScore;
+        }
     }
 }

@@ -38,8 +38,11 @@ public class playFabManager2 : MonoBehaviour
     
     #endregion
     private void Start()
-    { 
-        nameWindow.SetActive(false);
+    {
+        if (nameWindow != null)
+        {
+            nameWindow.SetActive(false);
+        }
         if (leaderboardWindow != null)
         {
             leaderboardWindow.SetActive(false);

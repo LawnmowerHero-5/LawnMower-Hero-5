@@ -27,8 +27,10 @@ public class Timer : MonoBehaviour
         timerIsRunning = true;
         _intermediate2 = GetComponent<playFabManagerIntermediate2>();
         _pauseMenu = GetComponent<pauseEffect>();
-        pointer.SetActive(false);
-
+        if (pointer != null)
+        {
+            pointer.SetActive(false);
+        }
     }
 
     private void Update()
@@ -57,7 +59,10 @@ public class Timer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        if (timer != null)
+        {
+            timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
     
     private void OnEnable()

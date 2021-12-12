@@ -40,7 +40,10 @@ public class playFabManager : MonoBehaviour
     #endregion
     private void Start()
     {
-        nameWindow.SetActive(false);
+        if (nameWindow != null)
+        {
+            nameWindow.SetActive(false);
+        }
         if (leaderboardWindow != null)
         {
             leaderboardWindow.SetActive(false);
@@ -58,15 +61,18 @@ public class playFabManager : MonoBehaviour
 
     private void Update()
     {
-        if (_timer.timerIsRunning == false)
+        if (_timer != null)
         {
-            SendLeaderboard(_scoreController.score.score);
-        }
+            if (_timer.timerIsRunning == false)
+            {
+                SendLeaderboard(_scoreController.score.score);
+            }
         
-        if (_timer.canSubmitScore == true)
-        {
-            SetYourName();
-            _timer.canSubmitScore = false;
+            if (_timer.canSubmitScore == true)
+            {
+                SetYourName();
+                _timer.canSubmitScore = false;
+            }
         }
     }
 
