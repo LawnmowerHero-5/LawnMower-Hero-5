@@ -50,11 +50,11 @@ public class SphereMovement : MonoBehaviour
     //Corresponds to a speed multiplier, where 1 equals normal speed, and 0.5 is half speed.
     private float _slowDown = 1;
     //The amount of wheels slowed down, also used to make the lawnmower even slower in the pond
-    private int _slowedWheels;
+    private float _slowedWheels;
     [HideInInspector] public static int EnemiesInRange;
     
-    //Int made to index if a wheel is on bad terrain or not
-    private int[] _badWheels = new int[4];
+    [Tooltip("Int made to index if a wheel is on bad terrain or not")]
+    public int[] _badWheels = new int[4];
     
     //todo TestBool, to allow Controller, Potentially Overwrites VR input
     private bool _controllerUsed;
@@ -118,7 +118,7 @@ public class SphereMovement : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * (speedInput/acceleration) * _slowDown, 0f));
         }
         if (_controllerUsed) return;
         
@@ -128,7 +128,7 @@ public class SphereMovement : MonoBehaviour
         Mathf.Clamp(turnInput, -1, 1);
         
         //Complex formula to turn the Lawnmower, that stops the lawnmower from turning when standing still (due to speedInput)
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * speedInput/acceleration, 0f));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnSpeed * Time.deltaTime * (speedInput/acceleration) * _slowDown, 0f));
         
         if (_tempSpeed[1] > 0)
         {
@@ -202,19 +202,26 @@ public class SphereMovement : MonoBehaviour
     }
     private void SlowDown()
     {
-        
-        var result = 0;
+        var result = 0f;
         for (var i = 0; i < _badWheels.Length; i++)
         {
             if (_badWheels[i] == 1)
             {
-                result += 1;
+                result += 1f;
+            }
+            else if(_badWheels[i] == 2)
+            {
+                result += 1.5f;
             }
             _slowedWheels = result;
+            print(_slowedWheels);
         }
         
         _slowDown = 1 - (((EnemiesInRange * slowDownEnemy)/100) + ((_slowedWheels * slowDownTerrain)/100));
-        Mathf.Clamp(_slowDown, 0.1f, 1f);
+        if (_slowDown <=0.33f)
+        {
+            _slowDown = 0.33f;
+        }
     }
     
     #endregion
