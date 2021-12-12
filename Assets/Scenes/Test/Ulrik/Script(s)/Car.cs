@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 carVelocity = Vector3.right * CarSpeed;
                 transform.Translate(carVelocity * Time.deltaTime);
