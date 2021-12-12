@@ -63,6 +63,7 @@ public class enemySpawner : MonoBehaviour
     //Is only run by wasp nests
     public void DeathTrigger()
     {
+        if(CompareTag("WaspNest")) Music.PlayOneShot("SFX/crunch_1", transform.position);
         Destroy(gameObject);
     }
 }
