@@ -11,8 +11,8 @@ public class RadioDial : MonoBehaviour
 
     private float _minHertz = 88f;
     private float _maxHertz = 108f;
-    private float _dialMinAngle = -140f;
-    private float _dialMaxAngle = 140f;
+    private float _dialMinAngle = -90f;
+    private float _dialMaxAngle = 90f;
 
     private float _yRot;
 
