@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
+using UnityEngine;
 using System.Collections;
 
 namespace Valve.VR.Extras
@@ -24,8 +25,6 @@ namespace Valve.VR.Extras
         public event PointerEventHandler PointerClick;
 
         Transform previousContact = null;
-
-        public Vector3 laserHitPosition;
 
 
         private void Start()
@@ -154,7 +153,6 @@ namespace Valve.VR.Extras
                 pointer.GetComponent<MeshRenderer>().material.color = color;
             }
             pointer.transform.localPosition = new Vector3(0f, 0f, dist / 2f);
-            laserHitPosition = hit.point;
         }
     }
 
@@ -167,4 +165,4 @@ namespace Valve.VR.Extras
     }
 
     public delegate void PointerEventHandler(object sender, PointerEventArgs e);
-    }
+}
